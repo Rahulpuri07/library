@@ -2,137 +2,379 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Movie Library</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
         body {
             background-color: #0b0b0b;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
+
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             height: 80px;
+
             display: flex;
             align-items: center;
+
             padding: 0 40px;
+
             background-color: #111111;
+
+            border-bottom: 1px solid #222222;
         }
+
 
         .logo {
             font-size: 28px;
-            font-weight: bold;
+
+            font-weight: 700;
+
+            letter-spacing: -0.5px;
         }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
 
         .hero {
-            height: 450px;
+
+            height: 520px;
+
             display: flex;
+
             align-items: center;
-            padding: 50px;
-            background: linear-gradient(
-                to right,
-                #111111 0%,
-                rgba(17, 17, 17, 0.7) 50%,
-                rgba(17, 17, 17, 0.2) 100%
-            );
+
+            padding: 60px;
+
+            position: relative;
+
+            background-image:
+
+                linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.95) 0%,
+                    rgba(0, 0, 0, 0.65) 45%,
+                    rgba(0, 0, 0, 0.15) 100%
+                ),
+
+                url("background.jpg");
+
+            background-size: cover;
+
+            background-position: center;
         }
+
 
         .hero-content {
-            max-width: 600px;
+
+            max-width: 650px;
+
         }
+
 
         .hero h1 {
-            font-size: 52px;
+
+            font-size: 56px;
+
+            font-weight: 800;
+
+            line-height: 1.1;
+
             margin-bottom: 20px;
+
         }
+
 
         .hero p {
+
             font-size: 18px;
+
+            font-weight: 400;
+
             color: #cccccc;
-            line-height: 1.6;
+
+            line-height: 1.7;
+
         }
+
+
+        /* =========================
+           MOVIE SECTION
+        ========================= */
 
         .movies {
-            padding: 40px;
+
+            padding: 45px;
+
         }
+
 
         .movies h2 {
-            font-size: 28px;
-            margin-bottom: 25px;
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            margin-bottom: 28px;
+
         }
+
+
+        /* =========================
+           MOVIE GRID
+        ========================= */
 
         .movie-grid {
+
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(180px, 1fr)
+                );
+
             gap: 25px;
+
         }
+
+
+        /* =========================
+           MOVIE CARD
+        ========================= */
 
         .movie-card {
+
             background-color: #181818;
-            border-radius: 8px;
+
+            border-radius: 10px;
+
             overflow: hidden;
+
             cursor: pointer;
-            transition: transform 0.2s;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
         }
+
 
         .movie-card:hover {
+
             transform: scale(1.04);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.6);
+
         }
+
+
+        /* =========================
+           MOVIE POSTER
+        ========================= */
 
         .poster {
+
             width: 100%;
+
             aspect-ratio: 2 / 3;
+
             background-color: #252525;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             color: #777777;
+
+            font-size: 15px;
+
         }
 
+
+        /* =========================
+           MOVIE TITLE
+        ========================= */
+
         .movie-title {
-            padding: 12px;
+
+            padding: 14px;
+
             font-size: 16px;
+
+            font-weight: 600;
+
+            color: #ffffff;
+
         }
+
+
+        /* =========================
+           MOBILE / SMALL SCREENS
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                height: 65px;
+
+                padding: 0 20px;
+
+            }
+
+
+            .logo {
+
+                font-size: 22px;
+
+            }
+
+
+            .hero {
+
+                height: 420px;
+
+                padding: 30px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 40px;
+
+            }
+
+
+            .hero p {
+
+                font-size: 15px;
+
+            }
+
+
+            .movies {
+
+                padding: 25px;
+
+            }
+
+
+            .movies h2 {
+
+                font-size: 24px;
+
+            }
+
+
+            .movie-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+                gap: 15px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
     <header>
-        <div class="logo">My Movie Library</div>
+
+        <div class="logo">
+            My Movie Library
+        </div>
+
     </header>
 
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
     <section class="hero">
+
         <div class="hero-content">
-            <h1>Welcome</h1>
+
+            <h1>
+                Welcome
+            </h1>
 
             <p>
                 Your personal movie collection.
                 Browse your movies and watch them whenever you want.
             </p>
+
         </div>
+
     </section>
+
+
+
+    <!-- =========================
+         MOVIES
+    ========================= -->
 
     <section class="movies">
 
-        <h2>Recently Added</h2>
+        <h2>
+            Recently Added
+        </h2>
+
 
         <div class="movie-grid">
 
+
+            <!-- MOVIE 1 -->
+
             <div class="movie-card">
+
                 <div class="poster">
                     Poster
                 </div>
@@ -140,9 +382,15 @@
                 <div class="movie-title">
                     Movie 1
                 </div>
+
             </div>
 
+
+
+            <!-- MOVIE 2 -->
+
             <div class="movie-card">
+
                 <div class="poster">
                     Poster
                 </div>
@@ -150,9 +398,15 @@
                 <div class="movie-title">
                     Movie 2
                 </div>
+
             </div>
 
+
+
+            <!-- MOVIE 3 -->
+
             <div class="movie-card">
+
                 <div class="poster">
                     Poster
                 </div>
@@ -160,11 +414,14 @@
                 <div class="movie-title">
                     Movie 3
                 </div>
+
             </div>
+
 
         </div>
 
     </section>
+
 
 </body>
 
