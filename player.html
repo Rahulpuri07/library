@@ -2,15 +2,10 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<title>Now Playing - My Library</title>
-
+<title>My Library</title>
 
 <style>
 
@@ -18,1065 +13,828 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-
-    margin: 0;
-
-    padding: 0;
-
-    background: #000;
-
-    color: #fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
 
-    height: 72px;
+    min-height: 72px;
 
     background: #050505;
-
-    border-bottom:
-        1px solid #1b1b1b;
+    border-bottom: 1px solid #1c1c1c;
 
     display: flex;
-
     align-items: center;
 
-    padding:
-        0 35px;
-
-    gap: 25px;
-
+    padding: 0 40px;
+    gap: 35px;
 }
-
-
-.back-button {
-
-    background: #050505;
-
-    color: #fff;
-
-    border:
-        1px solid #333;
-
-    border-radius: 5px;
-
-    padding:
-        10px 18px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-}
-
-.back-button:hover {
-
-    background: #151515;
-
-}
-
 
 .logo {
-
-    font-size: 22px;
-
+    font-size: 25px;
     font-weight: 900;
-
+    white-space: nowrap;
 }
 
 .logo span {
-
     color: #e50914;
-
 }
 
-
-/* =========================
-   PLAYER AREA
-========================= */
-
-.player-page {
-
-    width: 100%;
-
-    min-height:
-        calc(100vh - 72px);
-
-    background: #000;
-
-    padding:
-        35px 35px 60px;
-
+.nav {
+    display: flex;
+    gap: 25px;
 }
 
+.nav button {
+    background: none;
+    border: none;
 
-.video-wrapper {
+    color: #888;
 
-    position: relative;
-
-    width: 100%;
-
-    max-width: 1400px;
-
-    margin: 0 auto;
-
-    background: #000;
-
+    font-size: 15px;
+    cursor: pointer;
 }
 
-
-/* VIDEO */
-
-video {
-
-    display: block;
-
-    width: 100%;
-
-    max-height: 78vh;
-
-    background: #000;
-
+.nav button:hover,
+.nav button.active {
+    color: #fff;
 }
 
-
-/* =========================
-   CUSTOM CONTROLS
-========================= */
-
-.controls {
-
-    position: relative;
-
-    width: 100%;
-
-    background: #000;
-
-    padding:
-        8px 5px 5px;
-
+.search-container {
+    margin-left: auto;
 }
 
+#search {
+    width: 260px;
+    height: 38px;
 
-/* TIMELINE */
+    padding: 0 15px;
 
-.timeline-area {
+    border: 1px solid #333;
+    border-radius: 5px;
 
-    position: relative;
+    background: #111;
+    color: #fff;
 
-    width: 100%;
+    outline: none;
+}
 
-    height: 55px;
+#search::placeholder {
+    color: #777;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 330px;
+
+    padding: 80px 55px 50px;
 
     display: flex;
-
     align-items: flex-end;
 
+    background:
+        linear-gradient(
+            to top,
+            #000 0%,
+            rgba(0,0,0,0.65) 45%,
+            rgba(0,0,0,0.15) 100%
+        ),
+        radial-gradient(
+            circle at 75% 30%,
+            #292929,
+            #050505 60%,
+            #000 100%
+        );
 }
 
+.hero-content {
+    max-width: 700px;
+}
 
-/* PREVIEW */
+.hero h1 {
+    margin: 0 0 12px;
 
-.preview {
+    font-size: 42px;
+    font-weight: 900;
+}
 
-    position: absolute;
+.hero p {
+    margin: 0;
 
-    bottom: 27px;
+    color: #aaa;
 
-    left: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
 
-    width: 160px;
+/* MAIN */
 
-    height: 90px;
+.main {
+    padding: 25px 40px 60px;
+}
 
-    display: none;
+.section {
+    margin-bottom: 50px;
+}
 
-    pointer-events: none;
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    overflow: hidden;
+    margin-bottom: 18px;
+}
 
-    border:
-        2px solid #fff;
+.section-title h2 {
+    margin: 0;
+    font-size: 24px;
+}
 
-    border-radius: 4px;
+.section-title span {
+    color: #777;
+    font-size: 13px;
+}
+
+/* GRID */
+
+.movie-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(170px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+/* CARD */
+
+.movie-card {
+    position: relative;
 
     background: #111;
 
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,0.8);
+    border-radius: 6px;
 
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.preview video {
+.movie-card:hover {
+    transform: scale(1.045);
 
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.75);
+
+    z-index: 5;
+}
+
+.poster {
     width: 100%;
 
-    height: 100%;
+    aspect-ratio: 2 / 3;
 
     object-fit: cover;
 
+    display: block;
+
+    background: #181818;
 }
 
+.play-overlay {
+    position: absolute;
 
-/* RANGE */
+    left: 50%;
+    top: 42%;
 
-#timeline {
+    transform:
+        translate(-50%, -50%);
 
-    width: 100%;
-
-    cursor: pointer;
-
-    appearance: none;
-
-    height: 5px;
-
-    background: #555;
-
-    border-radius: 10px;
-
-    outline: none;
-
-}
-
-
-/* RANGE THUMB */
-
-#timeline::-webkit-slider-thumb {
-
-    appearance: none;
-
-    width: 14px;
-
-    height: 14px;
+    width: 54px;
+    height: 54px;
 
     border-radius: 50%;
 
     background: #e50914;
-
-    cursor: pointer;
-
-}
-
-#timeline::-moz-range-thumb {
-
-    width: 14px;
-
-    height: 14px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #e50914;
-
-    cursor: pointer;
-
-}
-
-
-/* BUTTON ROW */
-
-.control-row {
-
-    height: 48px;
 
     display: flex;
 
     align-items: center;
+    justify-content: center;
 
-    gap: 18px;
+    font-size: 23px;
 
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
 }
 
-
-/* BUTTONS */
-
-.control-button {
-
-    border: none;
-
-    background: none;
-
-    color: #fff;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    padding: 5px;
-
+.movie-card:hover .play-overlay {
+    opacity: 1;
 }
 
-.control-button:hover {
-
-    color: #e50914;
-
+.movie-info {
+    padding: 11px 12px 13px;
 }
-
-
-/* TIME */
-
-.time {
-
-    color: #bbb;
-
-    font-size: 13px;
-
-    min-width: 95px;
-
-}
-
-
-/* VOLUME */
-
-.volume {
-
-    width: 90px;
-
-}
-
-
-/* SPACER */
-
-.spacer {
-
-    flex: 1;
-
-}
-
-
-/* SPEED */
-
-.speed {
-
-    color: #fff;
-
-    font-size: 13px;
-
-}
-
-
-/* =========================
-   TITLE
-========================= */
 
 .movie-title {
-
-    max-width: 1400px;
-
-    margin:
-        25px auto 0;
-
-    font-size: 25px;
+    font-size: 15px;
 
     font-weight: 700;
 
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
+.movie-meta {
+    margin-top: 6px;
 
-/* =========================
-   MOBILE
-========================= */
+    color: #777;
 
-@media (max-width: 700px) {
+    font-size: 12px;
+}
+
+/* EMPTY */
+
+.no-results {
+    display: none;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    color: #777;
+
+    font-size: 16px;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #444;
+
+    border-top: 1px solid #151515;
+
+    font-size: 12px;
+}
+
+/* MOBILE */
+
+@media (max-width: 750px) {
 
     .header {
+        padding: 12px 15px;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 30px;
+    }
+
+    .search-container {
+        margin-left: auto;
+    }
+
+    #search {
+        width: 180px;
+    }
+
+    .hero {
+        min-height: 260px;
 
         padding:
-            0 15px;
-
-        gap: 15px;
-
+            55px 25px 35px;
     }
 
-    .player-page {
+    .hero h1 {
+        font-size: 30px;
+    }
 
+    .main {
         padding:
-            20px 10px 40px;
-
+            20px 15px 50px;
     }
 
-    video {
+    .movie-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
-        max-height:
-            70vh;
+        gap: 12px;
+    }
+}
 
+@media (max-width: 430px) {
+
+    .logo {
+        font-size: 19px;
     }
 
-    .volume {
-
-        display: none;
-
+    #search {
+        width: 145px;
     }
 
-    .movie-title {
-
-        font-size: 20px;
-
+    .nav {
+        gap: 22px;
     }
 
-    .preview {
-
-        width: 130px;
-
-        height: 73px;
-
+    .movie-grid {
+        gap: 10px;
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
 <header class="header">
 
-    <button
-        class="back-button"
-        onclick="history.back()">
-
-        ← Back
-
-    </button>
-
-
     <div class="logo">
-
         MY <span>LIBRARY</span>
+    </div>
+
+    <nav class="nav">
+
+        <button
+            class="active"
+            onclick="showSection('all')">
+            Home
+        </button>
+
+        <button
+            onclick="showSection('movies')">
+            Movies
+        </button>
+
+        <button
+            onclick="showSection('series')">
+            Web Series
+        </button>
+
+    </nav>
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search..."
+            autocomplete="off">
 
     </div>
 
 </header>
 
 
+<section class="hero">
 
-<main class="player-page">
+    <div class="hero-content">
 
+        <h1>
+            Welcome to your library.
+        </h1>
 
-    <div class="video-wrapper">
+        <p>
+            Your private collection of movies
+            and web series — all in one place.
+        </p>
 
+    </div>
 
-        <video
-            id="video"
-            preload="metadata">
-
-        </video>
-
-
-        <div class="controls">
-
-
-            <div class="timeline-area">
+</section>
 
 
-                <div
-                    class="preview"
-                    id="preview">
-
-                    <video
-                        id="previewVideo"
-                        muted>
-                    </video>
-
-                </div>
+<main class="main">
 
 
-                <input
-                    type="range"
-                    id="timeline"
-                    min="0"
-                    max="100"
-                    value="0"
-                    step="0.1">
+    <!-- MOVIES -->
 
-            </div>
+    <section
+        class="section"
+        id="moviesSection">
 
+        <div class="section-title">
 
+            <h2>🎬 Movies</h2>
 
-            <div class="control-row">
-
-
-                <button
-                    class="control-button"
-                    id="back10">
-
-                    ↶
-
-                </button>
-
-
-                <button
-                    class="control-button"
-                    id="playButton">
-
-                    ▶
-
-                </button>
-
-
-                <button
-                    class="control-button"
-                    id="forward10">
-
-                    ↷
-
-                </button>
-
-
-                <button
-                    class="control-button"
-                    id="muteButton">
-
-                    🔊
-
-                </button>
-
-
-                <input
-                    class="volume"
-                    id="volume"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.05"
-                    value="1">
-
-
-                <span
-                    class="time"
-                    id="time">
-
-                    00:00 / 00:00
-
-                </span>
-
-
-                <div class="spacer"></div>
-
-
-                <span
-                    class="speed">
-
-                    1×
-
-                </span>
-
-
-                <button
-                    class="control-button"
-                    id="fullscreen">
-
-                    ⛶
-
-                </button>
-
-
-            </div>
+            <span id="movieCount">
+                0 titles
+            </span>
 
         </div>
 
-    </div>
+        <div
+            class="movie-grid"
+            id="moviesGrid">
+        </div>
+
+    </section>
+
+
+    <!-- WEB SERIES -->
+
+    <section
+        class="section"
+        id="seriesSection">
+
+        <div class="section-title">
+
+            <h2>📺 Web Series</h2>
+
+            <span id="seriesCount">
+                0 titles
+            </span>
+
+        </div>
+
+        <div
+            class="movie-grid"
+            id="seriesGrid">
+        </div>
+
+    </section>
 
 
     <div
-        class="movie-title"
-        id="movieTitle">
+        class="no-results"
+        id="noResults">
 
-        Now Playing
+        Nothing found 😶
 
     </div>
-
 
 </main>
 
 
+<footer class="footer">
+
+    My Private Library
+
+</footer>
+
 
 <script>
 
+/* =====================================================
+   MOVIES
 
-/* =========================
-   GET URL DATA
-========================= */
+   Put DIRECT VIDEO URL here.
 
-const params =
-    new URLSearchParams(
-        window.location.search
+   Example:
+
+   video:
+   "https://example.com/movie.mp4"
+
+===================================================== */
+
+const movies = [
+
+    {
+        title: "Sample Video",
+
+        year: "2026",
+
+        poster:
+        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=80",
+
+        video:
+        "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    }
+
+];
+
+
+/* =====================================================
+   WEB SERIES
+===================================================== */
+
+const series = [];
+
+
+/* =====================================================
+   CREATE CARD
+===================================================== */
+
+function createCard(item) {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "movie-card";
+
+    card.dataset.title =
+        item.title.toLowerCase();
+
+
+    card.innerHTML = `
+
+        <img
+            class="poster"
+            src="${item.poster}"
+            alt="${item.title}"
+            loading="lazy"
+        >
+
+        <div class="play-overlay">
+            ▶
+        </div>
+
+        <div class="movie-info">
+
+            <div class="movie-title">
+                ${item.title}
+            </div>
+
+            <div class="movie-meta">
+                ${item.year || ""}
+            </div>
+
+        </div>
+
+    `;
+
+
+    card.addEventListener(
+        "click",
+        function() {
+
+            openPlayer(item);
+
+        }
     );
 
 
-const videoURL =
-    params.get("video");
-
-
-const title =
-    params.get("title")
-    || "Unknown Title";
-
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const video =
-    document.getElementById(
-        "video"
-    );
-
-const previewVideo =
-    document.getElementById(
-        "previewVideo"
-    );
-
-const timeline =
-    document.getElementById(
-        "timeline"
-    );
-
-const playButton =
-    document.getElementById(
-        "playButton"
-    );
-
-const time =
-    document.getElementById(
-        "time"
-    );
-
-const preview =
-    document.getElementById(
-        "preview"
-    );
-
-const volume =
-    document.getElementById(
-        "volume"
-    );
-
-
-/* =========================
-   TITLE
-========================= */
-
-document.getElementById(
-    "movieTitle"
-).textContent =
-    "Currently Playing — " +
-    title;
-
-
-document.title =
-    title +
-    " - My Library";
-
-
-/* =========================
-   LOAD VIDEO
-========================= */
-
-if (videoURL) {
-
-    video.src =
-        videoURL;
-
-    previewVideo.src =
-        videoURL;
-
-    video.load();
-
-    previewVideo.load();
-
+    return card;
 }
 
 
-/* =========================
-   PLAY / PAUSE
-========================= */
+/* =====================================================
+   OPEN PLAYER
+===================================================== */
 
-function togglePlay() {
+function openPlayer(item) {
 
-    if (video.paused) {
+    const url =
+        "player.html?video=" +
+        encodeURIComponent(item.video) +
+        "&title=" +
+        encodeURIComponent(item.title);
 
-        video.play();
-
-    } else {
-
-        video.pause();
-
-    }
-
+    window.location.href =
+        url;
 }
 
 
-playButton.addEventListener(
-    "click",
-    togglePlay
-);
+/* =====================================================
+   LOAD LIBRARY
+===================================================== */
 
+function loadLibrary() {
 
-video.addEventListener(
-    "click",
-    togglePlay
-);
+    const moviesGrid =
+        document.getElementById(
+            "moviesGrid"
+        );
 
-
-video.addEventListener(
-    "play",
-    function() {
-
-        playButton.textContent =
-            "❚❚";
-
-    }
-);
-
-
-video.addEventListener(
-    "pause",
-    function() {
-
-        playButton.textContent =
-            "▶";
-
-    }
-);
-
-
-/* =========================
-   TIME
-========================= */
-
-function formatTime(seconds) {
-
-    if (!isFinite(seconds)) {
-
-        return "00:00";
-
-    }
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
+    const seriesGrid =
+        document.getElementById(
+            "seriesGrid"
         );
 
 
-    const secs =
-        Math.floor(
-            seconds % 60
+    moviesGrid.innerHTML = "";
+
+    seriesGrid.innerHTML = "";
+
+
+    movies.forEach(function(movie) {
+
+        moviesGrid.appendChild(
+            createCard(movie)
+        );
+
+    });
+
+
+    series.forEach(function(show) {
+
+        seriesGrid.appendChild(
+            createCard(show)
+        );
+
+    });
+
+
+    document.getElementById(
+        "movieCount"
+    ).textContent =
+        movies.length +
+        (
+            movies.length === 1
+                ? " title"
+                : " titles"
         );
 
 
-    return String(minutes)
-        .padStart(2, "0")
-        + ":" +
-        String(secs)
-        .padStart(2, "0");
-
-}
-
-
-video.addEventListener(
-    "loadedmetadata",
-    function() {
-
-        timeline.max =
-            video.duration;
-
-        updateTime();
-
-    }
-);
-
-
-video.addEventListener(
-    "timeupdate",
-    updateTime
-);
-
-
-function updateTime() {
-
-    timeline.value =
-        video.currentTime;
-
-    time.textContent =
-        formatTime(
-            video.currentTime
-        )
-        + " / " +
-        formatTime(
-            video.duration
+    document.getElementById(
+        "seriesCount"
+    ).textContent =
+        series.length +
+        (
+            series.length === 1
+                ? " title"
+                : " titles"
         );
 
 }
 
 
-/* =========================
-   TIMELINE
-========================= */
+/* =====================================================
+   SEARCH
+===================================================== */
 
-timeline.addEventListener(
+document
+.getElementById("search")
+.addEventListener(
     "input",
     function() {
 
-        video.currentTime =
-            Number(
-                timeline.value
+        const query =
+            this.value
+            .toLowerCase()
+            .trim();
+
+
+        const cards =
+            document.querySelectorAll(
+                ".movie-card"
             );
+
+
+        let visible = 0;
+
+
+        cards.forEach(function(card) {
+
+            if (
+                card.dataset.title
+                .includes(query)
+            ) {
+
+                card.style.display = "";
+
+                visible++;
+
+            } else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "noResults"
+        ).style.display =
+            visible === 0
+                ? "block"
+                : "none";
 
     }
 );
 
 
-/* =========================
-   PREVIEW
-========================= */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-timeline.addEventListener(
-    "mousemove",
-    function(event) {
+function showSection(section) {
 
-        if (
-            !video.duration ||
-            !isFinite(video.duration)
-        ) {
+    const moviesSection =
+        document.getElementById(
+            "moviesSection"
+        );
 
-            return;
-
-        }
-
-
-        const rect =
-            timeline.getBoundingClientRect();
+    const seriesSection =
+        document.getElementById(
+            "seriesSection"
+        );
 
 
-        let percent =
-            (
-                event.clientX -
-                rect.left
-            ) /
-            rect.width;
+    const buttons =
+        document.querySelectorAll(
+            ".nav button"
+        );
 
 
-        percent =
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    percent
-                )
-            );
+    buttons.forEach(function(button) {
+
+        button.classList.remove(
+            "active"
+        );
+
+    });
 
 
-        const previewTime =
-            percent *
-            video.duration;
+    if (section === "movies") {
 
-
-        preview.style.display =
+        moviesSection.style.display =
             "block";
 
-
-        const previewWidth =
-            preview.offsetWidth;
-
-
-        let left =
-            event.clientX -
-            rect.left -
-            previewWidth / 2;
-
-
-        left =
-            Math.max(
-                0,
-                Math.min(
-                    rect.width -
-                    previewWidth,
-                    left
-                )
-            );
-
-
-        preview.style.left =
-            left + "px";
-
-
-        previewVideo.currentTime =
-            previewTime;
-
-    }
-);
-
-
-timeline.addEventListener(
-    "mouseleave",
-    function() {
-
-        preview.style.display =
+        seriesSection.style.display =
             "none";
 
-    }
-);
-
-
-/* =========================
-   SKIP
-========================= */
-
-document.getElementById(
-    "back10"
-).addEventListener(
-    "click",
-    function() {
-
-        video.currentTime =
-            Math.max(
-                0,
-                video.currentTime - 10
-            );
+        buttons[1].classList.add(
+            "active"
+        );
 
     }
-);
 
+    else if (section === "series") {
 
-document.getElementById(
-    "forward10"
-).addEventListener(
-    "click",
-    function() {
+        moviesSection.style.display =
+            "none";
 
-        video.currentTime =
-            Math.min(
-                video.duration,
-                video.currentTime + 10
-            );
+        seriesSection.style.display =
+            "block";
+
+        buttons[2].classList.add(
+            "active"
+        );
 
     }
-);
 
+    else {
 
-/* =========================
-   VOLUME
-========================= */
+        moviesSection.style.display =
+            "block";
 
-volume.addEventListener(
-    "input",
-    function() {
+        seriesSection.style.display =
+            "block";
 
-        video.volume =
-            this.value;
-
-        video.muted =
-            this.value == 0;
+        buttons[0].classList.add(
+            "active"
+        );
 
     }
-);
+
+}
 
 
-/* =========================
-   MUTE
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
-document.getElementById(
-    "muteButton"
-).addEventListener(
-    "click",
-    function() {
-
-        video.muted =
-            !video.muted;
-
-        this.textContent =
-            video.muted
-                ? "🔇"
-                : "🔊";
-
-    }
-);
-
-
-/* =========================
-   FULLSCREEN
-========================= */
-
-document.getElementById(
-    "fullscreen"
-).addEventListener(
-    "click",
-    function() {
-
-        if (
-            video.requestFullscreen
-        ) {
-
-            video.requestFullscreen();
-
-        }
-
-    }
-);
-
-
-/* =========================
-   KEYBOARD
-========================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.code === "Space"
-        ) {
-
-            event.preventDefault();
-
-            togglePlay();
-
-        }
-
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            video.currentTime -= 10;
-
-        }
-
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            video.currentTime += 10;
-
-        }
-
-    }
-);
+loadLibrary();
 
 </script>
-
 
 </body>
 
