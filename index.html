@@ -2,22 +2,12 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Rahul's Library</title>
-
+<title>My Library</title>
 
 <style>
-
-/* =========================
-   BASIC RESET
-========================= */
 
 * {
     box-sizing: border-box;
@@ -28,18 +18,10 @@ html {
 }
 
 body {
-
     margin: 0;
-
     background: #000;
-
     color: #fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -48,133 +30,82 @@ body {
 ========================= */
 
 .header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 100;
 
-    height: 72px;
+    min-height: 72px;
 
-    background:
-        rgba(0,0,0,0.96);
+    background: #050505;
 
-    border-bottom:
-        1px solid #1c1c1c;
+    border-bottom: 1px solid #1c1c1c;
 
     display: flex;
-
     align-items: center;
 
-    padding:
-        0 40px;
+    padding: 0 40px;
 
     gap: 35px;
-
 }
 
-
-/* LOGO */
-
 .logo {
-
     font-size: 25px;
-
     font-weight: 900;
-
-    letter-spacing: -1px;
-
     white-space: nowrap;
-
 }
 
 .logo span {
-
     color: #e50914;
-
 }
 
 
 /* NAVIGATION */
 
 .nav {
-
     display: flex;
-
     gap: 25px;
-
 }
 
 .nav button {
-
     background: none;
-
     border: none;
 
-    color: #aaa;
+    color: #888;
 
     font-size: 15px;
 
     cursor: pointer;
-
-    padding: 8px 0;
-
 }
 
 .nav button:hover,
 .nav button.active {
-
     color: #fff;
-
 }
 
 
 /* SEARCH */
 
 .search-container {
-
     margin-left: auto;
-
-    position: relative;
-
 }
 
 #search {
-
     width: 260px;
-
     height: 38px;
 
-    padding:
-        0 15px;
+    padding: 0 15px;
 
-    border:
-        1px solid #333;
-
+    border: 1px solid #333;
     border-radius: 5px;
 
     background: #111;
-
     color: #fff;
 
     outline: none;
-
-    font-size: 14px;
-
-}
-
-#search:focus {
-
-    border-color:
-        #666;
-
 }
 
 #search::placeholder {
-
     color: #777;
-
 }
 
 
@@ -183,55 +114,40 @@ body {
 ========================= */
 
 .hero {
-
     min-height: 330px;
 
-    padding:
-        80px 55px 50px;
+    padding: 80px 55px 50px;
 
     display: flex;
-
     align-items: flex-end;
 
     background:
-
         linear-gradient(
             to top,
             #000 0%,
             rgba(0,0,0,0.65) 45%,
             rgba(0,0,0,0.15) 100%
         ),
-
         radial-gradient(
             circle at 75% 30%,
             #292929,
             #050505 60%,
             #000 100%
         );
-
 }
 
-
-/* HERO TEXT */
-
 .hero-content {
-
     max-width: 700px;
-
 }
 
 .hero h1 {
-
     margin: 0 0 12px;
 
     font-size: 42px;
-
     font-weight: 900;
-
 }
 
 .hero p {
-
     margin: 0;
 
     color: #aaa;
@@ -239,7 +155,6 @@ body {
     font-size: 15px;
 
     line-height: 1.6;
-
 }
 
 
@@ -248,49 +163,29 @@ body {
 ========================= */
 
 .main {
-
-    padding:
-        25px 40px 60px;
-
+    padding: 25px 40px 60px;
 }
 
-
-/* =========================
-   SECTION
-========================= */
-
 .section {
-
     margin-bottom: 50px;
-
 }
 
 .section-title {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     margin-bottom: 18px;
-
 }
 
 .section-title h2 {
-
     margin: 0;
-
     font-size: 24px;
-
 }
 
 .section-title span {
-
     color: #777;
-
     font-size: 13px;
-
 }
 
 
@@ -299,7 +194,6 @@ body {
 ========================= */
 
 .movie-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -309,16 +203,14 @@ body {
         );
 
     gap: 20px;
-
 }
 
 
 /* =========================
-   MOVIE CARD
+   CARD
 ========================= */
 
 .movie-card {
-
     position: relative;
 
     background: #111;
@@ -332,27 +224,19 @@ body {
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
-
 }
 
 .movie-card:hover {
-
-    transform:
-        scale(1.045);
+    transform: scale(1.045);
 
     box-shadow:
         0 12px 35px
         rgba(0,0,0,0.75);
 
     z-index: 5;
-
 }
 
-
-/* POSTER */
-
 .poster {
-
     width: 100%;
 
     aspect-ratio: 2 / 3;
@@ -362,21 +246,51 @@ body {
     display: block;
 
     background: #181818;
-
 }
 
 
-/* CARD INFORMATION */
+/* PLAY BUTTON */
+
+.play-overlay {
+    position: absolute;
+
+    left: 50%;
+    top: 42%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 54px;
+    height: 54px;
+
+    border-radius: 50%;
+
+    background: #e50914;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+.movie-card:hover .play-overlay {
+    opacity: 1;
+}
+
+
+/* INFORMATION */
 
 .movie-info {
-
-    padding:
-        11px 12px 13px;
-
+    padding: 11px 12px 13px;
 }
 
 .movie-title {
-
     font-size: 15px;
 
     font-weight: 700;
@@ -386,85 +300,31 @@ body {
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
 .movie-meta {
-
     margin-top: 6px;
 
     color: #777;
 
     font-size: 12px;
-
-}
-
-
-/* PLAY OVERLAY */
-
-.play-overlay {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 42%;
-
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
-
-    width: 54px;
-
-    height: 54px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(229,9,20,0.95);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 23px;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.2s ease;
-
-}
-
-.movie-card:hover
-.play-overlay {
-
-    opacity: 1;
-
 }
 
 
 /* =========================
-   EMPTY SEARCH
+   NO RESULTS
 ========================= */
 
 .no-results {
-
     display: none;
 
     text-align: center;
 
-    padding:
-        80px 20px;
+    padding: 80px 20px;
 
     color: #777;
 
     font-size: 16px;
-
 }
 
 
@@ -473,19 +333,15 @@ body {
 ========================= */
 
 .footer {
-
     text-align: center;
 
-    padding:
-        30px;
+    padding: 30px;
 
     color: #444;
 
-    border-top:
-        1px solid #151515;
+    border-top: 1px solid #151515;
 
     font-size: 12px;
-
 }
 
 
@@ -496,132 +352,77 @@ body {
 @media (max-width: 750px) {
 
     .header {
-
-        height: auto;
-
-        min-height: 65px;
-
-        padding:
-            12px 15px;
+        padding: 12px 15px;
 
         flex-wrap: wrap;
 
         gap: 12px;
-
     }
 
     .logo {
-
         font-size: 21px;
-
     }
 
     .nav {
-
         order: 3;
 
         width: 100%;
 
-        justify-content:
-            center;
+        justify-content: center;
 
         gap: 30px;
-
     }
 
     .search-container {
-
         margin-left: auto;
-
     }
 
     #search {
-
         width: 180px;
-
     }
 
     .hero {
-
         min-height: 260px;
 
         padding:
             55px 25px 35px;
-
     }
 
     .hero h1 {
-
         font-size: 30px;
-
     }
 
     .main {
-
         padding:
             20px 15px 50px;
-
     }
 
     .movie-grid {
-
         grid-template-columns:
-            repeat(
-                2,
-                minmax(0, 1fr)
-            );
+            repeat(2, minmax(0, 1fr));
 
         gap: 12px;
-
     }
-
 }
 
-
-/* =========================
-   SMALL PHONE
-========================= */
 
 @media (max-width: 430px) {
 
     .logo {
-
         font-size: 19px;
-
     }
 
     #search {
-
         width: 145px;
-
-        height: 34px;
-
     }
 
     .nav {
-
         gap: 22px;
-
-    }
-
-    .nav button {
-
-        font-size: 13px;
-
     }
 
     .movie-grid {
-
         gap: 10px;
-
     }
-
-    .movie-title {
-
-        font-size: 13px;
-
-    }
-
 }
 
 </style>
@@ -632,40 +433,28 @@ body {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
 
-
     <div class="logo">
-
-        MY
-        <span>LIBRARY</span>
-
+        MY <span>LIBRARY</span>
     </div>
 
 
     <nav class="nav">
 
         <button
-            id="allButton"
             class="active"
-            onclick="showSection('all')"
-        >
+            onclick="showSection('all')">
             Home
         </button>
 
         <button
-            onclick="showSection('movies')"
-        >
+            onclick="showSection('movies')">
             Movies
         </button>
 
         <button
-            onclick="showSection('series')"
-        >
+            onclick="showSection('series')">
             Web Series
         </button>
 
@@ -678,19 +467,13 @@ body {
             type="text"
             id="search"
             placeholder="Search..."
-            autocomplete="off"
-        >
+            autocomplete="off">
 
     </div>
-
 
 </header>
 
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -711,27 +494,18 @@ body {
 
 
 
-<!-- =========================
-     MAIN
-========================= -->
-
 <main class="main">
 
 
-    <!-- =====================
-         MOVIES
-    ====================== -->
+    <!-- MOVIES -->
 
     <section
         class="section"
-        id="moviesSection"
-    >
+        id="moviesSection">
 
         <div class="section-title">
 
-            <h2>
-                🎬 Movies
-            </h2>
+            <h2>🎬 Movies</h2>
 
             <span id="movieCount">
                 0 titles
@@ -742,29 +516,22 @@ body {
 
         <div
             class="movie-grid"
-            id="moviesGrid"
-        >
-
+            id="moviesGrid">
         </div>
 
     </section>
 
 
 
-    <!-- =====================
-         WEB SERIES
-    ====================== -->
+    <!-- WEB SERIES -->
 
     <section
         class="section"
-        id="seriesSection"
-    >
+        id="seriesSection">
 
         <div class="section-title">
 
-            <h2>
-                📺 Web Series
-            </h2>
+            <h2>📺 Web Series</h2>
 
             <span id="seriesCount">
                 0 titles
@@ -775,36 +542,23 @@ body {
 
         <div
             class="movie-grid"
-            id="seriesGrid"
-        >
-
+            id="seriesGrid">
         </div>
 
     </section>
 
 
-
-    <!-- =====================
-         NO RESULTS
-    ====================== -->
-
     <div
         class="no-results"
-        id="noResults"
-    >
+        id="noResults">
 
         Nothing found 😶
 
     </div>
 
-
 </main>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer class="footer">
 
@@ -816,53 +570,37 @@ body {
 
 <script>
 
-/* =====================================================
-   YOUR MOVIES
-===================================================== */
 
-/*
-   IMPORTANT:
-
-   Later you will only need to add movies
-   to these lists.
-
-   I will teach you exactly how.
-
-*/
-
+/* =========================
+   MOVIES
+========================= */
 
 const movies = [
 
-    /*
     {
-        title: "Movie Name",
+        title: "Sample Video",
         year: "2026",
-        poster: "poster.jpg",
-        video: "movie.mp4"
-    },
-    */
+
+        poster:
+        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=80",
+
+        video:
+        "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    }
 
 ];
 
 
-const series = [
+/* =========================
+   WEB SERIES
+========================= */
 
-    /*
-    {
-        title: "Series Name",
-        year: "2026",
-        poster: "poster.jpg",
-        video: "episode.mp4"
-    },
-    */
-
-];
+const series = [];
 
 
-
-/* =====================================================
-   CREATE MOVIE CARD
-===================================================== */
+/* =========================
+   CREATE CARD
+========================= */
 
 function createCard(item) {
 
@@ -871,7 +609,6 @@ function createCard(item) {
 
     card.className =
         "movie-card";
-
 
     card.dataset.title =
         item.title.toLowerCase();
@@ -916,14 +653,12 @@ function createCard(item) {
 
 
     return card;
-
 }
 
 
-
-/* =====================================================
+/* =========================
    OPEN PLAYER
-===================================================== */
+========================= */
 
 function openPlayer(item) {
 
@@ -933,16 +668,13 @@ function openPlayer(item) {
         "&title=" +
         encodeURIComponent(item.title);
 
-    window.location.href =
-        url;
-
+    window.location.href = url;
 }
 
 
-
-/* =====================================================
+/* =========================
    LOAD LIBRARY
-===================================================== */
+========================= */
 
 function loadLibrary() {
 
@@ -962,124 +694,97 @@ function loadLibrary() {
     seriesGrid.innerHTML = "";
 
 
-    movies.forEach(
-        function(movie) {
+    movies.forEach(function(movie) {
 
-            moviesGrid.appendChild(
-                createCard(movie)
-            );
+        moviesGrid.appendChild(
+            createCard(movie)
+        );
 
-        }
-    );
+    });
 
 
-    series.forEach(
-        function(show) {
+    series.forEach(function(show) {
 
-            seriesGrid.appendChild(
-                createCard(show)
-            );
+        seriesGrid.appendChild(
+            createCard(show)
+        );
 
-        }
-    );
+    });
 
 
     document.getElementById(
         "movieCount"
     ).textContent =
-        movies.length +
-        (
-            movies.length === 1
-                ? " title"
-                : " titles"
-        );
+        movies.length + " title";
 
 
     document.getElementById(
         "seriesCount"
     ).textContent =
-        series.length +
-        (
-            series.length === 1
-                ? " title"
-                : " titles"
-        );
-
+        series.length + " titles";
 }
 
 
-
-/* =====================================================
+/* =========================
    SEARCH
-===================================================== */
+========================= */
 
-const search =
-    document.getElementById(
-        "search"
-    );
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function() {
 
-
-search.addEventListener(
-    "input",
-    function() {
-
-        const query =
-            search.value
-                .toLowerCase()
-                .trim();
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
 
 
-        const allCards =
-            document.querySelectorAll(
-                ".movie-card"
-            );
+            const cards =
+                document.querySelectorAll(
+                    ".movie-card"
+                );
 
 
-        let visibleCount = 0;
+            let visible = 0;
 
 
-        allCards.forEach(
-            function(card) {
-
-                const title =
-                    card.dataset.title;
-
+            cards.forEach(function(card) {
 
                 if (
-                    title.includes(query)
+                    card.dataset.title
+                        .includes(query)
                 ) {
 
                     card.style.display =
                         "";
 
-                    visibleCount++;
+                    visible++;
 
                 } else {
 
                     card.style.display =
                         "none";
-
                 }
 
-            }
-        );
+            });
 
 
-        document.getElementById(
-            "noResults"
-        ).style.display =
-            visibleCount === 0
-                ? "block"
-                : "none";
+            document.getElementById(
+                "noResults"
+            ).style.display =
+                visible === 0
+                    ? "block"
+                    : "none";
 
-    }
-);
+        }
+    );
 
 
-
-/* =====================================================
-   SECTION NAVIGATION
-===================================================== */
+/* =========================
+   NAVIGATION
+========================= */
 
 function showSection(section) {
 
@@ -1100,15 +805,13 @@ function showSection(section) {
         );
 
 
-    buttons.forEach(
-        function(button) {
+    buttons.forEach(function(button) {
 
-            button.classList.remove(
-                "active"
-            );
+        button.classList.remove(
+            "active"
+        );
 
-        }
-    );
+    });
 
 
     if (section === "movies") {
@@ -1125,7 +828,6 @@ function showSection(section) {
 
     }
 
-
     else if (section === "series") {
 
         moviesSection.style.display =
@@ -1140,7 +842,6 @@ function showSection(section) {
 
     }
 
-
     else {
 
         moviesSection.style.display =
@@ -1154,14 +855,12 @@ function showSection(section) {
         );
 
     }
-
 }
 
 
-
-/* =====================================================
+/* =========================
    START
-===================================================== */
+========================= */
 
 loadLibrary();
 
