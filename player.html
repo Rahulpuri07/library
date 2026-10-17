@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,58 +25,38 @@ body {
 }
 
 /* =========================
-   PLAYER PAGE
-========================= */
-
-.player-page {
-    width: 100%;
-    height: 100vh;
-    background: #000;
-
-    display: flex;
-    flex-direction: column;
-}
-
-/* =========================
    HEADER
 ========================= */
 
 .header {
     height: 72px;
-    flex-shrink: 0;
-
     width: 100%;
     background: #050505;
-    border-bottom: 1px solid #202020;
-
+    border-bottom: 1px solid #222;
     display: flex;
     align-items: center;
-
     padding: 0 35px;
     gap: 25px;
+    position: relative;
+    z-index: 20;
 }
 
-.back-btn {
-    background: #080808;
+.back-button {
+    background: #050505;
     color: white;
-
     border: 1px solid #333;
     border-radius: 6px;
-
-    padding: 10px 18px;
-
+    padding: 10px 17px;
     font-size: 15px;
     cursor: pointer;
-
-    transition: 0.2s;
 }
 
-.back-btn:hover {
-    background: #181818;
+.back-button:hover {
+    background: #222;
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
@@ -87,44 +66,35 @@ body {
 }
 
 /* =========================
-   VIDEO SECTION
+   PLAYER AREA
 ========================= */
 
-.video-section {
-    width: 100%;
-
-    flex: 1;
-    min-height: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #000;
-}
-
-/* =========================
-   VIDEO CONTAINER
-========================= */
-
-.video-container {
+.player-area {
     position: relative;
-
     width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    height: calc(100vh - 72px);
     background: #000;
-
     overflow: hidden;
 }
 
 /* =========================
    VIDEO
 ========================= */
+
+.video-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
 
 video {
     width: 100%;
@@ -137,27 +107,18 @@ video {
     display: block;
 }
 
-/* =========================
-   ERROR MESSAGE
-========================= */
+/* Fit modes */
 
-.video-message {
-    position: absolute;
+video.fit-contain {
+    object-fit: contain;
+}
 
-    top: 50%;
-    left: 50%;
+video.fit-cover {
+    object-fit: cover;
+}
 
-    transform: translate(-50%, -50%);
-
-    color: #aaa;
-
-    font-size: 18px;
-
-    text-align: center;
-
-    display: none;
-
-    z-index: 20;
+video.fit-fill {
+    object-fit: fill;
 }
 
 /* =========================
@@ -171,16 +132,19 @@ video {
     right: 0;
     bottom: 0;
 
-    padding: 0 20px 12px;
+    height: 105px;
 
-    background: linear-gradient(
-        transparent,
-        rgba(0,0,0,0.92)
-    );
+    padding: 0 20px 15px 20px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.95),
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0)
+        );
 
     z-index: 10;
-
-    transition: opacity 0.3s;
 }
 
 /* =========================
@@ -188,30 +152,80 @@ video {
 ========================= */
 
 .timeline-area {
-    width: 100%;
-
     position: relative;
+    width: 100%;
+    height: 45px;
 
-    padding-top: 105px;
+    display: flex;
+    align-items: flex-end;
+
+    padding-bottom: 5px;
+}
+
+/* Timeline */
+
+#timeline {
+    width: 100%;
+    height: 5px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: #666;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin: 0;
+}
+
+#timeline::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    background: #e50914;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+#timeline::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    background: #e50914;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
 }
 
 /* =========================
-   PREVIEW
+   VIDEO PREVIEW
 ========================= */
 
 .preview-box {
     position: absolute;
 
-    bottom: 25px;
+    bottom: 13px;
+
     left: 0;
 
     width: 180px;
-    height: 102px;
+    height: 100px;
 
     background: #111;
 
-    border: 2px solid #333;
-    border-radius: 4px;
+    border: 1px solid #444;
+
+    border-radius: 5px;
 
     overflow: hidden;
 
@@ -219,149 +233,98 @@ video {
 
     pointer-events: none;
 
-    z-index: 50;
+    transform: translateX(-50%);
 
-    box-shadow:
-        0 5px 20px rgba(0,0,0,0.8);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
 }
 
-.preview-box canvas {
+.preview-box video {
     width: 100%;
     height: 100%;
 
-    display: block;
+    object-fit: contain;
+
+    background: #000;
 }
+
+/* Preview time */
 
 .preview-time {
     position: absolute;
 
-    bottom: 3px;
     left: 0;
     right: 0;
+    bottom: 0;
 
     text-align: center;
 
-    font-size: 11px;
-    font-weight: bold;
+    background: rgba(0,0,0,0.75);
 
-    text-shadow: 0 1px 3px #000;
+    font-size: 12px;
+
+    padding: 3px;
 }
 
 /* =========================
-   TIMELINE
-========================= */
-
-.timeline {
-    position: relative;
-
-    width: 100%;
-    height: 5px;
-
-    background: #555;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-}
-
-.timeline-buffer {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    height: 100%;
-    width: 0%;
-
-    background: #888;
-
-    border-radius: 10px;
-
-    pointer-events: none;
-}
-
-.timeline-progress {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    height: 100%;
-    width: 0%;
-
-    background: #e50914;
-
-    border-radius: 10px;
-
-    pointer-events: none;
-}
-
-.timeline-thumb {
-    position: absolute;
-
-    width: 14px;
-    height: 14px;
-
-    border-radius: 50%;
-
-    background: #e50914;
-
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    left: 0%;
-
-    pointer-events: none;
-}
-
-/* =========================
-   CONTROL ROW
+   BUTTON ROW
 ========================= */
 
 .control-row {
-    height: 50px;
+    width: 100%;
+    height: 45px;
 
     display: flex;
+
     align-items: center;
 
-    gap: 18px;
+    gap: 12px;
 }
 
-.control-btn {
-    background: none;
+/* Buttons */
+
+.control-button {
     border: none;
+
+    background: transparent;
 
     color: white;
 
-    font-size: 20px;
+    font-size: 18px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     cursor: pointer;
 
-    width: 30px;
-    height: 35px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0;
+    border-radius: 4px;
 }
 
-.control-btn:hover {
-    color: #e50914;
+.control-button:hover {
+    background: rgba(255,255,255,0.15);
 }
 
-/* =========================
-   TIME
-========================= */
+/* Skip buttons */
 
-.time {
+.skip-button {
     font-size: 13px;
+    font-weight: bold;
+}
+
+/* Time */
+
+.time-display {
+    font-size: 13px;
+
+    color: #ddd;
 
     white-space: nowrap;
 
-    color: #ddd;
+    min-width: 90px;
 }
 
 /* =========================
@@ -373,18 +336,20 @@ video {
 
     align-items: center;
 
-    gap: 8px;
+    gap: 6px;
 }
 
-.volume-slider {
+#volume {
     width: 80px;
+
+    cursor: pointer;
 }
 
 /* =========================
    SPACER
 ========================= */
 
-.control-spacer {
+.spacer {
     flex: 1;
 }
 
@@ -392,89 +357,144 @@ video {
    SPEED MENU
 ========================= */
 
-.speed-wrapper {
+.speed-container {
     position: relative;
 }
 
-.menu {
+.speed-menu {
     position: absolute;
 
-    bottom: 45px;
+    bottom: 42px;
+
     right: 0;
+
+    width: 120px;
 
     background: #181818;
 
     border: 1px solid #333;
 
-    border-radius: 6px;
-
-    min-width: 130px;
-
-    padding: 6px 0;
+    border-radius: 5px;
 
     display: none;
 
-    z-index: 100;
+    overflow: hidden;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
 }
 
-.menu button {
-    display: block;
-
+.speed-menu button {
     width: 100%;
 
-    background: none;
-    border: none;
+    background: transparent;
 
     color: white;
 
-    text-align: left;
+    border: none;
 
-    padding: 9px 14px;
+    padding: 9px;
+
+    text-align: left;
 
     cursor: pointer;
 
-    font-size: 13px;
+    font-size: 14px;
 }
 
-.menu button:hover {
+.speed-menu button:hover {
     background: #333;
 }
 
 /* =========================
-   TITLE
+   FIT MENU
 ========================= */
 
-.movie-title {
-    height: 65px;
-    flex-shrink: 0;
+.fit-container {
+    position: relative;
+}
 
-    padding: 18px 35px;
+.fit-menu {
+    position: absolute;
 
-    font-size: 24px;
-    font-weight: 700;
+    bottom: 42px;
 
-    background: #000;
+    right: 0;
+
+    width: 130px;
+
+    background: #181818;
+
+    border: 1px solid #333;
+
+    border-radius: 5px;
+
+    display: none;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+}
+
+.fit-menu button {
+    width: 100%;
+
+    background: transparent;
+
+    color: white;
+
+    border: none;
+
+    padding: 9px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.fit-menu button:hover {
+    background: #333;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error-message {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 18px;
+
+    z-index: 5;
+
+    display: none;
 }
 
 /* =========================
    FULLSCREEN
 ========================= */
 
-.video-container:fullscreen {
+.player-area:fullscreen {
     width: 100vw;
     height: 100vh;
-
-    background: #000;
 }
 
-.video-container:fullscreen video {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
+.player-area:fullscreen .video-wrapper {
+    width: 100vw;
+    height: 100vh;
 }
 
-.video-container:fullscreen .controls {
+.player-area:fullscreen .controls {
     bottom: 0;
 }
 
@@ -486,24 +506,19 @@ video {
 
     .header {
         height: 60px;
-
         padding: 0 15px;
     }
 
     .logo {
-        font-size: 17px;
+        font-size: 18px;
     }
 
-    .back-btn {
-        padding: 8px 12px;
+    .player-area {
+        height: calc(100vh - 60px);
     }
 
-    .movie-title {
-        height: 55px;
-
-        padding: 14px 15px;
-
-        font-size: 20px;
+    .volume-container {
+        display: none;
     }
 
     .controls {
@@ -511,294 +526,255 @@ video {
         padding-right: 10px;
     }
 
-    .volume-slider {
-        display: none;
+    .control-row {
+        gap: 5px;
+    }
+
+    .time-display {
+        font-size: 11px;
+        min-width: 75px;
     }
 
     .preview-box {
         width: 140px;
-        height: 79px;
-    }
-
-    .timeline-area {
-        padding-top: 90px;
+        height: 78px;
     }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-<div class="player-page">
+<!-- =========================
+     HEADER
+========================= -->
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+<div class="header">
 
-    <div class="header">
+    <button class="back-button" onclick="goBack()">
+        ← Back
+    </button>
 
-        <button
-            class="back-btn"
-            onclick="goBack()"
-        >
-            ← Back
-        </button>
+    <div class="logo">
+        MY <span>LIBRARY</span>
+    </div>
 
-        <div class="logo">
-            MY <span>LIBRARY</span>
-        </div>
+</div>
+
+
+<!-- =========================
+     PLAYER
+========================= -->
+
+<div class="player-area" id="playerArea">
+
+    <div class="video-wrapper">
+
+        <video
+            id="video"
+            preload="metadata"
+            playsinline
+        ></video>
 
     </div>
 
 
+    <div class="error-message" id="errorMessage">
+        No video was supplied.<br>
+        Please open a movie from your library.
+    </div>
+
+
     <!-- =========================
-         VIDEO SECTION
-    ========================== -->
+         CONTROLS
+    ========================= -->
 
-    <div class="video-section">
+    <div class="controls">
 
-        <div
-            class="video-container"
-            id="videoContainer"
-        >
+        <!-- TIMELINE -->
 
-            <video
-                id="video"
-                preload="metadata"
-                playsinline
+        <div class="timeline-area">
+
+            <div class="preview-box" id="previewBox">
+
+                <video
+                    id="previewVideo"
+                    muted
+                    preload="metadata"
+                ></video>
+
+                <div
+                    class="preview-time"
+                    id="previewTime"
+                >
+                    00:00
+                </div>
+
+            </div>
+
+            <input
+                type="range"
+                id="timeline"
+                min="0"
+                max="100"
+                value="0"
+                step="0.01"
             >
-                Your browser does not support video.
-            </video>
+
+        </div>
 
 
-            <div
-                class="video-message"
-                id="videoMessage"
+        <!-- BUTTON ROW -->
+
+        <div class="control-row">
+
+            <!-- BACK 10 -->
+
+            <button
+                class="control-button skip-button"
+                id="back10"
+                title="Back 10 seconds"
             >
-                No video was supplied.<br>
-                Please open a movie from your library.
+                ↶10
+            </button>
+
+
+            <!-- PLAY -->
+
+            <button
+                class="control-button"
+                id="playButton"
+                title="Play / Pause"
+            >
+                ▶
+            </button>
+
+
+            <!-- FORWARD 10 -->
+
+            <button
+                class="control-button skip-button"
+                id="forward10"
+                title="Forward 10 seconds"
+            >
+                10↷
+            </button>
+
+
+            <!-- VOLUME -->
+
+            <div class="volume-container">
+
+                <button
+                    class="control-button"
+                    id="muteButton"
+                    title="Mute"
+                >
+                    🔊
+                </button>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                >
+
             </div>
 
 
-            <!-- =========================
-                 CONTROLS
-            ========================== -->
+            <!-- TIME -->
 
             <div
-                class="controls"
-                id="controls"
+                class="time-display"
+                id="timeDisplay"
             >
-
-                <!-- TIMELINE -->
-
-                <div class="timeline-area">
-
-                    <div
-                        class="preview-box"
-                        id="previewBox"
-                    >
-
-                        <canvas
-                            id="previewCanvas"
-                            width="180"
-                            height="102"
-                        ></canvas>
-
-                        <div
-                            class="preview-time"
-                            id="previewTime"
-                        >
-                            00:00
-                        </div>
-
-                    </div>
+                00:00 / 00:00
+            </div>
 
 
-                    <div
-                        class="timeline"
-                        id="timeline"
-                    >
+            <div class="spacer"></div>
 
-                        <div
-                            class="timeline-buffer"
-                            id="buffer"
-                        ></div>
 
-                        <div
-                            class="timeline-progress"
-                            id="progress"
-                        ></div>
+            <!-- SPEED -->
 
-                        <div
-                            class="timeline-thumb"
-                            id="thumb"
-                        ></div>
+            <div class="speed-container">
 
-                    </div>
+                <button
+                    class="control-button"
+                    id="speedButton"
+                    title="Playback speed"
+                >
+                    1×
+                </button>
+
+                <div
+                    class="speed-menu"
+                    id="speedMenu"
+                >
+
+                    <button data-speed="0.5">0.5×</button>
+                    <button data-speed="0.75">0.75×</button>
+                    <button data-speed="1">Normal</button>
+                    <button data-speed="1.25">1.25×</button>
+                    <button data-speed="1.5">1.5×</button>
+                    <button data-speed="1.75">1.75×</button>
+                    <button data-speed="2">2×</button>
 
                 </div>
 
+            </div>
 
-                <!-- CONTROL ROW -->
 
-                <div class="control-row">
+            <!-- FIT / ASPECT RATIO -->
 
-                    <!-- REWIND -->
+            <div class="fit-container">
 
-                    <button
-                        class="control-btn"
-                        id="rewindBtn"
-                        title="Rewind 10 seconds"
-                    >
-                        ↶
+                <button
+                    class="control-button"
+                    id="fitButton"
+                    title="Adjust video display"
+                >
+                    ⛶
+                </button>
+
+                <div
+                    class="fit-menu"
+                    id="fitMenu"
+                >
+
+                    <button data-fit="contain">
+                        Fit
                     </button>
 
-
-                    <!-- PLAY -->
-
-                    <button
-                        class="control-btn"
-                        id="playBtn"
-                        title="Play / Pause"
-                    >
-                        ▶
+                    <button data-fit="cover">
+                        Fill
                     </button>
 
-
-                    <!-- FORWARD -->
-
-                    <button
-                        class="control-btn"
-                        id="forwardBtn"
-                        title="Forward 10 seconds"
-                    >
-                        ↷
-                    </button>
-
-
-                    <!-- VOLUME -->
-
-                    <div class="volume-container">
-
-                        <button
-                            class="control-btn"
-                            id="muteBtn"
-                            title="Mute"
-                        >
-                            🔊
-                        </button>
-
-                        <input
-                            class="volume-slider"
-                            id="volumeSlider"
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value="1"
-                        >
-
-                    </div>
-
-
-                    <!-- TIME -->
-
-                    <div class="time">
-
-                        <span id="currentTime">
-                            00:00
-                        </span>
-
-                        /
-
-                        <span id="duration">
-                            00:00
-                        </span>
-
-                    </div>
-
-
-                    <div class="control-spacer"></div>
-
-
-                    <!-- SPEED -->
-
-                    <div class="speed-wrapper">
-
-                        <button
-                            class="control-btn"
-                            id="speedBtn"
-                            title="Playback speed"
-                        >
-                            ⚡
-                        </button>
-
-
-                        <div
-                            class="menu"
-                            id="speedMenu"
-                        >
-
-                            <button data-speed="0.5">
-                                0.5×
-                            </button>
-
-                            <button data-speed="0.75">
-                                0.75×
-                            </button>
-
-                            <button data-speed="1">
-                                Normal
-                            </button>
-
-                            <button data-speed="1.25">
-                                1.25×
-                            </button>
-
-                            <button data-speed="1.5">
-                                1.5×
-                            </button>
-
-                            <button data-speed="2">
-                                2×
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- FULLSCREEN -->
-
-                    <button
-                        class="control-btn"
-                        id="fullscreenBtn"
-                        title="Fullscreen"
-                    >
-                        ⛶
+                    <button data-fit="fill">
+                        Stretch
                     </button>
 
                 </div>
 
             </div>
 
+
+            <!-- FULLSCREEN -->
+
+            <button
+                class="control-button"
+                id="fullscreenButton"
+                title="Fullscreen"
+            >
+                ⛶
+            </button>
+
         </div>
 
-    </div>
-
-
-    <!-- =========================
-         MOVIE TITLE
-    ========================== -->
-
-    <div
-        class="movie-title"
-        id="movieTitle"
-    >
-        Now Playing
     </div>
 
 </div>
@@ -806,190 +782,213 @@ video {
 
 <script>
 
-/* ==========================================
-   GET VIDEO INFORMATION FROM URL
-========================================== */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-const videoURL =
-    params.get("video") ||
-    params.get("src") ||
-    "";
-
-const title =
-    params.get("title") ||
-    "Now Playing";
-
-
-/* ==========================================
+/* =========================
    ELEMENTS
-========================================== */
+========================= */
 
-const video =
-    document.getElementById("video");
+const video = document.getElementById("video");
 
-const videoContainer =
-    document.getElementById(
-        "videoContainer"
-    );
-
-const videoMessage =
-    document.getElementById(
-        "videoMessage"
-    );
-
-const playBtn =
-    document.getElementById(
-        "playBtn"
-    );
-
-const rewindBtn =
-    document.getElementById(
-        "rewindBtn"
-    );
-
-const forwardBtn =
-    document.getElementById(
-        "forwardBtn"
-    );
-
-const muteBtn =
-    document.getElementById(
-        "muteBtn"
-    );
-
-const volumeSlider =
-    document.getElementById(
-        "volumeSlider"
-    );
-
-const fullscreenBtn =
-    document.getElementById(
-        "fullscreenBtn"
-    );
+const previewVideo =
+    document.getElementById("previewVideo");
 
 const timeline =
-    document.getElementById(
-        "timeline"
-    );
-
-const progress =
-    document.getElementById(
-        "progress"
-    );
-
-const buffer =
-    document.getElementById(
-        "buffer"
-    );
-
-const thumb =
-    document.getElementById(
-        "thumb"
-    );
-
-const currentTime =
-    document.getElementById(
-        "currentTime"
-    );
-
-const duration =
-    document.getElementById(
-        "duration"
-    );
-
-const movieTitle =
-    document.getElementById(
-        "movieTitle"
-    );
+    document.getElementById("timeline");
 
 const previewBox =
-    document.getElementById(
-        "previewBox"
-    );
-
-const previewCanvas =
-    document.getElementById(
-        "previewCanvas"
-    );
+    document.getElementById("previewBox");
 
 const previewTime =
-    document.getElementById(
-        "previewTime"
-    );
+    document.getElementById("previewTime");
 
-const speedBtn =
-    document.getElementById(
-        "speedBtn"
-    );
+const playButton =
+    document.getElementById("playButton");
+
+const back10 =
+    document.getElementById("back10");
+
+const forward10 =
+    document.getElementById("forward10");
+
+const volume =
+    document.getElementById("volume");
+
+const muteButton =
+    document.getElementById("muteButton");
+
+const timeDisplay =
+    document.getElementById("timeDisplay");
+
+const speedButton =
+    document.getElementById("speedButton");
 
 const speedMenu =
-    document.getElementById(
-        "speedMenu"
-    );
+    document.getElementById("speedMenu");
+
+const fitButton =
+    document.getElementById("fitButton");
+
+const fitMenu =
+    document.getElementById("fitMenu");
+
+const fullscreenButton =
+    document.getElementById("fullscreenButton");
+
+const playerArea =
+    document.getElementById("playerArea");
+
+const errorMessage =
+    document.getElementById("errorMessage");
 
 
-/* ==========================================
-   TITLE
-========================================== */
+/* =========================
+   GET VIDEO FROM URL
+========================= */
 
-movieTitle.textContent = title;
+const params =
+    new URLSearchParams(window.location.search);
 
-document.title =
-    title + " - My Library";
+const videoSource =
+    params.get("video") || params.get("src");
+
+const movieTitle =
+    params.get("title") || "Now Playing";
 
 
-/* ==========================================
+/* =========================
    LOAD VIDEO
-========================================== */
+========================= */
 
-if (videoURL) {
+if (videoSource) {
 
-    video.src = videoURL;
+    video.src = videoSource;
 
-    videoMessage.style.display =
-        "none";
+    previewVideo.src = videoSource;
+
+    document.title =
+        movieTitle + " - My Library";
 
 } else {
 
-    videoMessage.style.display =
-        "block";
+    errorMessage.style.display = "block";
 
 }
 
 
-/* ==========================================
-   VIDEO ERROR
-========================================== */
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+function togglePlay() {
+
+    if (video.paused) {
+
+        video.play();
+
+    } else {
+
+        video.pause();
+
+    }
+
+}
+
+
+playButton.addEventListener(
+    "click",
+    togglePlay
+);
+
 
 video.addEventListener(
-    "error",
-    () => {
+    "play",
+    function() {
 
-        videoMessage.innerHTML =
-            "Unable to load this video.<br>" +
-            "Check that the video file or URL is correct.";
-
-        videoMessage.style.display =
-            "block";
+        playButton.textContent = "❚❚";
 
     }
 );
 
 
-/* ==========================================
-   FORMAT TIME
-========================================== */
+video.addEventListener(
+    "pause",
+    function() {
+
+        playButton.textContent = "▶";
+
+    }
+);
+
+
+/* =========================
+   SPACEBAR
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            e.code === "Space" &&
+            e.target.tagName !== "INPUT"
+        ) {
+
+            e.preventDefault();
+
+            togglePlay();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SKIP
+========================= */
+
+back10.addEventListener(
+    "click",
+    function() {
+
+        video.currentTime =
+            Math.max(
+                0,
+                video.currentTime - 10
+            );
+
+    }
+);
+
+
+forward10.addEventListener(
+    "click",
+    function() {
+
+        video.currentTime =
+            Math.min(
+                video.duration || 0,
+                video.currentTime + 10
+            );
+
+    }
+);
+
+
+/* =========================
+   TIME FORMAT
+========================= */
 
 function formatTime(seconds) {
 
-    if (!isFinite(seconds)) {
+    if (
+        !seconds ||
+        isNaN(seconds)
+    ) {
         return "00:00";
     }
+
+    seconds =
+        Math.floor(seconds);
 
     const hours =
         Math.floor(seconds / 3600);
@@ -1000,7 +999,7 @@ function formatTime(seconds) {
         );
 
     const secs =
-        Math.floor(seconds % 60);
+        seconds % 60;
 
 
     if (hours > 0) {
@@ -1021,228 +1020,122 @@ function formatTime(seconds) {
         ":" +
         String(secs).padStart(2, "0")
     );
-}
-
-
-/* ==========================================
-   PLAY / PAUSE
-========================================== */
-
-function togglePlay() {
-
-    if (video.paused) {
-
-        video.play();
-
-    } else {
-
-        video.pause();
-
-    }
 
 }
 
 
-playBtn.addEventListener(
-    "click",
-    togglePlay
-);
-
-
-video.addEventListener(
-    "play",
-    () => {
-
-        playBtn.textContent =
-            "❚❚";
-
-    }
-);
-
-
-video.addEventListener(
-    "pause",
-    () => {
-
-        playBtn.textContent =
-            "▶";
-
-    }
-);
-
-
-/* ==========================================
-   REWIND
-========================================== */
-
-rewindBtn.addEventListener(
-    "click",
-    () => {
-
-        video.currentTime =
-            Math.max(
-                0,
-                video.currentTime - 10
-            );
-
-    }
-);
-
-
-/* ==========================================
-   FORWARD
-========================================== */
-
-forwardBtn.addEventListener(
-    "click",
-    () => {
-
-        if (!video.duration) {
-            return;
-        }
-
-        video.currentTime =
-            Math.min(
-                video.duration,
-                video.currentTime + 10
-            );
-
-    }
-);
-
-
-/* ==========================================
+/* =========================
    UPDATE TIMELINE
-========================================== */
+========================= */
 
 video.addEventListener(
     "timeupdate",
-    () => {
+    function() {
 
-        if (!video.duration) {
-            return;
-        }
+        if (!video.duration) return;
 
-        const percentage =
+        timeline.value =
             (video.currentTime /
             video.duration) * 100;
 
-        progress.style.width =
-            percentage + "%";
-
-        thumb.style.left =
-            percentage + "%";
-
-        currentTime.textContent =
-            formatTime(
-                video.currentTime
-            );
+        timeDisplay.textContent =
+            formatTime(video.currentTime) +
+            " / " +
+            formatTime(video.duration);
 
     }
 );
 
 
-/* ==========================================
-   DURATION
-========================================== */
+/* =========================
+   VIDEO LOADED
+========================= */
 
 video.addEventListener(
     "loadedmetadata",
-    () => {
+    function() {
 
-        duration.textContent =
-            formatTime(
-                video.duration
-            );
+        timeDisplay.textContent =
+            "00:00 / " +
+            formatTime(video.duration);
 
     }
 );
 
 
-/* ==========================================
-   TIMELINE CLICK
-========================================== */
+/* =========================
+   SEEK
+========================= */
 
 timeline.addEventListener(
-    "click",
-    (event) => {
+    "input",
+    function() {
 
-        if (!video.duration) {
-            return;
-        }
+        if (!video.duration) return;
+
+        const percentage =
+            timeline.value / 100;
+
+        video.currentTime =
+            percentage * video.duration;
+
+    }
+);
+
+
+/* =========================
+   PREVIEW WHILE DRAGGING
+========================= */
+
+timeline.addEventListener(
+    "mousemove",
+    function(e) {
+
+        if (!video.duration) return;
 
         const rect =
             timeline.getBoundingClientRect();
 
-        const percentage =
-            (event.clientX - rect.left) /
+        let percent =
+            (e.clientX - rect.left) /
             rect.width;
 
-        video.currentTime =
-            percentage *
-            video.duration;
-
-    }
-);
-
-
-/* ==========================================
-   BUFFER
-========================================== */
-
-video.addEventListener(
-    "progress",
-    () => {
-
-        if (!video.duration) {
-            return;
-        }
-
-        if (video.buffered.length) {
-
-            const bufferedEnd =
-                video.buffered.end(
-                    video.buffered.length - 1
-                );
-
-            const percentage =
-                (bufferedEnd /
-                video.duration) * 100;
-
-            buffer.style.width =
-                Math.min(
-                    percentage,
-                    100
-                ) + "%";
-
-        }
-
-    }
-);
-
-
-/* ==========================================
-   VOLUME
-========================================== */
-
-volumeSlider.addEventListener(
-    "input",
-    () => {
-
-        video.volume =
-            Number(
-                volumeSlider.value
+        percent =
+            Math.max(
+                0,
+                Math.min(1, percent)
             );
 
-        if (video.volume === 0) {
 
-            muteBtn.textContent =
-                "🔇";
+        const previewTimeValue =
+            percent * video.duration;
 
-        } else {
 
-            muteBtn.textContent =
-                "🔊";
+        previewBox.style.display =
+            "block";
+
+
+        previewBox.style.left =
+            (percent * 100) + "%";
+
+
+        previewTime.textContent =
+            formatTime(previewTimeValue);
+
+
+        if (
+            Math.abs(
+                previewVideo.currentTime -
+                previewTimeValue
+            ) > 0.5
+        ) {
+
+            try {
+
+                previewVideo.currentTime =
+                    previewTimeValue;
+
+            } catch(e) {}
 
         }
 
@@ -1250,68 +1143,79 @@ volumeSlider.addEventListener(
 );
 
 
-/* ==========================================
-   MUTE
-========================================== */
+timeline.addEventListener(
+    "mouseleave",
+    function() {
 
-muteBtn.addEventListener(
+        previewBox.style.display =
+            "none";
+
+    }
+);
+
+
+/* =========================
+   VOLUME
+========================= */
+
+volume.addEventListener(
+    "input",
+    function() {
+
+        video.volume =
+            volume.value;
+
+        video.muted = false;
+
+        updateMuteIcon();
+
+    }
+);
+
+
+muteButton.addEventListener(
     "click",
-    () => {
+    function() {
 
         video.muted =
             !video.muted;
 
-        muteBtn.textContent =
-            video.muted
-            ? "🔇"
-            : "🔊";
+        updateMuteIcon();
 
     }
 );
 
 
-/* ==========================================
-   FULLSCREEN
-========================================== */
+function updateMuteIcon() {
 
-fullscreenBtn.addEventListener(
-    "click",
-    async () => {
+    if (
+        video.muted ||
+        video.volume === 0
+    ) {
 
-        try {
+        muteButton.textContent = "🔇";
 
-            if (!document.fullscreenElement) {
+    } else {
 
-                await videoContainer.requestFullscreen();
-
-            } else {
-
-                await document.exitFullscreen();
-
-            }
-
-        } catch (error) {
-
-            console.log(
-                "Fullscreen error:",
-                error
-            );
-
-        }
+        muteButton.textContent = "🔊";
 
     }
-);
+
+}
 
 
-/* ==========================================
+/* =========================
    SPEED MENU
-========================================== */
+========================= */
 
-speedBtn.addEventListener(
+speedButton.addEventListener(
     "click",
-    (event) => {
+    function(e) {
 
-        event.stopPropagation();
+        e.stopPropagation();
+
+        fitMenu.style.display =
+            "none";
 
         speedMenu.style.display =
             speedMenu.style.display === "block"
@@ -1322,316 +1226,131 @@ speedBtn.addEventListener(
 );
 
 
-document
-.querySelectorAll(
+document.querySelectorAll(
     "#speedMenu button"
-)
-.forEach(button => {
+).forEach(
+    function(button) {
 
-    button.addEventListener(
-        "click",
-        (event) => {
+        button.addEventListener(
+            "click",
+            function() {
 
-            event.stopPropagation();
+                const speed =
+                    parseFloat(
+                        button.dataset.speed
+                    );
 
-            video.playbackRate =
-                parseFloat(
-                    button.dataset.speed
-                );
+                video.playbackRate =
+                    speed;
 
-            speedMenu.style.display =
-                "none";
+                speedButton.textContent =
+                    speed + "×";
 
-        }
-    );
+                speedMenu.style.display =
+                    "none";
 
-});
+            }
+        );
+
+    }
+);
 
 
-/* ==========================================
-   CLOSE SPEED MENU
-========================================== */
+/* =========================
+   FIT MENU
+========================= */
 
-document.addEventListener(
+fitButton.addEventListener(
     "click",
-    () => {
+    function(e) {
+
+        e.stopPropagation();
 
         speedMenu.style.display =
             "none";
 
+        fitMenu.style.display =
+            fitMenu.style.display === "block"
+            ? "none"
+            : "block";
+
     }
 );
 
 
-/* ==========================================
-   TIMELINE PREVIEW VIDEO
-========================================== */
+document.querySelectorAll(
+    "#fitMenu button"
+).forEach(
+    function(button) {
 
-let previewVideo = null;
+        button.addEventListener(
+            "click",
+            function() {
 
+                const fit =
+                    button.dataset.fit;
 
-function createPreviewVideo() {
-
-    if (!videoURL) {
-        return;
-    }
-
-    previewVideo =
-        document.createElement(
-            "video"
-        );
-
-    previewVideo.src =
-        videoURL;
-
-    previewVideo.preload =
-        "metadata";
-
-    previewVideo.muted =
-        true;
-
-    previewVideo.playsInline =
-        true;
-
-    previewVideo.style.display =
-        "none";
-
-    document.body.appendChild(
-        previewVideo
-    );
-
-}
-
-
-createPreviewVideo();
-
-
-/* ==========================================
-   DRAW PREVIEW FRAME
-========================================== */
-
-if (previewVideo) {
-
-    previewVideo.addEventListener(
-        "seeked",
-        () => {
-
-            const ctx =
-                previewCanvas.getContext(
-                    "2d"
+                video.classList.remove(
+                    "fit-contain",
+                    "fit-cover",
+                    "fit-fill"
                 );
 
-            ctx.clearRect(
-                0,
-                0,
-                previewCanvas.width,
-                previewCanvas.height
-            );
+                video.classList.add(
+                    "fit-" + fit
+                );
 
-            ctx.drawImage(
-                previewVideo,
-                0,
-                0,
-                previewCanvas.width,
-                previewCanvas.height
-            );
+                fitMenu.style.display =
+                    "none";
 
-        }
-    );
-
-}
-
-
-/* ==========================================
-   TIMELINE MOUSE PREVIEW
-========================================== */
-
-timeline.addEventListener(
-    "mousemove",
-    (event) => {
-
-        if (
-            !video.duration ||
-            !previewVideo
-        ) {
-
-            return;
-
-        }
-
-
-        const rect =
-            timeline.getBoundingClientRect();
-
-
-        let percentage =
-            (event.clientX - rect.left) /
-            rect.width;
-
-
-        percentage =
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    percentage
-                )
-            );
-
-
-        const previewSeconds =
-            percentage *
-            video.duration;
-
-
-        const previewWidth =
-            previewBox.offsetWidth;
-
-
-        let previewLeft =
-            event.clientX -
-            rect.left -
-            (previewWidth / 2);
-
-
-        previewLeft =
-            Math.max(
-                0,
-                Math.min(
-                    rect.width -
-                    previewWidth,
-                    previewLeft
-                )
-            );
-
-
-        previewBox.style.left =
-            previewLeft + "px";
-
-
-        /*
-           Keep preview ABOVE
-           the timeline.
-        */
-
-        previewBox.style.bottom =
-            "25px";
-
-
-        previewBox.style.display =
-            "block";
-
-
-        previewTime.textContent =
-            formatTime(
-                previewSeconds
-            );
-
-
-        if (
-            previewVideo.readyState >= 2
-        ) {
-
-            previewVideo.currentTime =
-                previewSeconds;
-
-        }
+            }
+        );
 
     }
 );
 
 
-/* ==========================================
-   HIDE PREVIEW
-========================================== */
+/* =========================
+   CLOSE MENUS
+========================= */
 
-timeline.addEventListener(
-    "mouseleave",
-    () => {
+document.addEventListener(
+    "click",
+    function() {
 
-        previewBox.style.display =
+        speedMenu.style.display =
+            "none";
+
+        fitMenu.style.display =
             "none";
 
     }
 );
 
 
-/* ==========================================
-   KEYBOARD CONTROLS
-========================================== */
+/* =========================
+   FULLSCREEN
+========================= */
 
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.target.tagName ===
-            "INPUT"
-        ) {
-
-            return;
-
-        }
-
-
-        /* SPACE */
+fullscreenButton.addEventListener(
+    "click",
+    function() {
 
         if (
-            event.code ===
-            "Space"
+            !document.fullscreenElement
         ) {
 
-            event.preventDefault();
+            if (
+                playerArea.requestFullscreen
+            ) {
 
-            togglePlay();
-
-        }
-
-
-        /* LEFT */
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            video.currentTime =
-                Math.max(
-                    0,
-                    video.currentTime - 5
-                );
-
-        }
-
-
-        /* RIGHT */
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            if (video.duration) {
-
-                video.currentTime =
-                    Math.min(
-                        video.duration,
-                        video.currentTime + 5
-                    );
+                playerArea.requestFullscreen();
 
             }
 
-        }
+        } else {
 
-
-        /* F */
-
-        if (
-            event.key.toLowerCase()
-            === "f"
-        ) {
-
-            fullscreenBtn.click();
+            document.exitFullscreen();
 
         }
 
@@ -1639,16 +1358,64 @@ document.addEventListener(
 );
 
 
-/* ==========================================
-   BACK BUTTON
-========================================== */
+/* =========================
+   FULLSCREEN ICON
+========================= */
+
+document.addEventListener(
+    "fullscreenchange",
+    function() {
+
+        if (
+            document.fullscreenElement
+        ) {
+
+            fullscreenButton.textContent =
+                "⛶";
+
+        } else {
+
+            fullscreenButton.textContent =
+                "⛶";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   DOUBLE CLICK VIDEO
+========================= */
+
+video.addEventListener(
+    "dblclick",
+    function() {
+
+        if (
+            !document.fullscreenElement
+        ) {
+
+            playerArea.requestFullscreen();
+
+        } else {
+
+            document.exitFullscreen();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   GO BACK
+========================= */
 
 function goBack() {
 
     if (
-        document.referrer &&
-        document.referrer !==
-        window.location.href
+        document.referrer
     ) {
 
         history.back();
@@ -1662,8 +1429,30 @@ function goBack() {
 
 }
 
+
+/* =========================
+   VIDEO ERROR
+========================= */
+
+video.addEventListener(
+    "error",
+    function() {
+
+        if (videoSource) {
+
+            errorMessage.innerHTML =
+                "Unable to play this video.<br>" +
+                "Check the video file or its URL.";
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
-
 </html>
