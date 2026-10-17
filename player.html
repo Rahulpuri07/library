@@ -33,69 +33,222 @@
             min-height: 100vh;
         }
 
+
+        /* ==============================
+           TOP BAR
+        ============================== */
+
         .top-bar {
+
             height: 70px;
+
             display: flex;
+
             align-items: center;
+
             padding: 0 35px;
+
             border-bottom: 1px solid #151515;
+
             background: #000;
+
         }
+
 
         .back-button {
+
             color: #fff;
+
             text-decoration: none;
+
             font-size: 14px;
+
             font-weight: 500;
+
             padding: 9px 16px;
+
             border: 1px solid #333;
+
             border-radius: 5px;
+
             transition: 0.2s;
+
         }
+
 
         .back-button:hover {
+
             background: #fff;
+
             color: #000;
+
         }
+
 
         .player-logo {
+
             margin-left: 25px;
+
             font-size: 20px;
+
             font-weight: 700;
+
         }
+
 
         .player-logo span {
+
             color: #e50914;
+
         }
+
+
+        /* ==============================
+           PLAYER CONTAINER
+        ============================== */
 
         .player-container {
+
             width: 100%;
+
             max-width: 1400px;
+
             margin: 35px auto 0;
+
             padding: 0 30px;
+
         }
+
 
         .video-wrapper {
+
             position: relative;
+
             width: 100%;
+
             background: #000;
+
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.8);
+
         }
+
 
         video {
+
             display: block;
+
             width: 100%;
+
+            height: auto;
+
             max-height: 75vh;
+
             background: #000;
+
+            object-fit: contain;
+
         }
 
-        /* CUSTOM CONTROLS */
+
+        /* ==============================
+           FULLSCREEN FIX
+        ============================== */
+
+        .video-wrapper:fullscreen {
+
+            width: 100vw;
+
+            height: 100vh;
+
+            max-width: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #000;
+
+            box-shadow: none;
+
+        }
+
+
+        .video-wrapper:fullscreen video {
+
+            width: 100%;
+
+            height: 100%;
+
+            max-height: none;
+
+            max-width: none;
+
+            object-fit: contain;
+
+            background: #000;
+
+        }
+
+
+        /* Firefox fullscreen */
+
+        .video-wrapper:-moz-full-screen {
+
+            width: 100vw;
+
+            height: 100vh;
+
+            max-width: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #000;
+
+        }
+
+
+        .video-wrapper:-moz-full-screen video {
+
+            width: 100%;
+
+            height: 100%;
+
+            max-height: none;
+
+            object-fit: contain;
+
+        }
+
+
+        /* ==============================
+           CONTROLS
+        ============================== */
 
         .controls {
+
             position: absolute;
+
             left: 0;
+
             right: 0;
+
             bottom: 0;
 
             padding: 45px 20px 15px;
@@ -107,60 +260,105 @@
                 );
 
             opacity: 1;
+
             transition: opacity 0.3s;
+
         }
+
 
         .video-wrapper.hide-controls .controls {
+
             opacity: 0;
+
         }
 
-        /* TIMELINE */
+
+        /* ==============================
+           TIMELINE
+        ============================== */
 
         .timeline-container {
+
             position: relative;
+
             width: 100%;
+
             height: 20px;
+
             display: flex;
+
             align-items: center;
+
             cursor: pointer;
+
         }
+
 
         .timeline {
+
             width: 100%;
+
             height: 5px;
+
             appearance: none;
+
             background: #555;
+
             border-radius: 5px;
+
             outline: none;
+
             cursor: pointer;
+
         }
+
 
         .timeline::-webkit-slider-thumb {
+
             appearance: none;
+
             width: 14px;
+
             height: 14px;
+
             background: #e50914;
+
             border-radius: 50%;
+
             cursor: pointer;
+
         }
+
 
         .timeline::-moz-range-thumb {
+
             width: 14px;
+
             height: 14px;
+
             background: #e50914;
+
             border-radius: 50%;
+
             cursor: pointer;
+
             border: none;
+
         }
 
-        /* PREVIEW */
+
+        /* ==============================
+           PREVIEW
+        ============================== */
 
         .preview-box {
+
             position: absolute;
 
             bottom: 28px;
 
             width: 180px;
+
             height: 100px;
 
             background: #111;
@@ -177,40 +375,71 @@
 
             transform: translateX(-50%);
 
-            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.8);
+
         }
+
 
         .preview-box video {
+
             width: 100%;
+
             height: 100%;
+
+            max-height: none;
+
             object-fit: cover;
+
         }
+
 
         .preview-time {
+
             position: absolute;
+
             bottom: 2px;
+
             left: 0;
+
             right: 0;
+
             text-align: center;
+
             font-size: 11px;
+
             background: rgba(0,0,0,0.75);
+
             padding: 2px;
+
         }
 
-        /* BUTTON ROW */
+
+        /* ==============================
+           CONTROL ROW
+        ============================== */
 
         .control-row {
+
             display: flex;
+
             align-items: center;
+
             gap: 8px;
+
             margin-top: 8px;
+
         }
 
+
         .control-button {
+
             width: 42px;
+
             height: 38px;
 
             border: none;
+
             background: transparent;
 
             color: white;
@@ -222,41 +451,71 @@
             border-radius: 4px;
 
             transition: 0.2s;
+
         }
+
 
         .control-button:hover {
+
             background: rgba(255,255,255,0.15);
+
         }
+
 
         .time-display {
+
             font-size: 13px;
+
             color: #ddd;
+
             margin-left: 4px;
+
             margin-right: auto;
+
             white-space: nowrap;
+
         }
 
-        /* VOLUME */
+
+        /* ==============================
+           VOLUME
+        ============================== */
 
         .volume-container {
+
             display: flex;
+
             align-items: center;
+
         }
+
 
         .volume-slider {
+
             width: 80px;
+
             height: 4px;
+
             accent-color: #fff;
+
             cursor: pointer;
+
         }
 
-        /* MENUS */
+
+        /* ==============================
+           MENUS
+        ============================== */
 
         .menu-container {
+
             position: relative;
+
         }
 
+
         .menu {
+
             position: absolute;
 
             right: 0;
@@ -275,23 +534,36 @@
 
             display: none;
 
-            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.7);
 
             z-index: 20;
+
         }
+
 
         .menu.show {
+
             display: block;
+
         }
+
 
         .menu-title {
+
             font-size: 11px;
+
             color: #888;
+
             padding: 8px 10px;
+
             text-transform: uppercase;
+
         }
 
+
         .menu button {
+
             display: block;
 
             width: 100%;
@@ -313,73 +585,133 @@
             cursor: pointer;
 
             border-radius: 4px;
+
         }
+
 
         .menu button:hover {
+
             background: #333;
+
         }
+
 
         .menu button.active {
+
             color: #e50914;
+
         }
+
+
+        /* ==============================
+           MOVIE INFORMATION
+        ============================== */
 
         .movie-information {
+
             padding: 25px 5px 50px;
+
         }
+
 
         .movie-information h1 {
+
             font-size: 28px;
+
             font-weight: 700;
+
             margin-bottom: 8px;
+
         }
 
+
         .movie-information p {
+
             color: #777;
+
             font-size: 13px;
+
         }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
 
         @media (max-width: 700px) {
 
             .top-bar {
+
                 height: 60px;
+
                 padding: 0 15px;
+
             }
+
 
             .player-logo {
+
                 margin-left: 15px;
+
                 font-size: 17px;
+
             }
+
 
             .player-container {
+
                 margin-top: 15px;
+
                 padding: 0 8px;
+
             }
+
 
             .controls {
+
                 padding-left: 10px;
+
                 padding-right: 10px;
+
             }
+
 
             .volume-slider {
+
                 display: none;
+
             }
+
 
             .control-button {
+
                 width: 36px;
+
             }
+
 
             .time-display {
+
                 font-size: 11px;
+
             }
+
 
             .preview-box {
+
                 width: 140px;
+
                 height: 78px;
+
             }
 
+
             .movie-information h1 {
+
                 font-size: 21px;
+
             }
+
         }
 
     </style>
@@ -390,6 +722,8 @@
 <body>
 
 
+    <!-- TOP BAR -->
+
     <div class="top-bar">
 
         <a
@@ -399,13 +733,18 @@
             ← Back
         </a>
 
+
         <div class="player-logo">
+
             MY <span>LIBRARY</span>
+
         </div>
 
     </div>
 
 
+
+    <!-- PLAYER -->
 
     <div class="player-container">
 
@@ -433,7 +772,7 @@
 
 
 
-            <!-- PREVIEW VIDEO -->
+            <!-- TIMELINE PREVIEW -->
 
             <div
                 class="preview-box"
@@ -453,6 +792,7 @@
 
                 </video>
 
+
                 <div
                     class="preview-time"
                     id="previewTime"
@@ -464,7 +804,7 @@
 
 
 
-            <!-- CUSTOM CONTROLS -->
+            <!-- CONTROLS -->
 
             <div class="controls">
 
@@ -491,8 +831,6 @@
                 <div class="control-row">
 
 
-                    <!-- BACK 10 -->
-
                     <button
                         class="control-button"
                         id="backButton"
@@ -501,9 +839,6 @@
                         ↶
                     </button>
 
-
-
-                    <!-- PLAY -->
 
                     <button
                         class="control-button"
@@ -514,9 +849,6 @@
                     </button>
 
 
-
-                    <!-- FORWARD 10 -->
-
                     <button
                         class="control-button"
                         id="forwardButton"
@@ -524,7 +856,6 @@
                     >
                         ↷
                     </button>
-
 
 
                     <!-- VOLUME -->
@@ -538,6 +869,7 @@
                         >
                             🔊
                         </button>
+
 
                         <input
                             type="range"
@@ -586,13 +918,16 @@
                                 Speed
                             </div>
 
+
                             <button data-speed="0.5">
                                 0.5×
                             </button>
 
+
                             <button data-speed="0.75">
                                 0.75×
                             </button>
+
 
                             <button
                                 data-speed="1"
@@ -601,13 +936,16 @@
                                 Normal
                             </button>
 
+
                             <button data-speed="1.25">
                                 1.25×
                             </button>
 
+
                             <button data-speed="1.5">
                                 1.5×
                             </button>
+
 
                             <button data-speed="2">
                                 2×
@@ -641,17 +979,21 @@
                                 Quality
                             </div>
 
+
                             <button class="active">
                                 Auto
                             </button>
+
 
                             <button>
                                 1080p
                             </button>
 
+
                             <button>
                                 720p
                             </button>
+
 
                             <button>
                                 480p
@@ -673,7 +1015,6 @@
                         ⛶
                     </button>
 
-
                 </div>
 
             </div>
@@ -682,11 +1023,14 @@
 
 
 
+        <!-- MOVIE INFO -->
+
         <div class="movie-information">
 
             <h1>
                 Sample Video
             </h1>
+
 
             <p>
                 Test movie • My Personal Library
@@ -701,50 +1045,77 @@
 
     <script>
 
-        const video = document.getElementById("videoPlayer");
+        const video =
+            document.getElementById("videoPlayer");
 
-        const previewVideo = document.getElementById("previewVideo");
+        const previewVideo =
+            document.getElementById("previewVideo");
 
-        const wrapper = document.getElementById("videoWrapper");
+        const wrapper =
+            document.getElementById("videoWrapper");
 
-        const playButton = document.getElementById("playButton");
+        const playButton =
+            document.getElementById("playButton");
 
-        const backButton = document.getElementById("backButton");
+        const backButton =
+            document.getElementById("backButton");
 
-        const forwardButton = document.getElementById("forwardButton");
+        const forwardButton =
+            document.getElementById("forwardButton");
 
-        const muteButton = document.getElementById("muteButton");
+        const muteButton =
+            document.getElementById("muteButton");
 
-        const volumeSlider = document.getElementById("volumeSlider");
+        const volumeSlider =
+            document.getElementById("volumeSlider");
 
-        const timeline = document.getElementById("timeline");
+        const timeline =
+            document.getElementById("timeline");
 
         const timelineContainer =
-            document.getElementById("timelineContainer");
+            document.getElementById(
+                "timelineContainer"
+            );
 
         const timeDisplay =
-            document.getElementById("timeDisplay");
+            document.getElementById(
+                "timeDisplay"
+            );
 
         const previewBox =
-            document.getElementById("previewBox");
+            document.getElementById(
+                "previewBox"
+            );
 
         const previewTime =
-            document.getElementById("previewTime");
+            document.getElementById(
+                "previewTime"
+            );
 
         const speedButton =
-            document.getElementById("speedButton");
+            document.getElementById(
+                "speedButton"
+            );
 
         const speedMenu =
-            document.getElementById("speedMenu");
+            document.getElementById(
+                "speedMenu"
+            );
 
         const qualityButton =
-            document.getElementById("qualityButton");
+            document.getElementById(
+                "qualityButton"
+            );
 
         const qualityMenu =
-            document.getElementById("qualityMenu");
+            document.getElementById(
+                "qualityMenu"
+            );
 
         const fullscreenButton =
-            document.getElementById("fullscreenButton");
+            document.getElementById(
+                "fullscreenButton"
+            );
 
 
 
@@ -758,14 +1129,18 @@
                 return "0:00";
             }
 
+
             const hours =
                 Math.floor(seconds / 3600);
 
             const minutes =
-                Math.floor((seconds % 3600) / 60);
+                Math.floor(
+                    (seconds % 3600) / 60
+                );
 
             const secs =
                 Math.floor(seconds % 60);
+
 
             if (hours > 0) {
 
@@ -778,6 +1153,7 @@
                 );
 
             }
+
 
             return (
                 minutes +
@@ -842,7 +1218,7 @@
 
 
         /* ==============================
-           BACK 10 SECONDS
+           BACK 10
         ============================== */
 
         backButton.addEventListener(
@@ -861,7 +1237,7 @@
 
 
         /* ==============================
-           FORWARD 10 SECONDS
+           FORWARD 10
         ============================== */
 
         forwardButton.addEventListener(
@@ -891,14 +1267,22 @@
                     return;
                 }
 
+
                 timeline.value =
-                    (video.currentTime /
-                    video.duration) * 100;
+                    (
+                        video.currentTime /
+                        video.duration
+                    ) * 100;
+
 
                 timeDisplay.textContent =
-                    formatTime(video.currentTime) +
+                    formatTime(
+                        video.currentTime
+                    ) +
                     " / " +
-                    formatTime(video.duration);
+                    formatTime(
+                        video.duration
+                    );
 
             }
         );
@@ -912,8 +1296,11 @@
                     return;
                 }
 
+
                 video.currentTime =
-                    (timeline.value / 100) *
+                    (
+                        timeline.value / 100
+                    ) *
                     video.duration;
 
             }
@@ -933,11 +1320,15 @@
                     return;
                 }
 
+
                 const rect =
                     timelineContainer.getBoundingClientRect();
 
+
                 let position =
-                    event.clientX - rect.left;
+                    event.clientX -
+                    rect.left;
+
 
                 position =
                     Math.max(
@@ -948,11 +1339,14 @@
                         )
                     );
 
+
                 const percentage =
                     position / rect.width;
 
+
                 const previewSecond =
-                    percentage * video.duration;
+                    percentage *
+                    video.duration;
 
 
                 previewBox.style.display =
@@ -964,7 +1358,9 @@
 
 
                 previewTime.textContent =
-                    formatTime(previewSecond);
+                    formatTime(
+                        previewSecond
+                    );
 
 
                 if (
@@ -991,16 +1387,6 @@
         );
 
 
-        previewVideo.addEventListener(
-            "loadedmetadata",
-            function() {
-
-                previewVideo.currentTime = 0;
-
-            }
-        );
-
-
 
         /* ==============================
            VOLUME
@@ -1013,8 +1399,10 @@
                 video.volume =
                     volumeSlider.value;
 
+
                 video.muted =
                     video.volume === 0;
+
 
                 updateVolumeIcon();
 
@@ -1029,6 +1417,7 @@
                 video.muted =
                     !video.muted;
 
+
                 updateVolumeIcon();
 
             }
@@ -1042,17 +1431,20 @@
                 video.volume === 0
             ) {
 
-                muteButton.textContent = "🔇";
+                muteButton.textContent =
+                    "🔇";
 
             } else if (
                 video.volume < 0.5
             ) {
 
-                muteButton.textContent = "🔉";
+                muteButton.textContent =
+                    "🔉";
 
             } else {
 
-                muteButton.textContent = "🔊";
+                muteButton.textContent =
+                    "🔊";
 
             }
 
@@ -1061,7 +1453,7 @@
 
 
         /* ==============================
-           SPEED MENU
+           SPEED
         ============================== */
 
         speedButton.addEventListener(
@@ -1070,9 +1462,15 @@
 
                 event.stopPropagation();
 
-                qualityMenu.classList.remove("show");
 
-                speedMenu.classList.toggle("show");
+                qualityMenu.classList.remove(
+                    "show"
+                );
+
+
+                speedMenu.classList.toggle(
+                    "show"
+                );
 
             }
         );
@@ -1093,6 +1491,7 @@
                                 parseFloat(
                                     button.dataset.speed
                                 );
+
 
                             video.playbackRate =
                                 speed;
@@ -1140,9 +1539,15 @@
 
                 event.stopPropagation();
 
-                speedMenu.classList.remove("show");
 
-                qualityMenu.classList.toggle("show");
+                speedMenu.classList.remove(
+                    "show"
+                );
+
+
+                qualityMenu.classList.toggle(
+                    "show"
+                );
 
             }
         );
@@ -1161,6 +1566,7 @@
                     "show"
                 );
 
+
                 qualityMenu.classList.remove(
                     "show"
                 );
@@ -1178,7 +1584,9 @@
             "click",
             function() {
 
-                if (!document.fullscreenElement) {
+                if (
+                    !document.fullscreenElement
+                ) {
 
                     if (
                         wrapper.requestFullscreen
@@ -1211,11 +1619,15 @@
                     event.target.tagName ===
                     "INPUT"
                 ) {
+
                     return;
+
                 }
 
 
-                if (event.code === "Space") {
+                if (
+                    event.code === "Space"
+                ) {
 
                     event.preventDefault();
 
@@ -1330,7 +1742,6 @@
 
             }
         );
-
 
     </script>
 
