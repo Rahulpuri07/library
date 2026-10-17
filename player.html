@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Now Playing - My Library</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            background: #000000;
+
+            color: #ffffff;
+
+            font-family: 'Poppins', sans-serif;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ==============================
+           TOP BAR
+        ============================== */
+
+        .top-bar {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 0 35px;
+
+            border-bottom: 1px solid #151515;
+
+            background: #000000;
+
+        }
+
+
+        .back-button {
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            padding: 9px 16px;
+
+            border: 1px solid #333333;
+
+            border-radius: 5px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #ffffff;
+
+            color: #000000;
+
+        }
+
+
+        .player-logo {
+
+            margin-left: 25px;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+
+        .player-logo span {
+
+            color: #e50914;
+
+        }
+
+
+
+        /* ==============================
+           PLAYER AREA
+        ============================== */
+
+        .player-container {
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: 35px auto 0;
+
+            padding: 0 30px;
+
+        }
+
+
+        .video-wrapper {
+
+            position: relative;
+
+            width: 100%;
+
+            background: #050505;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.8);
+
+        }
+
+
+        video {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            max-height: 75vh;
+
+            background: #000000;
+
+        }
+
+
+
+        /* ==============================
+           VIDEO INFORMATION
+        ============================== */
+
+        .movie-information {
+
+            padding: 25px 5px 50px;
+
+        }
+
+
+        .movie-information h1 {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .movie-information p {
+
+            color: #777777;
+
+            font-size: 13px;
+
+        }
+
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            .top-bar {
+
+                height: 60px;
+
+                padding: 0 18px;
+
+            }
+
+
+            .player-logo {
+
+                margin-left: 15px;
+
+                font-size: 17px;
+
+            }
+
+
+            .player-container {
+
+                margin-top: 15px;
+
+                padding: 0 10px;
+
+            }
+
+
+            .movie-information h1 {
+
+                font-size: 21px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         TOP BAR
+    ============================== -->
+
+    <div class="top-bar">
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← Back
+        </a>
+
+
+        <div class="player-logo">
+
+            MY <span>LIBRARY</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         VIDEO PLAYER
+    ============================== -->
+
+    <div class="player-container">
+
+
+        <div class="video-wrapper">
+
+
+            <video
+                id="videoPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            >
+
+                <source
+                    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support HTML5 video.
+
+            </video>
+
+
+        </div>
+
+
+
+        <!-- ==========================
+             MOVIE INFORMATION
+        ========================== -->
+
+        <div class="movie-information">
+
+            <h1>
+                Sample Video
+            </h1>
+
+            <p>
+                This is a test video for your personal movie library.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+</html>
