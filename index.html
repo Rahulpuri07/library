@@ -5,27 +5,38 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Rahul's Library</title>
 
+
 <style>
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
+
 
 html,
-body{
-    margin:0;
-    padding:0;
-    background:#000;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #000;
+    color: #fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
-body{
-    min-height:100vh;
+
+body {
+    min-height: 100vh;
 }
 
 
@@ -33,79 +44,94 @@ body{
    HEADER
 ========================= */
 
-.header{
-    height:72px;
+.header {
 
-    background:#050505;
+    height: 72px;
 
-    border-bottom:1px solid #222;
+    background: #050505;
 
-    display:flex;
+    border-bottom: 1px solid #222;
 
-    align-items:center;
+    display: flex;
 
-    padding:0 40px;
+    align-items: center;
 
-    gap:35px;
+    padding: 0 40px;
 
-    position:sticky;
+    gap: 35px;
 
-    top:0;
+    position: sticky;
 
-    z-index:20;
+    top: 0;
+
+    z-index: 20;
 }
 
-.logo{
-    font-size:25px;
 
-    font-weight:800;
+.logo {
+
+    font-size: 25px;
+
+    font-weight: 800;
 }
 
-.logo span{
-    color:#e50914;
+
+.logo span {
+
+    color: #e50914;
 }
 
-.nav{
-    display:flex;
 
-    gap:30px;
+.nav {
+
+    display: flex;
+
+    gap: 30px;
 }
 
-.nav button{
-    background:none;
 
-    border:none;
+.nav button {
 
-    color:#aaa;
+    background: none;
 
-    font-size:15px;
+    border: none;
 
-    cursor:pointer;
+    color: #aaa;
+
+    font-size: 15px;
+
+    cursor: pointer;
 }
+
 
 .nav button:hover,
-.nav button.active{
-    color:#fff;
+.nav button.active {
+
+    color: white;
 }
 
-.search{
-    margin-left:auto;
+
+.search {
+
+    margin-left: auto;
 }
 
-.search input{
-    width:260px;
 
-    padding:11px 15px;
+.search input {
 
-    background:#151515;
+    width: 260px;
 
-    border:1px solid #333;
+    padding: 11px 15px;
 
-    border-radius:6px;
+    background: #151515;
 
-    color:#fff;
+    border: 1px solid #333;
 
-    outline:none;
+    border-radius: 6px;
+
+    color: white;
+
+    outline: none;
 }
 
 
@@ -113,22 +139,27 @@ body{
    MAIN
 ========================= */
 
-.main{
-    padding:55px 55px 80px;
+.main {
+
+    padding: 55px 55px 80px;
 }
 
-.hero h1{
-    font-size:46px;
 
-    margin:0 0 18px;
+.hero h1 {
+
+    font-size: 46px;
+
+    margin: 0 0 18px;
 }
 
-.hero p{
-    color:#999;
 
-    font-size:16px;
+.hero p {
 
-    margin-bottom:70px;
+    color: #999;
+
+    font-size: 16px;
+
+    margin-bottom: 70px;
 }
 
 
@@ -136,30 +167,37 @@ body{
    SECTIONS
 ========================= */
 
-.section{
-    margin-bottom:60px;
+.section {
+
+    margin-bottom: 60px;
 }
 
-.section-header{
-    display:flex;
 
-    justify-content:space-between;
+.section-header {
 
-    align-items:center;
+    display: flex;
 
-    margin-bottom:25px;
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
 }
 
-.section-title{
-    font-size:25px;
 
-    font-weight:700;
+.section-title {
+
+    font-size: 25px;
+
+    font-weight: 700;
 }
 
-.count{
-    color:#777;
 
-    font-size:13px;
+.count {
+
+    color: #777;
+
+    font-size: 13px;
 }
 
 
@@ -167,16 +205,17 @@ body{
    GRID
 ========================= */
 
-.grid{
-    display:grid;
+.grid {
+
+    display: grid;
 
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(190px,1fr)
+            minmax(190px, 1fr)
         );
 
-    gap:25px;
+    gap: 25px;
 }
 
 
@@ -184,26 +223,29 @@ body{
    CARD
 ========================= */
 
-.card{
-    background:#101010;
+.card {
 
-    border-radius:7px;
+    background: #101010;
 
-    overflow:hidden;
+    border-radius: 7px;
 
-    cursor:pointer;
+    overflow: hidden;
+
+    cursor: pointer;
 
     transition:
         transform .2s,
         background .2s;
 
-    border:1px solid #191919;
+    border: 1px solid #191919;
 }
 
-.card:hover{
-    transform:scale(1.035);
 
-    background:#181818;
+.card:hover {
+
+    transform: scale(1.035);
+
+    background: #181818;
 }
 
 
@@ -211,8 +253,9 @@ body{
    POSTER
 ========================= */
 
-.poster{
-    height:270px;
+.poster {
+
+    height: 270px;
 
     background:
         linear-gradient(
@@ -221,29 +264,31 @@ body{
             #050505
         );
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    color:#666;
+    color: #666;
 
-    font-size:42px;
+    font-size: 42px;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    position:relative;
+    position: relative;
 }
 
-.poster img{
-    width:100%;
 
-    height:100%;
+.poster img {
 
-    object-fit:cover;
+    width: 100%;
 
-    display:block;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
 }
 
 
@@ -251,43 +296,51 @@ body{
    CARD INFO
 ========================= */
 
-.card-info{
-    padding:14px;
+.card-info {
+
+    padding: 14px;
 }
 
-.card-title{
-    font-size:15px;
 
-    font-weight:600;
+.card-title {
 
-    white-space:nowrap;
+    font-size: 15px;
 
-    overflow:hidden;
+    font-weight: 600;
 
-    text-overflow:ellipsis;
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
-.card-type{
-    color:#777;
 
-    font-size:12px;
+.card-type {
 
-    margin-top:7px;
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 7px;
 }
 
 
 /* =========================
-   MESSAGES
+   EMPTY / LOADING
 ========================= */
 
-.message{
-    color:#777;
+.message {
 
-    padding:30px 0;
+    color: #777;
+
+    padding: 30px 0;
 }
 
-.error{
-    color:#e50914;
+
+.error {
+
+    color: #e50914;
 }
 
 
@@ -295,43 +348,58 @@ body{
    MOBILE
 ========================= */
 
-@media(max-width:700px){
+@media (max-width: 700px) {
 
-    .header{
-        padding:0 15px;
+    .header {
 
-        gap:15px;
+        padding: 0 15px;
+
+        gap: 15px;
     }
 
-    .logo{
-        font-size:19px;
+
+    .logo {
+
+        font-size: 19px;
     }
 
-    .nav{
-        gap:10px;
+
+    .nav {
+
+        gap: 10px;
     }
 
-    .search input{
-        width:130px;
+
+    .search input {
+
+        width: 130px;
     }
 
-    .main{
-        padding:35px 20px;
+
+    .main {
+
+        padding: 35px 20px;
     }
 
-    .hero h1{
-        font-size:32px;
+
+    .hero h1 {
+
+        font-size: 32px;
     }
 
-    .grid{
+
+    .grid {
+
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
 
-        gap:15px;
+        gap: 15px;
     }
 
-    .poster{
-        height:220px;
+
+    .poster {
+
+        height: 220px;
     }
 
 }
@@ -346,8 +414,11 @@ body{
 
 <header class="header">
 
+
     <div class="logo">
+
         MY <span>LIBRARY</span>
+
     </div>
 
 
@@ -387,6 +458,7 @@ body{
 
     </div>
 
+
 </header>
 
 
@@ -400,6 +472,7 @@ body{
             Welcome to your library.
         </h1>
 
+
         <p>
             Your private collection of movies and web series — all in one place.
         </p>
@@ -408,7 +481,9 @@ body{
 
 
 
-    <!-- MOVIES -->
+    <!-- =========================
+         MOVIES
+    ========================== -->
 
     <section
         class="section"
@@ -420,6 +495,7 @@ body{
             <div class="section-title">
                 🎬 Movies
             </div>
+
 
             <div
                 class="count"
@@ -446,7 +522,9 @@ body{
 
 
 
-    <!-- WEB SERIES -->
+    <!-- =========================
+         WEB SERIES
+    ========================== -->
 
     <section
         class="section"
@@ -458,6 +536,7 @@ body{
             <div class="section-title">
                 📺 Web Series
             </div>
+
 
             <div
                 class="count"
@@ -496,14 +575,18 @@ body{
 
 
 /*
-   IMPORTANT:
-   Paste YOUR Google API key here.
+   KEEP YOUR CURRENT API KEY HERE.
 
-   Do NOT use anybody else's key.
+   Do not send the key to anyone.
+
+   IMPORTANT:
+   Rotate this key after testing because the key
+   appeared in the code you shared with me.
 */
 
 const GOOGLE_API_KEY =
-    "AIzaSyDj5VSHNGM4z9sR8f_YyZfBZvIwSkOnlfk";
+    "AIzaSyCX2HgwFLIgtOYw66bJh010TPIn3ibJ80w";
+
 
 
 /*
@@ -514,6 +597,7 @@ const MOVIES_FOLDER =
     "1yXj9Ih39Omyic_Bf_qf86rta5DYbza7S";
 
 
+
 /*
    WEB SERIES FOLDER
 */
@@ -522,10 +606,13 @@ const SERIES_FOLDER =
     "1ltCVLmorFbWGEt8kx547kDjwSBxJxAGf";
 
 
+
 /*
    POSTERS FOLDER
 
-   This is the folder you just gave me.
+   My Drive
+   > My Library
+   > Posters
 */
 
 const POSTERS_FOLDER =
@@ -596,7 +683,11 @@ let posters = {};
    GET FILES FROM GOOGLE DRIVE
 ================================================== */
 
-async function getDriveFiles(folderId){
+async function getDriveFiles(
+    folderId,
+    fields = "id,name,mimeType,size,modifiedTime"
+) {
+
 
     const query =
         `'${folderId}' in parents and trashed = false`;
@@ -609,7 +700,11 @@ async function getDriveFiles(folderId){
         +
         encodeURIComponent(query)
         +
-        "&fields=files(id,name,mimeType,size,modifiedTime,webContentLink)"
+        "&fields="
+        +
+        encodeURIComponent(
+            "files(" + fields + ")"
+        )
         +
         "&pageSize=1000"
         +
@@ -626,7 +721,7 @@ async function getDriveFiles(folderId){
         await fetch(url);
 
 
-    if(!response.ok){
+    if (!response.ok) {
 
         throw new Error(
             "Google Drive API error: "
@@ -651,7 +746,7 @@ async function getDriveFiles(folderId){
    CLEAN FILE NAME
 ================================================== */
 
-function cleanName(name){
+function cleanName(name) {
 
     return name
 
@@ -677,18 +772,10 @@ function cleanName(name){
 
 
 /* ==================================================
-   NORMALIZE NAME
-
-   Used for matching:
-
-   Shaitaan.mp4
-   Shaitaan.jpg
-
-   Breaking Bad S01E01.mp4
-   Breaking Bad.jpg
+   NORMALIZE NAME FOR POSTER MATCHING
 ================================================== */
 
-function normalizeName(name){
+function normalizeName(name) {
 
     return cleanName(name)
 
@@ -706,69 +793,39 @@ function normalizeName(name){
 
 
 /* ==================================================
-   REMOVE EPISODE INFORMATION
-================================================== */
-
-function getSeriesPosterName(name){
-
-    const clean =
-        cleanName(name);
-
-
-    const match =
-        clean.match(
-            /^(.*?)[\s._-]*S\d{1,2}[\s._-]*E\d{1,3}\b/i
-        );
-
-
-    if(match){
-
-        return match[1]
-            .trim()
-            .replace(
-                /[\s._-]+$/,
-                ""
-            );
-
-    }
-
-
-    return clean;
-
-}
-
-
-
-/* ==================================================
    BUILD POSTER MAP
 ================================================== */
 
-function buildPosterMap(files){
+function buildPosterMap(
+    posterFiles
+) {
 
     posters = {};
 
 
-    files.forEach(
-        file => {
+    posterFiles.forEach(
+        function(file) {
 
-            if(
-                file.mimeType
-                &&
-                file.mimeType.startsWith(
+            if (
+                !file.mimeType ||
+                !file.mimeType.startsWith(
                     "image/"
                 )
-            ){
+            ) {
 
-                const name =
-                    normalizeName(
-                        file.name
-                    );
-
-
-                posters[name] =
-                    file;
+                return;
 
             }
+
+
+            const key =
+                normalizeName(
+                    file.name
+                );
+
+
+            posters[key] =
+                file;
 
         }
     );
@@ -781,14 +838,112 @@ function buildPosterMap(files){
    GET POSTER URL
 ================================================== */
 
-function getPosterURL(file){
+function getPosterURL(
+    posterFile
+) {
 
-    if(!file){
+    if (!posterFile) {
 
         return null;
 
     }
 
+
+    /*
+       Google Drive thumbnail endpoint.
+
+       This is much better for posters than trying
+       to use the video API URL.
+    */
+
+    return (
+        "https://drive.google.com/thumbnail"
+        +
+        "?id="
+        +
+        encodeURIComponent(
+            posterFile.id
+        )
+        +
+        "&sz=w1000"
+    );
+
+}
+
+
+
+/* ==================================================
+   FIND POSTER
+================================================== */
+
+function findPoster(
+    movieFile
+) {
+
+    const movieName =
+        normalizeName(
+            movieFile.name
+        );
+
+
+    /*
+       Exact match:
+
+       Shaitaan.mp4
+       Shaitaan.jpg
+    */
+
+    if (
+        posters[movieName]
+    ) {
+
+        return posters[movieName];
+
+    }
+
+
+    /*
+       Try removing common release tags.
+    */
+
+    const simplified =
+        movieName
+
+            .replace(
+                /\b(1080p|720p|2160p|4k|web[- ]?dl|webrip|bluray|x264|x265|hevc|h264|h265)\b/g,
+                ""
+            )
+
+            .replace(
+                /\s+/g,
+                " "
+            )
+
+            .trim();
+
+
+    if (
+        posters[simplified]
+    ) {
+
+        return posters[simplified];
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* ==================================================
+   CREATE VIDEO URL
+================================================== */
+
+function getVideoURL(
+    file
+) {
 
     return (
         "https://www.googleapis.com/drive/v3/files/"
@@ -807,46 +962,14 @@ function getPosterURL(file){
 
 
 /* ==================================================
-   FIND POSTER FOR MOVIE
+   CREATE CARD
 ================================================== */
 
-function findMoviePoster(file){
+function createCard(
+    file,
+    type
+) {
 
-    const name =
-        normalizeName(
-            file.name
-        );
-
-
-    return posters[name] || null;
-
-}
-
-
-
-/* ==================================================
-   FIND POSTER FOR SERIES
-================================================== */
-
-function findSeriesPoster(seriesTitle){
-
-    const name =
-        normalizeName(
-            seriesTitle
-        );
-
-
-    return posters[name] || null;
-
-}
-
-
-
-/* ==================================================
-   CREATE MOVIE CARD
-================================================== */
-
-function createMovieCard(file){
 
     const card =
         document.createElement(
@@ -858,385 +981,198 @@ function createMovieCard(file){
         "card";
 
 
+
+    /* =========================
+       POSTER
+    ========================== */
+
     const poster =
-        findMoviePoster(
+        document.createElement(
+            "div"
+        );
+
+
+    poster.className =
+        "poster";
+
+
+    const posterFile =
+        findPoster(
             file
         );
 
 
-    let posterHTML =
-        '<div class="poster">🎬</div>';
+    if (posterFile) {
+
+        const img =
+            document.createElement(
+                "img"
+            );
 
 
-    if(poster){
+        img.src =
+            getPosterURL(
+                posterFile
+            );
 
-        posterHTML =
-            `
-            <div class="poster">
-                <img
-                    src="${getPosterURL(poster)}"
-                    alt=""
-                >
-            </div>
-            `;
+
+        img.alt =
+            cleanName(
+                file.name
+            );
+
+
+        /*
+           If Drive thumbnail fails,
+           fall back to emoji instead of
+           showing a broken image icon.
+        */
+
+        img.onerror =
+            function() {
+
+                img.remove();
+
+                poster.textContent =
+                    type === "movie"
+                    ? "🎬"
+                    : "📺";
+
+            };
+
+
+        poster.appendChild(
+            img
+        );
+
+
+    } else {
+
+        poster.textContent =
+            type === "movie"
+            ? "🎬"
+            : "📺";
 
     }
 
 
-    card.innerHTML =
-        posterHTML
-        +
-        `
-        <div class="card-info">
 
-            <div class="card-title"></div>
+    /* =========================
+       CARD INFORMATION
+    ========================== */
 
-            <div class="card-type">
-                Movie
-            </div>
-
-        </div>
-        `;
+    const info =
+        document.createElement(
+            "div"
+        );
 
 
-    card.querySelector(
-        ".card-title"
-    ).textContent =
+    info.className =
+        "card-info";
+
+
+
+    const title =
+        document.createElement(
+            "div"
+        );
+
+
+    title.className =
+        "card-title";
+
+
+    title.textContent =
         cleanName(
             file.name
         );
+
+
+
+    const typeText =
+        document.createElement(
+            "div"
+        );
+
+
+    typeText.className =
+        "card-type";
+
+
+    typeText.textContent =
+        type === "movie"
+        ? "Movie"
+        : "Web Series";
+
+
+
+    info.appendChild(
+        title
+    );
+
+
+    info.appendChild(
+        typeText
+    );
+
+
+    card.appendChild(
+        poster
+    );
+
+
+    card.appendChild(
+        info
+    );
 
 
 
     /* =========================
        OPEN PLAYER
-    ========================= */
+    ========================== */
 
     card.onclick =
-        () => {
+        function() {
 
-            const video =
-                "https://www.googleapis.com/drive/v3/files/"
-                +
-                file.id
-                +
-                "?alt=media&key="
-                +
+
+            const encodedVideo =
                 encodeURIComponent(
-                    GOOGLE_API_KEY
+                    getVideoURL(
+                        file
+                    )
                 );
 
 
-            window.location.href =
-                "player.html?video="
-                +
-                encodeURIComponent(
-                    video
-                )
-                +
-                "&title="
-                +
+            const encodedTitle =
                 encodeURIComponent(
                     cleanName(
                         file.name
                     )
-                )
-                +
-                "&type=movie";
-
-        };
-
-
-    return card;
-
-}
-
-
-
-/* ==================================================
-   PARSE EPISODE
-================================================== */
-
-
-/*
-   Recognises:
-
-   Show Name S01E01.mkv
-   Show Name S1E2.mkv
-   Show Name - S01E01.mkv
-*/
-
-function parseEpisode(
-    name,
-    index
-){
-
-    const clean =
-        cleanName(
-            name
-        );
-
-
-    const match =
-        clean.match(
-            /^(.*?)[\s._-]*S(\d{1,2})[\s._-]*E(\d{1,3})\b/i
-        );
-
-
-    if(match){
-
-        return {
-
-            show:
-                match[1]
-                    .trim()
-                    .replace(
-                        /[\s._-]+$/,
-                        ""
-                    ),
-
-            season:
-                Number(
-                    match[2]
-                ),
-
-            episode:
-                Number(
-                    match[3]
-                )
-
-        };
-
-    }
-
-
-    return {
-
-        show:
-            clean,
-
-        season:
-            1,
-
-        episode:
-            index + 1
-
-    };
-
-}
-
-
-
-/* ==================================================
-   CREATE SERIES GROUPS
-================================================== */
-
-function createSeriesCards(
-    files
-){
-
-    const groups = {};
-
-
-    files.forEach(
-        (
-            file,
-            index
-        ) => {
-
-
-            const info =
-                parseEpisode(
-                    file.name,
-                    index
-                );
-
-
-            const key =
-                info.show
-                    .toLowerCase()
-                ||
-                "web series";
-
-
-            if(
-                !groups[key]
-            ){
-
-                groups[key] = {
-
-                    title:
-                        info.show
-                        ||
-                        cleanName(
-                            file.name
-                        ),
-
-                    episodes:
-                        [],
-
-                    poster:
-                        findSeriesPoster(
-                            info.show
-                        )
-
-                };
-
-            }
-
-
-
-            const video =
-                "https://www.googleapis.com/drive/v3/files/"
-                +
-                file.id
-                +
-                "?alt=media&key="
-                +
-                encodeURIComponent(
-                    GOOGLE_API_KEY
-                );
-
-
-
-            groups[key]
-                .episodes
-                .push({
-
-                    id:
-                        file.id,
-
-                    name:
-                        cleanName(
-                            file.name
-                        ),
-
-                    video:
-                        video,
-
-                    season:
-                        info.season,
-
-                    episode:
-                        info.episode
-
-                });
-
-        }
-    );
-
-
-    return Object.values(
-        groups
-    );
-
-}
-
-
-
-/* ==================================================
-   CREATE SERIES CARD
-================================================== */
-
-function createSeriesCard(
-    seriesData
-){
-
-    const card =
-        document.createElement(
-            "div"
-        );
-
-
-    card.className =
-        "card";
-
-
-    let posterHTML =
-        '<div class="poster">📺</div>';
-
-
-    if(
-        seriesData.poster
-    ){
-
-        posterHTML =
-            `
-            <div class="poster">
-                <img
-                    src="${getPosterURL(seriesData.poster)}"
-                    alt=""
-                >
-            </div>
-            `;
-
-    }
-
-
-    card.innerHTML =
-        posterHTML
-        +
-        `
-        <div class="card-info">
-
-            <div class="card-title"></div>
-
-            <div class="card-type"></div>
-
-        </div>
-        `;
-
-
-    card.querySelector(
-        ".card-title"
-    ).textContent =
-        seriesData.title;
-
-
-    card.querySelector(
-        ".card-type"
-    ).textContent =
-        seriesData.episodes.length
-        +
-        " episode"
-        +
-        (
-            seriesData.episodes.length === 1
-            ?
-            ""
-            :
-            "s"
-        );
-
-
-
-    /* =========================
-       OPEN SERIES PLAYER
-    ========================= */
-
-    card.onclick =
-        () => {
-
-            const episodes =
-                encodeURIComponent(
-                    JSON.stringify(
-                        seriesData.episodes
-                    )
                 );
 
 
             window.location.href =
-                "player.html?type=series"
+                "player.html"
                 +
-                "&series="
+                "?video="
+                +
+                encodedVideo
+                +
+                "&title="
+                +
+                encodedTitle
+                +
+                "&type="
                 +
                 encodeURIComponent(
-                    seriesData.title
+                    type
                 )
                 +
-                "&episodes="
+                "&fileId="
                 +
-                episodes;
+                encodeURIComponent(
+                    file.id
+                );
 
         };
 
@@ -1251,79 +1187,62 @@ function createSeriesCard(
    DISPLAY FILES
 ================================================== */
 
-function displayFiles(){
+function displayFiles() {
+
 
     moviesGrid.innerHTML =
         "";
+
 
     seriesGrid.innerHTML =
         "";
 
 
 
-    /* =========================
-       MOVIE COUNT
-    ========================= */
-
     movieCount.textContent =
         movies.length
         +
         (
             movies.length === 1
-            ?
-            " title"
-            :
-            " titles"
+            ? " title"
+            : " titles"
         );
 
-
-
-    /* =========================
-       SERIES
-    ========================= */
-
-    const seriesGroups =
-        createSeriesCards(
-            series
-        );
 
 
     seriesCount.textContent =
-        seriesGroups.length
+        series.length
         +
         (
-            seriesGroups.length === 1
-            ?
-            " title"
-            :
-            " titles"
+            series.length === 1
+            ? " title"
+            : " titles"
         );
 
 
 
     /* =========================
        MOVIES
-    ========================= */
+    ========================== */
 
-    if(
-        !movies.length
-    ){
+    if (
+        movies.length === 0
+    ) {
 
         moviesGrid.innerHTML =
-            `
-            <div class="message">
-                No movies yet.
-            </div>
-            `;
+            '<div class="message">' +
+            'No movies yet.' +
+            '</div>';
 
-    }else{
+    } else {
 
         movies.forEach(
-            file => {
+            function(file) {
 
                 moviesGrid.appendChild(
-                    createMovieCard(
-                        file
+                    createCard(
+                        file,
+                        "movie"
                     )
                 );
 
@@ -1335,28 +1254,27 @@ function displayFiles(){
 
 
     /* =========================
-       SERIES
-    ========================= */
+       WEB SERIES
+    ========================== */
 
-    if(
-        !seriesGroups.length
-    ){
+    if (
+        series.length === 0
+    ) {
 
         seriesGrid.innerHTML =
-            `
-            <div class="message">
-                No web series yet.
-            </div>
-            `;
+            '<div class="message">' +
+            'No web series yet.' +
+            '</div>';
 
-    }else{
+    } else {
 
-        seriesGroups.forEach(
-            group => {
+        series.forEach(
+            function(file) {
 
                 seriesGrid.appendChild(
-                    createSeriesCard(
-                        group
+                    createCard(
+                        file,
+                        "series"
                     )
                 );
 
@@ -1373,31 +1291,36 @@ function displayFiles(){
    LOAD LIBRARY
 ================================================== */
 
-async function loadLibrary(){
-
-    try{
+async function loadLibrary() {
 
 
-        /*
-           Load:
+    try {
 
-           1. Movies
-           2. Web Series
-           3. Posters
-
-           all together.
-        */
 
         const results =
             await Promise.all([
+
+                /*
+                   Movies
+                */
 
                 getDriveFiles(
                     MOVIES_FOLDER
                 ),
 
+
+                /*
+                   Web Series
+                */
+
                 getDriveFiles(
                     SERIES_FOLDER
                 ),
+
+
+                /*
+                   Posters
+                */
 
                 getDriveFiles(
                     POSTERS_FOLDER
@@ -1409,37 +1332,43 @@ async function loadLibrary(){
 
         /* =========================
            MOVIES
-        ========================= */
+        ========================== */
 
         movies =
-            results[0]
-                .filter(
-                    file =>
-                        file.mimeType
-                        !==
+            results[0].filter(
+                function(file) {
+
+                    return (
+                        file.mimeType !==
                         "application/vnd.google-apps.folder"
-                );
+                    );
+
+                }
+            );
 
 
 
         /* =========================
-           SERIES
-        ========================= */
+           WEB SERIES
+        ========================== */
 
         series =
-            results[1]
-                .filter(
-                    file =>
-                        file.mimeType
-                        !==
+            results[1].filter(
+                function(file) {
+
+                    return (
+                        file.mimeType !==
                         "application/vnd.google-apps.folder"
-                );
+                    );
+
+                }
+            );
 
 
 
         /* =========================
            POSTERS
-        ========================= */
+        ========================== */
 
         buildPosterMap(
             results[2]
@@ -1449,12 +1378,13 @@ async function loadLibrary(){
 
         /* =========================
            DISPLAY
-        ========================= */
+        ========================== */
 
         displayFiles();
 
 
-    }catch(error){
+    } catch (error) {
+
 
         console.error(
             error
@@ -1462,19 +1392,15 @@ async function loadLibrary(){
 
 
         moviesGrid.innerHTML =
-            `
-            <div class="message error">
-                Unable to load movies.
-            </div>
-            `;
+            '<div class="message error">' +
+            'Unable to load movies.' +
+            '</div>';
 
 
         seriesGrid.innerHTML =
-            `
-            <div class="message error">
-                Unable to load web series.
-            </div>
-            `;
+            '<div class="message error">' +
+            'Unable to load web series.' +
+            '</div>';
 
     }
 
@@ -1488,11 +1414,11 @@ async function loadLibrary(){
 
 searchInput.addEventListener(
     "input",
-    () => {
+    function() {
+
 
         const search =
-            searchInput
-                .value
+            searchInput.value
                 .toLowerCase()
                 .trim();
 
@@ -1500,81 +1426,73 @@ searchInput.addEventListener(
 
         /* =========================
            MOVIES
-        ========================= */
+        ========================== */
 
-        moviesGrid
-            .querySelectorAll(
+        const movieCards =
+            moviesGrid.querySelectorAll(
                 ".card"
-            )
-            .forEach(
-                (
-                    card,
-                    index
-                ) => {
-
-                    const name =
-                        cleanName(
-                            movies[index]
-                                .name
-                        )
-                        .toLowerCase();
-
-
-                    card.style.display =
-                        name.includes(
-                            search
-                        )
-                        ?
-                        ""
-                        :
-                        "none";
-
-                }
             );
+
+
+        movieCards.forEach(
+            function(
+                card,
+                index
+            ) {
+
+
+                const name =
+                    cleanName(
+                        movies[index].name
+                    )
+                    .toLowerCase();
+
+
+                card.style.display =
+                    name.includes(
+                        search
+                    )
+                    ? ""
+                    : "none";
+
+            }
+        );
 
 
 
         /* =========================
-           SERIES
-        ========================= */
+           WEB SERIES
+        ========================== */
 
-        const groups =
-            createSeriesCards(
-                series
-            );
-
-
-        seriesGrid
-            .querySelectorAll(
+        const seriesCards =
+            seriesGrid.querySelectorAll(
                 ".card"
-            )
-            .forEach(
-                (
-                    card,
-                    index
-                ) => {
-
-                    const name =
-                        (
-                            groups[index]
-                                ?.title
-                            ||
-                            ""
-                        )
-                        .toLowerCase();
-
-
-                    card.style.display =
-                        name.includes(
-                            search
-                        )
-                        ?
-                        ""
-                        :
-                        "none";
-
-                }
             );
+
+
+        seriesCards.forEach(
+            function(
+                card,
+                index
+            ) {
+
+
+                const name =
+                    cleanName(
+                        series[index].name
+                    )
+                    .toLowerCase();
+
+
+                card.style.display =
+                    name.includes(
+                        search
+                    )
+                    ? ""
+                    : "none";
+
+            }
+        );
 
     }
 );
@@ -1590,18 +1508,18 @@ document
         "homeBtn"
     )
     .onclick =
-        () => {
+    function() {
 
-            window.scrollTo({
 
-                top:0,
+        window.scrollTo({
 
-                behavior:
-                    "smooth"
+            top: 0,
 
-            });
+            behavior: "smooth"
 
-        };
+        });
+
+    };
 
 
 
@@ -1610,16 +1528,16 @@ document
         "moviesBtn"
     )
     .onclick =
-        () => {
+    function() {
 
-            moviesSection.scrollIntoView({
 
-                behavior:
-                    "smooth"
+        moviesSection.scrollIntoView({
 
-            });
+            behavior: "smooth"
 
-        };
+        });
+
+    };
 
 
 
@@ -1628,16 +1546,16 @@ document
         "seriesBtn"
     )
     .onclick =
-        () => {
+    function() {
 
-            seriesSection.scrollIntoView({
 
-                behavior:
-                    "smooth"
+        seriesSection.scrollIntoView({
 
-            });
+            behavior: "smooth"
 
-        };
+        });
+
+    };
 
 
 
@@ -1646,7 +1564,6 @@ document
 ================================================== */
 
 loadLibrary();
-
 
 </script>
 
