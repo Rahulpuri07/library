@@ -3,52 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Now Playing - My Library</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     margin:0;
+    padding:0;
     width:100%;
-    height:100%;
+    min-height:100%;
     background:#000;
     color:#fff;
     font-family:Arial,Helvetica,sans-serif;
-    overflow:hidden;
 }
+
+/* HEADER */
 
 .header{
     height:72px;
     width:100%;
     background:#050505;
-    border-bottom:1px solid #222;
+    border-bottom:1px solid #202020;
+
     display:flex;
     align-items:center;
+
     padding:0 35px;
     gap:25px;
-    position:relative;
-    z-index:20;
 }
 
-.back-button{
-    background:#050505;
+.back-btn{
+    background:#080808;
     color:#fff;
+
     border:1px solid #333;
     border-radius:6px;
-    padding:10px 17px;
+
+    padding:10px 18px;
+
     font-size:15px;
+
     cursor:pointer;
 }
 
-.back-button:hover{
-    background:#222;
+.back-btn:hover{
+    background:#181818;
 }
 
 .logo{
-    font-size:21px;
+    font-size:20px;
     font-weight:800;
 }
 
@@ -56,322 +65,389 @@ html,body{
     color:#e50914;
 }
 
-.player-area{
-    position:relative;
+
+/* PAGE */
+
+.player-page{
     width:100%;
-    height:calc(100vh - 72px);
+    min-height:calc(100vh - 72px);
+
     background:#000;
+
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* VIDEO */
+
+.video-section{
+    width:100%;
+
+    height:calc(100vh - 145px);
+
+    min-height:400px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    background:#000;
+
     overflow:hidden;
 }
 
-.video-wrapper{
-    position:absolute;
-    inset:0;
-    background:#000;
+.video-container{
+    position:relative;
+
+    width:100%;
+    height:100%;
+
     display:flex;
-    align-items:center;
     justify-content:center;
-    overflow:hidden;
+    align-items:center;
+
+    background:#000;
 }
 
 video{
     width:100%;
     height:100%;
+
     object-fit:contain;
+
     background:#000;
+
     display:block;
 }
 
-video.fit-contain{
-    object-fit:contain;
+
+/* DRIVE FALLBACK */
+
+.drive-player{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    border:0;
+
+    background:#000;
+
+    display:none;
 }
 
-video.fit-cover{
-    object-fit:cover;
-}
 
-video.fit-fill{
-    object-fit:fill;
-}
-
-
-/* =========================
-   PLAYER CONTROLS
-   ========================= */
+/* CONTROLS */
 
 .controls{
     position:absolute;
+
     left:0;
     right:0;
     bottom:0;
-    height:105px;
-    padding:0 20px 15px;
+
+    padding:0 20px 12px;
 
     background:linear-gradient(
-        to top,
-        rgba(0,0,0,.95),
-        rgba(0,0,0,.65),
-        rgba(0,0,0,0)
+        transparent,
+        rgba(0,0,0,.90)
     );
 
     z-index:10;
 
     opacity:1;
-    visibility:visible;
-    transform:translateY(0);
 
-    transition:
-        opacity .25s ease,
-        transform .25s ease,
-        visibility .25s ease;
-
-    pointer-events:auto;
+    transition:opacity .35s ease;
 }
 
-
-/* Controls hidden while playing */
-.player-area.controls-hidden .controls{
+.controls.hidden{
     opacity:0;
-    visibility:hidden;
-    transform:translateY(20px);
     pointer-events:none;
 }
 
 
-/* Controls always visible while paused */
-.player-area.paused .controls{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-    pointer-events:auto;
-}
-
-
-/* =========================
-   TIMELINE
-   ========================= */
+/* TIMELINE */
 
 .timeline-area{
-    position:relative;
     width:100%;
-    height:45px;
-    display:flex;
-    align-items:flex-end;
-    padding-bottom:5px;
+
+    position:relative;
+
+    padding-top:72px;
 }
 
-#timeline{
+.timeline{
+    position:relative;
+
     width:100%;
     height:5px;
-    appearance:none;
-    -webkit-appearance:none;
+
     background:#666;
+
     border-radius:10px;
-    cursor:pointer;
-    margin:0;
-}
 
-#timeline::-webkit-slider-thumb{
-    appearance:none;
-    -webkit-appearance:none;
-    width:14px;
-    height:14px;
-    background:#e50914;
-    border-radius:50%;
     cursor:pointer;
 }
 
-#timeline::-moz-range-thumb{
-    width:14px;
-    height:14px;
-    background:#e50914;
-    border:0;
-    border-radius:50%;
-    cursor:pointer;
-}
-
-
-/* =========================
-   PREVIEW
-   ========================= */
-
-.preview-box{
+.timeline-buffer{
     position:absolute;
-    bottom:13px;
+
+    top:0;
     left:0;
 
-    width:180px;
-    height:100px;
+    height:100%;
+    width:0;
 
-    background:#111;
-    border:1px solid #444;
-    border-radius:5px;
+    background:#999;
 
-    overflow:hidden;
-    display:none;
+    border-radius:10px;
 
     pointer-events:none;
-
-    transform:translateX(-50%);
-
-    box-shadow:0 5px 20px rgba(0,0,0,.8);
 }
 
-.preview-box video{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-
-.preview-time{
+.timeline-progress{
     position:absolute;
+
+    top:0;
     left:0;
-    right:0;
-    bottom:0;
 
-    text-align:center;
+    height:100%;
+    width:0;
 
-    background:rgba(0,0,0,.75);
+    background:#e50914;
 
-    font-size:12px;
+    border-radius:10px;
 
-    padding:3px;
+    pointer-events:none;
+}
+
+.timeline-thumb{
+    position:absolute;
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:#e50914;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    left:0;
+
+    pointer-events:none;
 }
 
 
-/* =========================
-   CONTROL ROW
-   ========================= */
+/* CONTROLS ROW */
 
 .control-row{
-    width:100%;
-    height:45px;
+    height:50px;
 
     display:flex;
+
     align-items:center;
 
-    gap:12px;
+    gap:18px;
 }
 
-.control-button{
-    border:0;
-    background:transparent;
+.control-btn{
+    background:none;
+
+    border:none;
+
     color:#fff;
 
-    font-size:18px;
-
-    width:34px;
-    height:34px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-size:20px;
 
     cursor:pointer;
 
-    border-radius:4px;
+    width:30px;
+    height:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:0;
 }
 
-.control-button:hover{
-    background:rgba(255,255,255,.15);
+.control-btn:hover{
+    color:#e50914;
 }
 
-.skip-button{
+.time{
     font-size:13px;
-    font-weight:bold;
-}
 
-.time-display{
-    font-size:13px;
-    color:#ddd;
     white-space:nowrap;
-    min-width:90px;
+
+    color:#ddd;
 }
-
-
-/* =========================
-   VOLUME
-   ========================= */
 
 .volume-container{
     display:flex;
+
     align-items:center;
-    gap:6px;
+
+    gap:8px;
 }
 
-#volume{
+.volume-slider{
     width:80px;
-    cursor:pointer;
 }
 
-.spacer{
+.control-spacer{
     flex:1;
 }
 
 
-/* =========================
-   SPEED / FIT MENUS
-   ========================= */
+/* MENUS */
 
-.speed-container,
-.fit-container{
+.speed-wrapper,
+.quality-wrapper{
     position:relative;
 }
 
-.speed-menu,
-.fit-menu{
+.menu{
     position:absolute;
 
-    bottom:42px;
+    bottom:45px;
     right:0;
 
     background:#181818;
+
     border:1px solid #333;
-    border-radius:5px;
+
+    border-radius:6px;
+
+    min-width:130px;
+
+    padding:6px 0;
 
     display:none;
-    overflow:hidden;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.8);
+    z-index:100;
 }
 
-.speed-menu{
-    width:120px;
-}
+.menu button{
+    display:block;
 
-.fit-menu{
-    width:130px;
-}
-
-.speed-menu button,
-.fit-menu button{
     width:100%;
 
-    background:transparent;
+    background:none;
+
+    border:none;
+
     color:#fff;
-
-    border:0;
-
-    padding:9px;
 
     text-align:left;
 
+    padding:9px 14px;
+
     cursor:pointer;
 
-    font-size:14px;
+    font-size:13px;
 }
 
-.speed-menu button:hover,
-.fit-menu button:hover{
+.menu button:hover{
     background:#333;
 }
 
 
-/* =========================
-   ERROR MESSAGE
-   ========================= */
+/* TITLE */
+
+.movie-title{
+    padding:18px 35px 12px;
+
+    font-size:26px;
+
+    font-weight:700;
+
+    background:#000;
+}
+
+
+/* SERIES */
+
+.series-panel{
+    display:none;
+
+    padding:10px 35px 30px;
+
+    background:#000;
+}
+
+.series-panel.visible{
+    display:block;
+}
+
+.season-row{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:14px;
+}
+
+.season-label{
+    font-size:14px;
+
+    color:#aaa;
+}
+
+.season-btn,
+.episode-btn{
+    background:#151515;
+
+    color:#fff;
+
+    border:1px solid #333;
+
+    border-radius:6px;
+
+    padding:9px 14px;
+
+    cursor:pointer;
+}
+
+.season-btn.active,
+.episode-btn.active{
+    background:#e50914;
+
+    border-color:#e50914;
+}
+
+.episode-row{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.episode-btn{
+    min-width:70px;
+}
+
+
+/* ERROR */
 
 .error-message{
+    display:none;
+
     position:absolute;
 
     left:50%;
@@ -379,55 +455,36 @@ video.fit-fill{
 
     transform:translate(-50%,-50%);
 
-    text-align:center;
-
     color:#aaa;
+
+    text-align:center;
 
     font-size:18px;
 
-    z-index:5;
-
-    display:none;
+    z-index:20;
 }
 
 
-/* =========================
-   FULLSCREEN
-   ========================= */
-
-.player-area:fullscreen{
-    width:100vw;
-    height:100vh;
-    background:#000;
-}
-
-.player-area:fullscreen .video-wrapper{
-    width:100vw;
-    height:100vh;
-}
-
-
-/* =========================
-   MOBILE
-   ========================= */
+/* MOBILE */
 
 @media(max-width:700px){
 
     .header{
         height:60px;
+
         padding:0 15px;
+
+        gap:15px;
     }
 
     .logo{
-        font-size:18px;
+        font-size:17px;
     }
 
-    .player-area{
-        height:calc(100vh - 60px);
-    }
+    .video-section{
+        height:calc(100vh - 115px);
 
-    .volume-container{
-        display:none;
+        min-height:300px;
     }
 
     .controls{
@@ -435,418 +492,951 @@ video.fit-fill{
         padding-right:10px;
     }
 
-    .control-row{
-        gap:5px;
+    .volume-slider{
+        display:none;
     }
 
-    .time-display{
-        font-size:11px;
-        min-width:75px;
+    .quality-btn{
+        display:none;
     }
 
-    .preview-box{
-        width:140px;
-        height:78px;
+    .movie-title{
+        padding:12px 15px;
+
+        font-size:20px;
+    }
+
+    .series-panel{
+        padding:8px 15px 20px;
     }
 }
+
 </style>
 </head>
 
 
 <body>
 
-<div class="header">
-
-    <button class="back-button" onclick="goBack()">
-        ← Back
-    </button>
-
-    <div class="logo">
-        MY <span>LIBRARY</span>
-    </div>
-
-</div>
+<div class="player-page">
 
 
-<div class="player-area paused" id="playerArea">
+    <!-- HEADER -->
 
-    <div class="video-wrapper">
+    <div class="header">
 
-        <video
-            id="video"
-            preload="metadata"
-            playsinline>
-        </video>
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ← Back
+        </button>
 
-    </div>
-
-
-    <div class="error-message" id="errorMessage">
-        No video was supplied.<br>
-        Please open a movie from your library.
-    </div>
-
-
-    <div class="controls" id="controls">
-
-        <div class="timeline-area">
-
-            <div class="preview-box" id="previewBox">
-
-                <video
-                    id="previewVideo"
-                    muted
-                    preload="metadata">
-                </video>
-
-                <div
-                    class="preview-time"
-                    id="previewTime">
-                    00:00
-                </div>
-
-            </div>
-
-
-            <input
-                type="range"
-                id="timeline"
-                min="0"
-                max="100"
-                value="0"
-                step="0.01">
-
+        <div class="logo">
+            MY <span>LIBRARY</span>
         </div>
 
-
-        <div class="control-row">
-
-
-            <button
-                class="control-button skip-button"
-                id="back10"
-                title="Back 10 seconds">
-                ↶10
-            </button>
+    </div>
 
 
-            <button
-                class="control-button"
-                id="playButton"
-                title="Play / Pause">
-                ▶
-            </button>
+    <!-- VIDEO -->
+
+    <div class="video-section">
+
+        <div
+            class="video-container"
+            id="videoContainer"
+        >
+
+            <video
+                id="video"
+                preload="metadata"
+                playsinline
+            ></video>
 
 
-            <button
-                class="control-button skip-button"
-                id="forward10"
-                title="Forward 10 seconds">
-                10↷
-            </button>
+            <!-- GOOGLE DRIVE FALLBACK -->
+
+            <iframe
+                id="drivePlayer"
+                class="drive-player"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+            ></iframe>
 
 
-            <div class="volume-container">
-
-                <button
-                    class="control-button"
-                    id="muteButton"
-                    title="Mute">
-                    🔊
-                </button>
-
-                <input
-                    type="range"
-                    id="volume"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value="1">
-
-            </div>
-
+            <!-- ERROR -->
 
             <div
-                class="time-display"
-                id="timeDisplay">
-                00:00 / 00:00
+                class="error-message"
+                id="errorMessage"
+            >
+                Unable to play this video.
+                <br>
+                Check the video file or its URL.
             </div>
 
 
-            <div class="spacer"></div>
+            <!-- CONTROLS -->
+
+            <div
+                class="controls"
+                id="controls"
+            >
+
+                <div class="timeline-area">
+
+                    <div
+                        class="timeline"
+                        id="timeline"
+                    >
+
+                        <div
+                            class="timeline-buffer"
+                            id="buffer"
+                        ></div>
+
+                        <div
+                            class="timeline-progress"
+                            id="progress"
+                        ></div>
+
+                        <div
+                            class="timeline-thumb"
+                            id="thumb"
+                        ></div>
+
+                    </div>
+
+                </div>
 
 
-            <div class="speed-container">
+                <div class="control-row">
 
-                <button
-                    class="control-button"
-                    id="speedButton">
-                    1×
-                </button>
-
-                <div
-                    class="speed-menu"
-                    id="speedMenu">
-
-                    <button data-speed="0.5">
-                        0.5×
+                    <button
+                        class="control-btn"
+                        id="rewindBtn"
+                        title="Rewind 10 seconds"
+                    >
+                        ↶
                     </button>
 
-                    <button data-speed="0.75">
-                        0.75×
+
+                    <button
+                        class="control-btn"
+                        id="playBtn"
+                        title="Play / Pause"
+                    >
+                        ▶
                     </button>
 
-                    <button data-speed="1">
-                        Normal
+
+                    <button
+                        class="control-btn"
+                        id="forwardBtn"
+                        title="Forward 10 seconds"
+                    >
+                        ↷
                     </button>
 
-                    <button data-speed="1.25">
-                        1.25×
-                    </button>
 
-                    <button data-speed="1.5">
-                        1.5×
-                    </button>
+                    <div class="volume-container">
 
-                    <button data-speed="1.75">
-                        1.75×
-                    </button>
+                        <button
+                            class="control-btn"
+                            id="muteBtn"
+                            title="Mute"
+                        >
+                            🔊
+                        </button>
 
-                    <button data-speed="2">
-                        2×
+                        <input
+                            class="volume-slider"
+                            id="volumeSlider"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                        >
+
+                    </div>
+
+
+                    <div class="time">
+
+                        <span id="currentTime">
+                            00:00
+                        </span>
+
+                        /
+
+                        <span id="duration">
+                            00:00
+                        </span>
+
+                    </div>
+
+
+                    <div class="control-spacer"></div>
+
+
+                    <!-- SPEED -->
+
+                    <div class="speed-wrapper">
+
+                        <button
+                            class="control-btn"
+                            id="speedBtn"
+                            title="Playback speed"
+                        >
+                            ⚡
+                        </button>
+
+                        <div
+                            class="menu"
+                            id="speedMenu"
+                        >
+
+                            <button data-speed="0.5">
+                                0.5×
+                            </button>
+
+                            <button data-speed="0.75">
+                                0.75×
+                            </button>
+
+                            <button data-speed="1">
+                                Normal
+                            </button>
+
+                            <button data-speed="1.25">
+                                1.25×
+                            </button>
+
+                            <button data-speed="1.5">
+                                1.5×
+                            </button>
+
+                            <button data-speed="2">
+                                2×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUALITY -->
+
+                    <div class="quality-wrapper">
+
+                        <button
+                            class="control-btn quality-btn"
+                            id="qualityBtn"
+                            title="Quality"
+                        >
+                            ⚙
+                        </button>
+
+                        <div
+                            class="menu"
+                            id="qualityMenu"
+                        >
+
+                            <button data-quality="auto">
+                                Auto
+                            </button>
+
+                            <button data-quality="1080">
+                                1080p
+                            </button>
+
+                            <button data-quality="720">
+                                720p
+                            </button>
+
+                            <button data-quality="480">
+                                480p
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FULLSCREEN -->
+
+                    <button
+                        class="control-btn"
+                        id="fullscreenBtn"
+                        title="Fullscreen"
+                    >
+                        ⛶
                     </button>
 
                 </div>
 
             </div>
-
-
-            <div class="fit-container">
-
-                <button
-                    class="control-button"
-                    id="fitButton">
-                    ⛶
-                </button>
-
-                <div
-                    class="fit-menu"
-                    id="fitMenu">
-
-                    <button data-fit="contain">
-                        Fit
-                    </button>
-
-                    <button data-fit="cover">
-                        Fill
-                    </button>
-
-                    <button data-fit="fill">
-                        Stretch
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <button
-                class="control-button"
-                id="fullscreenButton">
-                ⛶
-            </button>
 
         </div>
 
     </div>
+
+
+    <!-- TITLE -->
+
+    <div
+        class="movie-title"
+        id="movieTitle"
+    >
+        Now Playing
+    </div>
+
+
+    <!-- SERIES EPISODES -->
+
+    <div
+        class="series-panel"
+        id="seriesPanel"
+    >
+
+        <div
+            class="season-row"
+            id="seasonRow"
+        ></div>
+
+        <div
+            class="episode-row"
+            id="episodeRow"
+        ></div>
+
+    </div>
+
 
 </div>
 
 
 <script>
 
-const video =
-    document.getElementById('video');
 
-const previewVideo =
-    document.getElementById('previewVideo');
-
-const timeline =
-    document.getElementById('timeline');
-
-const previewBox =
-    document.getElementById('previewBox');
-
-const previewTime =
-    document.getElementById('previewTime');
-
-const playButton =
-    document.getElementById('playButton');
-
-const back10 =
-    document.getElementById('back10');
-
-const forward10 =
-    document.getElementById('forward10');
-
-const volume =
-    document.getElementById('volume');
-
-const muteButton =
-    document.getElementById('muteButton');
-
-const timeDisplay =
-    document.getElementById('timeDisplay');
-
-const speedButton =
-    document.getElementById('speedButton');
-
-const speedMenu =
-    document.getElementById('speedMenu');
-
-const fitButton =
-    document.getElementById('fitButton');
-
-const fitMenu =
-    document.getElementById('fitMenu');
-
-const fullscreenButton =
-    document.getElementById('fullscreenButton');
-
-const playerArea =
-    document.getElementById('playerArea');
-
-const errorMessage =
-    document.getElementById('errorMessage');
-
-
-/* =========================
-   GET VIDEO URL
-   ========================= */
+/* =========================================
+   URL PARAMETERS
+========================================= */
 
 const params =
-    new URLSearchParams(location.search);
-
-const videoSource =
-    params.get('video') ||
-    params.get('src');
-
-const movieTitle =
-    params.get('title') ||
-    'Now Playing';
-
-
-/* =========================
-   LOAD VIDEO
-   ========================= */
-
-if(videoSource){
-
-    video.src = videoSource;
-
-    previewVideo.src = videoSource;
-
-    document.title =
-        movieTitle + ' - My Library';
-
-}
-else{
-
-    errorMessage.style.display =
-        'block';
-
-}
-
-
-/* =========================
-   AUTO HIDE CONTROLS
-   ========================= */
-
-let hideTimer = null;
-
-
-function showControls(){
-
-    playerArea.classList.remove(
-        'controls-hidden'
+    new URLSearchParams(
+        window.location.search
     );
 
-    clearTimeout(hideTimer);
+
+const type =
+    params.get("type") || "movie";
 
 
-    if(!video.paused){
+const videoURL =
+    params.get("video");
 
-        hideTimer =
-            setTimeout(
-                hideControls,
-                3000
-            );
 
-    }
+const title =
+    params.get("title") || "Now Playing";
+
+
+const seriesTitle =
+    params.get("series") || title;
+
+
+
+/* =========================================
+   EPISODES
+========================================= */
+
+let episodes = [];
+
+try{
+
+    episodes =
+        JSON.parse(
+            params.get("episodes") || "[]"
+        );
+
+}catch(e){
+
+    episodes = [];
 
 }
 
 
-function hideControls(){
 
-    if(
-        !video.paused &&
-        speedMenu.style.display !== 'block' &&
-        fitMenu.style.display !== 'block'
-    ){
+/* =========================================
+   ELEMENTS
+========================================= */
 
-        playerArea.classList.add(
-            'controls-hidden'
+const video =
+    document.getElementById("video");
+
+
+const drivePlayer =
+    document.getElementById("drivePlayer");
+
+
+const videoContainer =
+    document.getElementById("videoContainer");
+
+
+const controls =
+    document.getElementById("controls");
+
+
+const playBtn =
+    document.getElementById("playBtn");
+
+
+const rewindBtn =
+    document.getElementById("rewindBtn");
+
+
+const forwardBtn =
+    document.getElementById("forwardBtn");
+
+
+const muteBtn =
+    document.getElementById("muteBtn");
+
+
+const volumeSlider =
+    document.getElementById("volumeSlider");
+
+
+const fullscreenBtn =
+    document.getElementById("fullscreenBtn");
+
+
+const timeline =
+    document.getElementById("timeline");
+
+
+const progress =
+    document.getElementById("progress");
+
+
+const buffer =
+    document.getElementById("buffer");
+
+
+const thumb =
+    document.getElementById("thumb");
+
+
+const currentTime =
+    document.getElementById("currentTime");
+
+
+const duration =
+    document.getElementById("duration");
+
+
+const movieTitle =
+    document.getElementById("movieTitle");
+
+
+const speedBtn =
+    document.getElementById("speedBtn");
+
+
+const speedMenu =
+    document.getElementById("speedMenu");
+
+
+const qualityBtn =
+    document.getElementById("qualityBtn");
+
+
+const qualityMenu =
+    document.getElementById("qualityMenu");
+
+
+const seriesPanel =
+    document.getElementById("seriesPanel");
+
+
+const seasonRow =
+    document.getElementById("seasonRow");
+
+
+const episodeRow =
+    document.getElementById("episodeRow");
+
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+
+/* =========================================
+   TIME
+========================================= */
+
+function formatTime(seconds){
+
+    if(!isFinite(seconds))
+        return "00:00";
+
+
+    const hours =
+        Math.floor(seconds / 3600);
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        Math.floor(seconds % 60);
+
+
+    if(hours > 0){
+
+        return (
+            String(hours).padStart(2,"0")
+            + ":"
+            +
+            String(minutes).padStart(2,"0")
+            + ":"
+            +
+            String(secs).padStart(2,"0")
         );
 
     }
 
+
+    return (
+        String(minutes).padStart(2,"0")
+        + ":"
+        +
+        String(secs).padStart(2,"0")
+    );
 }
 
 
-/* Mouse movement */
 
-playerArea.addEventListener(
-    'mousemove',
-    showControls
+/* =========================================
+   DRIVE FILE ID
+========================================= */
+
+function getDriveFileId(url){
+
+    if(!url)
+        return null;
+
+
+    let match =
+        url.match(
+            /\/files\/([^/?]+)/i
+        );
+
+
+    if(match)
+        return match[1];
+
+
+    match =
+        url.match(
+            /[?&]id=([^&]+)/i
+        );
+
+
+    if(match)
+        return match[1];
+
+
+    return null;
+}
+
+
+
+/* =========================================
+   LOAD VIDEO
+========================================= */
+
+function loadVideo(url,name){
+
+    if(!url){
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    errorMessage.style.display =
+        "none";
+
+
+    drivePlayer.style.display =
+        "none";
+
+
+    video.style.display =
+        "block";
+
+
+    video.pause();
+
+
+    video.removeAttribute("src");
+
+
+    video.src = url;
+
+
+    video.load();
+
+
+    movieTitle.textContent =
+        name || seriesTitle;
+
+
+    document.title =
+        (name || seriesTitle)
+        + " - My Library";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+
+/* =========================================
+   VIDEO ERROR FALLBACK
+========================================= */
+
+video.addEventListener(
+    "error",
+    function(){
+
+        const fileId =
+            getDriveFileId(
+                video.src
+            );
+
+
+        if(fileId){
+
+            /*
+              Browser could not decode the
+              direct video.
+
+              Try Google Drive's own player.
+            */
+
+            video.style.display =
+                "none";
+
+
+            controls.classList.add(
+                "hidden"
+            );
+
+
+            drivePlayer.src =
+                "https://drive.google.com/file/d/"
+                +
+                fileId
+                +
+                "/preview";
+
+
+            drivePlayer.style.display =
+                "block";
+
+
+        }else{
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+    }
 );
 
 
-/* Mouse enters player */
 
-playerArea.addEventListener(
-    'mouseenter',
-    showControls
-);
+/* =========================================
+   SERIES
+========================================= */
 
+if(
+    type === "series"
+    &&
+    episodes.length
+){
 
-/* Touch */
-
-playerArea.addEventListener(
-    'touchstart',
-    showControls,
-    {passive:true}
-);
-
-playerArea.addEventListener(
-    'touchmove',
-    showControls,
-    {passive:true}
-);
+    seriesPanel.classList.add(
+        "visible"
+    );
 
 
-/* =========================
+    episodes.sort(
+        (a,b)=>{
+
+            if(
+                Number(a.season)
+                !==
+                Number(b.season)
+            ){
+
+                return (
+                    Number(a.season)
+                    -
+                    Number(b.season)
+                );
+
+            }
+
+
+            return (
+                Number(a.episode)
+                -
+                Number(b.episode)
+            );
+
+        }
+    );
+
+
+    const seasons =
+        [
+            ...new Set(
+                episodes.map(
+                    e =>
+                        Number(e.season) || 1
+                )
+            )
+        ];
+
+
+    let activeSeason =
+        seasons[0];
+
+
+    function renderSeasons(){
+
+        seasonRow.innerHTML =
+            "";
+
+
+        const label =
+            document.createElement(
+                "span"
+            );
+
+
+        label.className =
+            "season-label";
+
+
+        label.textContent =
+            "Season:";
+
+
+        seasonRow.appendChild(
+            label
+        );
+
+
+        seasons.forEach(
+            season=>{
+
+                const btn =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                btn.className =
+                    "season-btn"
+                    +
+                    (
+                        season === activeSeason
+                        ?
+                        " active"
+                        :
+                        ""
+                    );
+
+
+                btn.textContent =
+                    "Season " + season;
+
+
+                btn.onclick =
+                    ()=>{
+
+                        activeSeason =
+                            season;
+
+
+                        renderSeasons();
+
+                        renderEpisodes();
+
+                    };
+
+
+                seasonRow.appendChild(
+                    btn
+                );
+
+            }
+        );
+
+    }
+
+
+
+    function renderEpisodes(){
+
+        episodeRow.innerHTML =
+            "";
+
+
+        const current =
+            episodes.filter(
+                e =>
+                    (
+                        Number(e.season)
+                        ||
+                        1
+                    )
+                    ===
+                    activeSeason
+            );
+
+
+        current.forEach(
+            ep=>{
+
+                const btn =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                btn.className =
+                    "episode-btn";
+
+
+                btn.textContent =
+                    "Episode "
+                    +
+                    ep.episode;
+
+
+                btn.onclick =
+                    ()=>{
+
+                        document
+                            .querySelectorAll(
+                                ".episode-btn"
+                            )
+                            .forEach(
+                                x =>
+                                    x.classList.remove(
+                                        "active"
+                                    )
+                            );
+
+
+                        btn.classList.add(
+                            "active"
+                        );
+
+
+                        loadVideo(
+                            ep.video,
+                            ep.name
+                        );
+
+                    };
+
+
+                episodeRow.appendChild(
+                    btn
+                );
+
+            }
+        );
+
+
+        if(current.length){
+
+            const first =
+                current[0];
+
+
+            const firstButton =
+                episodeRow.querySelector(
+                    ".episode-btn"
+                );
+
+
+            firstButton.classList.add(
+                "active"
+            );
+
+
+            loadVideo(
+                first.video,
+                first.name
+            );
+
+        }
+
+    }
+
+
+    renderSeasons();
+
+    renderEpisodes();
+
+
+}else{
+
+    loadVideo(
+        videoURL,
+        title
+    );
+
+}
+
+
+
+/* =========================================
    PLAY / PAUSE
-   ========================= */
+========================================= */
 
 function togglePlay(){
 
+    if(video.style.display === "none")
+        return;
+
+
     if(video.paused){
 
-        video.play().catch(()=>{});
+        video.play().catch(
+            ()=>{}
+        );
 
-    }
-    else{
+    }else{
 
         video.pause();
 
@@ -855,64 +1445,519 @@ function togglePlay(){
 }
 
 
-playButton.onclick = function(e){
-
-    e.stopPropagation();
-
-    togglePlay();
-
-};
+playBtn.addEventListener(
+    "click",
+    togglePlay
+);
 
 
 video.addEventListener(
-    'play',
-    function(){
-
-        playButton.textContent =
-            '❚❚';
-
-        playerArea.classList.remove(
-            'paused'
-        );
-
-        showControls();
-
+    "play",
+    ()=>{
+        playBtn.textContent =
+            "❚❚";
     }
 );
 
 
 video.addEventListener(
-    'pause',
-    function(){
+    "pause",
+    ()=>{
+        playBtn.textContent =
+            "▶";
+    }
+);
 
-        playButton.textContent =
-            '▶';
 
-        playerArea.classList.add(
-            'paused'
-        );
 
-        clearTimeout(hideTimer);
+/* =========================================
+   REWIND
+========================================= */
 
-        playerArea.classList.remove(
-            'controls-hidden'
-        );
+rewindBtn.addEventListener(
+    "click",
+    ()=>{
+
+        if(!video.duration)
+            return;
+
+
+        video.currentTime =
+            Math.max(
+                0,
+                video.currentTime - 10
+            );
 
     }
 );
 
 
-/* =========================
-   KEYBOARD CONTROLS
-   ========================= */
 
-document.addEventListener(
-    'keydown',
-    function(e){
+/* =========================================
+   FORWARD
+========================================= */
+
+forwardBtn.addEventListener(
+    "click",
+    ()=>{
+
+        if(!video.duration)
+            return;
+
+
+        video.currentTime =
+            Math.min(
+                video.duration,
+                video.currentTime + 10
+            );
+
+    }
+);
+
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+video.addEventListener(
+    "timeupdate",
+    ()=>{
+
+        if(!video.duration)
+            return;
+
+
+        const percent =
+            (
+                video.currentTime
+                /
+                video.duration
+            )
+            *
+            100;
+
+
+        progress.style.width =
+            percent + "%";
+
+
+        thumb.style.left =
+            percent + "%";
+
+
+        currentTime.textContent =
+            formatTime(
+                video.currentTime
+            );
+
+    }
+);
+
+
+
+/* =========================================
+   DURATION
+========================================= */
+
+video.addEventListener(
+    "loadedmetadata",
+    ()=>{
+
+        duration.textContent =
+            formatTime(
+                video.duration
+            );
+
+    }
+);
+
+
+
+/* =========================================
+   TIMELINE CLICK
+========================================= */
+
+timeline.addEventListener(
+    "click",
+    e=>{
+
+        if(!video.duration)
+            return;
+
+
+        const rect =
+            timeline.getBoundingClientRect();
+
+
+        const percent =
+            Math.max(
+                0,
+                Math.min(
+                    1,
+                    (
+                        e.clientX
+                        -
+                        rect.left
+                    )
+                    /
+                    rect.width
+                )
+            );
+
+
+        video.currentTime =
+            percent *
+            video.duration;
+
+    }
+);
+
+
+
+/* =========================================
+   BUFFER
+========================================= */
+
+video.addEventListener(
+    "progress",
+    ()=>{
 
         if(
-            e.code === 'Space' &&
-            e.target.tagName !== 'INPUT'
+            !video.duration
+            ||
+            !video.buffered.length
+        )
+            return;
+
+
+        const end =
+            video.buffered.end(
+                video.buffered.length - 1
+            );
+
+
+        buffer.style.width =
+            Math.min(
+                100,
+                (
+                    end
+                    /
+                    video.duration
+                )
+                *
+                100
+            )
+            + "%";
+
+    }
+);
+
+
+
+/* =========================================
+   VOLUME
+========================================= */
+
+volumeSlider.addEventListener(
+    "input",
+    ()=>{
+
+        video.volume =
+            Number(
+                volumeSlider.value
+            );
+
+
+        muteBtn.textContent =
+            video.volume === 0
+            ?
+            "🔇"
+            :
+            "🔊";
+
+    }
+);
+
+
+
+muteBtn.addEventListener(
+    "click",
+    ()=>{
+
+        video.muted =
+            !video.muted;
+
+
+        muteBtn.textContent =
+            video.muted
+            ?
+            "🔇"
+            :
+            "🔊";
+
+    }
+);
+
+
+
+/* =========================================
+   FULLSCREEN
+========================================= */
+
+fullscreenBtn.addEventListener(
+    "click",
+    async ()=>{
+
+        try{
+
+            if(
+                !document.fullscreenElement
+            ){
+
+                await
+                    videoContainer
+                        .requestFullscreen();
+
+            }else{
+
+                await
+                    document
+                        .exitFullscreen();
+
+            }
+
+        }catch(e){}
+
+    }
+);
+
+
+
+/* =========================================
+   SPEED
+========================================= */
+
+speedBtn.addEventListener(
+    "click",
+    e=>{
+
+        e.stopPropagation();
+
+
+        speedMenu.style.display =
+            speedMenu.style.display
+            === "block"
+            ?
+            "none"
+            :
+            "block";
+
+
+        qualityMenu.style.display =
+            "none";
+
+    }
+);
+
+
+document
+    .querySelectorAll(
+        "#speedMenu button"
+    )
+    .forEach(
+        btn=>{
+
+            btn.onclick =
+                ()=>{
+
+                    video.playbackRate =
+                        Number(
+                            btn.dataset.speed
+                        );
+
+
+                    speedMenu.style.display =
+                        "none";
+
+                };
+
+        }
+    );
+
+
+
+/* =========================================
+   QUALITY
+========================================= */
+
+qualityBtn.addEventListener(
+    "click",
+    e=>{
+
+        e.stopPropagation();
+
+
+        qualityMenu.style.display =
+            qualityMenu.style.display
+            === "block"
+            ?
+            "none"
+            :
+            "block";
+
+
+        speedMenu.style.display =
+            "none";
+
+    }
+);
+
+
+document
+    .querySelectorAll(
+        "#qualityMenu button"
+    )
+    .forEach(
+        btn=>{
+
+            btn.onclick =
+                ()=>{
+
+                    qualityMenu.style.display =
+                        "none";
+
+
+                    if(
+                        btn.dataset.quality
+                        !==
+                        "auto"
+                    ){
+
+                        alert(
+                            "Quality switching needs separate video files for each quality."
+                        );
+
+                    }
+
+                };
+
+        }
+    );
+
+
+
+/* =========================================
+   CLOSE MENUS
+========================================= */
+
+document.addEventListener(
+    "click",
+    ()=>{
+
+        speedMenu.style.display =
+            "none";
+
+
+        qualityMenu.style.display =
+            "none";
+
+    }
+);
+
+
+
+/* =========================================
+   AUTO-HIDE CONTROLS
+========================================= */
+
+let hideTimer;
+
+
+function showControls(){
+
+    controls.classList.remove(
+        "hidden"
+    );
+
+
+    clearTimeout(
+        hideTimer
+    );
+
+
+    if(
+        !video.paused
+        &&
+        video.style.display !== "none"
+    ){
+
+        hideTimer =
+            setTimeout(
+                ()=>{
+                    controls.classList.add(
+                        "hidden"
+                    );
+                },
+                2500
+            );
+
+    }
+
+}
+
+
+videoContainer.addEventListener(
+    "mousemove",
+    showControls
+);
+
+
+videoContainer.addEventListener(
+    "touchstart",
+    showControls
+);
+
+
+video.addEventListener(
+    "play",
+    showControls
+);
+
+
+video.addEventListener(
+    "pause",
+    ()=>{
+        controls.classList.remove(
+            "hidden"
+        );
+
+        clearTimeout(
+            hideTimer
+        );
+
+    }
+);
+
+
+
+/* =========================================
+   KEYBOARD
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            e.target.tagName ===
+            "INPUT"
+        )
+            return;
+
+
+        if(
+            e.code === "Space"
         ){
 
             e.preventDefault();
@@ -922,519 +1967,79 @@ document.addEventListener(
         }
 
 
-        if(e.key === 'ArrowLeft'){
-
-            video.currentTime =
-                Math.max(
-                    0,
-                    video.currentTime - 5
-                );
-
-        }
-
-
-        if(e.key === 'ArrowRight'){
-
-            video.currentTime =
-                Math.min(
-                    video.duration || 0,
-                    video.currentTime + 5
-                );
-
-        }
-
-
-        if(e.key.toLowerCase() === 'f'){
-
-            fullscreenButton.click();
-
-        }
-
-    }
-);
-
-
-/* =========================
-   SKIP BUTTONS
-   ========================= */
-
-back10.onclick = function(e){
-
-    e.stopPropagation();
-
-    video.currentTime =
-        Math.max(
-            0,
-            video.currentTime - 10
-        );
-
-    showControls();
-
-};
-
-
-forward10.onclick = function(e){
-
-    e.stopPropagation();
-
-    video.currentTime =
-        Math.min(
-            video.duration || 0,
-            video.currentTime + 10
-        );
-
-    showControls();
-
-};
-
-
-/* =========================
-   TIME FORMAT
-   ========================= */
-
-function formatTime(s){
-
-    if(!s || isNaN(s))
-        return '00:00';
-
-    s = Math.floor(s);
-
-    const h =
-        Math.floor(s / 3600);
-
-    const m =
-        Math.floor((s % 3600) / 60);
-
-    const sec =
-        s % 60;
-
-
-    if(h > 0){
-
-        return (
-            String(h).padStart(2,'0') +
-            ':' +
-            String(m).padStart(2,'0') +
-            ':' +
-            String(sec).padStart(2,'0')
-        );
-
-    }
-
-
-    return (
-        String(m).padStart(2,'0') +
-        ':' +
-        String(sec).padStart(2,'0')
-    );
-
-}
-
-
-/* =========================
-   VIDEO TIME
-   ========================= */
-
-video.addEventListener(
-    'timeupdate',
-    function(){
-
-        if(video.duration){
-
-            timeline.value =
-                video.currentTime /
-                video.duration *
-                100;
-
-
-            timeDisplay.textContent =
-                formatTime(video.currentTime) +
-                ' / ' +
-                formatTime(video.duration);
-
-        }
-
-    }
-);
-
-
-video.addEventListener(
-    'loadedmetadata',
-    function(){
-
-        timeDisplay.textContent =
-            '00:00 / ' +
-            formatTime(video.duration);
-
-    }
-);
-
-
-/* =========================
-   TIMELINE
-   ========================= */
-
-timeline.addEventListener(
-    'input',
-    function(){
-
-        showControls();
-
-        if(video.duration){
-
-            video.currentTime =
-                timeline.value /
-                100 *
-                video.duration;
-
-        }
-
-    }
-);
-
-
-/* =========================
-   TIMELINE PREVIEW
-   ========================= */
-
-timeline.addEventListener(
-    'mousemove',
-    function(e){
-
-        if(!video.duration)
-            return;
-
-
-        const r =
-            timeline.getBoundingClientRect();
-
-
-        let p =
-            (e.clientX - r.left) /
-            r.width;
-
-
-        p =
-            Math.max(
-                0,
-                Math.min(1,p)
-            );
-
-
-        previewBox.style.display =
-            'block';
-
-
-        previewBox.style.left =
-            p * 100 + '%';
-
-
-        previewTime.textContent =
-            formatTime(
-                p * video.duration
-            );
-
-
-        try{
-
-            previewVideo.currentTime =
-                p * video.duration;
-
-        }
-        catch(_){}
-
-    }
-);
-
-
-timeline.addEventListener(
-    'mouseleave',
-    function(){
-
-        previewBox.style.display =
-            'none';
-
-    }
-);
-
-
-/* =========================
-   VOLUME
-   ========================= */
-
-volume.oninput =
-    function(){
-
-        video.volume =
-            volume.value;
-
-        video.muted = false;
-
-        updateMuteIcon();
-
-        showControls();
-
-    };
-
-
-muteButton.onclick =
-    function(e){
-
-        e.stopPropagation();
-
-        video.muted =
-            !video.muted;
-
-        updateMuteIcon();
-
-        showControls();
-
-    };
-
-
-function updateMuteIcon(){
-
-    muteButton.textContent =
-        video.muted ||
-        video.volume === 0
-        ? '🔇'
-        : '🔊';
-
-}
-
-
-/* =========================
-   SPEED MENU
-   ========================= */
-
-speedButton.onclick =
-    function(e){
-
-        e.stopPropagation();
-
-        fitMenu.style.display =
-            'none';
-
-
-        speedMenu.style.display =
-            speedMenu.style.display === 'block'
-            ? 'none'
-            : 'block';
-
-
-        showControls();
-
-    };
-
-
-document.querySelectorAll(
-    '#speedMenu button'
-).forEach(
-    function(b){
-
-        b.onclick =
-            function(e){
-
-                e.stopPropagation();
-
-                video.playbackRate =
-                    parseFloat(
-                        b.dataset.speed
+        if(
+            e.key === "ArrowLeft"
+        ){
+
+            if(video.duration){
+
+                video.currentTime =
+                    Math.max(
+                        0,
+                        video.currentTime - 5
                     );
-
-
-                speedButton.textContent =
-                    b.dataset.speed + '×';
-
-
-                speedMenu.style.display =
-                    'none';
-
-
-                showControls();
-
-            };
-
-    }
-);
-
-
-/* =========================
-   FIT MENU
-   ========================= */
-
-fitButton.onclick =
-    function(e){
-
-        e.stopPropagation();
-
-        speedMenu.style.display =
-            'none';
-
-
-        fitMenu.style.display =
-            fitMenu.style.display === 'block'
-            ? 'none'
-            : 'block';
-
-
-        showControls();
-
-    };
-
-
-document.querySelectorAll(
-    '#fitMenu button'
-).forEach(
-    function(b){
-
-        b.onclick =
-            function(e){
-
-                e.stopPropagation();
-
-
-                video.classList.remove(
-                    'fit-contain',
-                    'fit-cover',
-                    'fit-fill'
-                );
-
-
-                video.classList.add(
-                    'fit-' +
-                    b.dataset.fit
-                );
-
-
-                fitMenu.style.display =
-                    'none';
-
-
-                showControls();
-
-            };
-
-    }
-);
-
-
-/* =========================
-   CLOSE MENUS
-   ========================= */
-
-document.addEventListener(
-    'click',
-    function(){
-
-        speedMenu.style.display =
-            'none';
-
-        fitMenu.style.display =
-            'none';
-
-    }
-);
-
-
-/* =========================
-   FULLSCREEN
-   ========================= */
-
-fullscreenButton.onclick =
-    function(e){
-
-        e.stopPropagation();
-
-
-        if(!document.fullscreenElement){
-
-            if(playerArea.requestFullscreen){
-
-                playerArea.requestFullscreen();
 
             }
 
         }
-        else{
 
-            document.exitFullscreen();
+
+        if(
+            e.key === "ArrowRight"
+        ){
+
+            if(video.duration){
+
+                video.currentTime =
+                    Math.min(
+                        video.duration,
+                        video.currentTime + 5
+                    );
+
+            }
 
         }
 
 
-        showControls();
+        if(
+            e.key.toLowerCase()
+            ===
+            "f"
+        ){
 
-    };
+            fullscreenBtn.click();
 
+        }
 
-document.addEventListener(
-    'fullscreenchange',
-    showControls
+    }
 );
 
 
-/* Double-click fullscreen */
 
-video.ondblclick =
-    function(){
-
-        if(!document.fullscreenElement){
-
-            playerArea.requestFullscreen();
-
-        }
-        else{
-
-            document.exitFullscreen();
-
-        }
-
-    };
-
-
-/* =========================
-   BACK BUTTON
-   ========================= */
+/* =========================================
+   BACK
+========================================= */
 
 function goBack(){
 
-    if(document.referrer){
+    if(
+        document.referrer
+        &&
+        document.referrer
+        !==
+        window.location.href
+    ){
 
         history.back();
 
-    }
-    else{
+    }else{
 
-        location.href =
-            'index.html';
+        window.location.href =
+            "index.html";
 
     }
 
 }
-
-
-/* =========================
-   VIDEO ERROR
-   ========================= */
-
-video.addEventListener(
-    'error',
-    function(){
-
-        if(videoSource){
-
-            errorMessage.innerHTML =
-                'Unable to play this video.<br>' +
-                'Check the video file or its URL.';
-
-            errorMessage.style.display =
-                'block';
-
-        }
-
-    }
-);
 
 </script>
 
