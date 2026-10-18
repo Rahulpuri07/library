@@ -1,437 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Library</title>
+<title>Rahul's Library</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
+html, body {
     margin: 0;
+    padding: 0;
     background: #000;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    min-height: 100vh;
+}
 
-/* =========================
-   HEADER
-========================= */
-
+/* HEADER */
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    min-height: 72px;
-
+    height: 72px;
     background: #050505;
-
-    border-bottom: 1px solid #1c1c1c;
-
+    border-bottom: 1px solid #222;
     display: flex;
     align-items: center;
-
     padding: 0 40px;
-
     gap: 35px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 
 .logo {
     font-size: 25px;
-    font-weight: 900;
-    white-space: nowrap;
+    font-weight: 800;
 }
 
 .logo span {
     color: #e50914;
 }
 
-
-/* NAVIGATION */
-
 .nav {
     display: flex;
-    gap: 25px;
+    gap: 30px;
 }
 
 .nav button {
     background: none;
     border: none;
-
-    color: #888;
-
+    color: #aaa;
     font-size: 15px;
-
     cursor: pointer;
 }
 
 .nav button:hover,
 .nav button.active {
-    color: #fff;
+    color: white;
 }
 
-
-/* SEARCH */
-
-.search-container {
+.search {
     margin-left: auto;
 }
 
-#search {
+.search input {
     width: 260px;
-    height: 38px;
-
-    padding: 0 15px;
-
+    padding: 11px 15px;
+    background: #151515;
     border: 1px solid #333;
-    border-radius: 5px;
-
-    background: #111;
-    color: #fff;
-
+    border-radius: 6px;
+    color: white;
     outline: none;
 }
 
-#search::placeholder {
-    color: #777;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 330px;
-
-    padding: 80px 55px 50px;
-
-    display: flex;
-    align-items: flex-end;
-
-    background:
-        linear-gradient(
-            to top,
-            #000 0%,
-            rgba(0,0,0,0.65) 45%,
-            rgba(0,0,0,0.15) 100%
-        ),
-        radial-gradient(
-            circle at 75% 30%,
-            #292929,
-            #050505 60%,
-            #000 100%
-        );
-}
-
-.hero-content {
-    max-width: 700px;
+/* MAIN */
+.main {
+    padding: 55px 55px 80px;
 }
 
 .hero h1 {
-    margin: 0 0 12px;
-
-    font-size: 42px;
-    font-weight: 900;
+    font-size: 46px;
+    margin: 0 0 18px;
 }
 
 .hero p {
-    margin: 0;
-
-    color: #aaa;
-
-    font-size: 15px;
-
-    line-height: 1.6;
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 70px;
 }
 
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-    padding: 25px 40px 60px;
-}
-
+/* SECTIONS */
 .section {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
 .section-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 18px;
+    font-size: 25px;
+    font-weight: 700;
 }
 
-.section-title h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.section-title span {
+.count {
     color: #777;
     font-size: 13px;
 }
 
-
-/* =========================
-   MOVIE GRID
-========================= */
-
-.movie-grid {
+/* GRID */
+.grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(170px, 1fr)
-        );
-
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 25px;
 }
 
-
-/* =========================
-   CARD
-========================= */
-
-.movie-card {
-    position: relative;
-
-    background: #111;
-
-    border-radius: 6px;
-
+.card {
+    background: #101010;
+    border-radius: 7px;
     overflow: hidden;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform .2s, background .2s;
+    border: 1px solid #191919;
 }
 
-.movie-card:hover {
-    transform: scale(1.045);
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,0.75);
-
-    z-index: 5;
-}
-
-.poster {
-    width: 100%;
-
-    aspect-ratio: 2 / 3;
-
-    object-fit: cover;
-
-    display: block;
-
+.card:hover {
+    transform: scale(1.035);
     background: #181818;
 }
 
-
-/* PLAY BUTTON */
-
-.play-overlay {
-    position: absolute;
-
-    left: 50%;
-    top: 42%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width: 54px;
-    height: 54px;
-
-    border-radius: 50%;
-
-    background: #e50914;
-
+.poster {
+    height: 270px;
+    background: linear-gradient(135deg, #181818, #050505);
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    font-size: 23px;
-
-    opacity: 0;
-
-    transition: opacity 0.2s ease;
+    color: #666;
+    font-size: 42px;
 }
 
-.movie-card:hover .play-overlay {
-    opacity: 1;
+.card-info {
+    padding: 14px;
 }
 
-
-/* INFORMATION */
-
-.movie-info {
-    padding: 11px 12px 13px;
-}
-
-.movie-title {
+.card-title {
     font-size: 15px;
-
-    font-weight: 700;
-
+    font-weight: 600;
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
-.movie-meta {
-    margin-top: 6px;
-
+.card-type {
     color: #777;
-
     font-size: 12px;
+    margin-top: 7px;
 }
 
-
-/* =========================
-   NO RESULTS
-========================= */
-
-.no-results {
-    display: none;
-
-    text-align: center;
-
-    padding: 80px 20px;
-
+/* EMPTY / LOADING */
+.message {
     color: #777;
-
-    font-size: 16px;
+    padding: 30px 0;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    text-align: center;
-
-    padding: 30px;
-
-    color: #444;
-
-    border-top: 1px solid #151515;
-
-    font-size: 12px;
+.error {
+    color: #e50914;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 750px) {
+/* MOBILE */
+@media (max-width: 700px) {
 
     .header {
-        padding: 12px 15px;
-
-        flex-wrap: wrap;
-
-        gap: 12px;
+        padding: 0 15px;
+        gap: 15px;
     }
-
-    .logo {
-        font-size: 21px;
-    }
-
-    .nav {
-        order: 3;
-
-        width: 100%;
-
-        justify-content: center;
-
-        gap: 30px;
-    }
-
-    .search-container {
-        margin-left: auto;
-    }
-
-    #search {
-        width: 180px;
-    }
-
-    .hero {
-        min-height: 260px;
-
-        padding:
-            55px 25px 35px;
-    }
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .main {
-        padding:
-            20px 15px 50px;
-    }
-
-    .movie-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 12px;
-    }
-}
-
-
-@media (max-width: 430px) {
 
     .logo {
         font-size: 19px;
     }
 
-    #search {
-        width: 145px;
-    }
-
     .nav {
-        gap: 22px;
-    }
-
-    .movie-grid {
         gap: 10px;
     }
+
+    .search input {
+        width: 130px;
+    }
+
+    .main {
+        padding: 35px 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .poster {
+        height: 220px;
+    }
 }
-
 </style>
-
 </head>
 
-
 <body>
-
 
 <header class="header">
 
@@ -439,434 +223,460 @@ body {
         MY <span>LIBRARY</span>
     </div>
 
-
     <nav class="nav">
-
-        <button
-            class="active"
-            onclick="showSection('all')">
-            Home
-        </button>
-
-        <button
-            onclick="showSection('movies')">
-            Movies
-        </button>
-
-        <button
-            onclick="showSection('series')">
-            Web Series
-        </button>
-
+        <button id="homeBtn" class="active">Home</button>
+        <button id="moviesBtn">Movies</button>
+        <button id="seriesBtn">Web Series</button>
     </nav>
 
-
-    <div class="search-container">
-
+    <div class="search">
         <input
             type="text"
-            id="search"
+            id="searchInput"
             placeholder="Search..."
-            autocomplete="off">
-
+        >
     </div>
 
 </header>
 
 
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>
-            Welcome to your library.
-        </h1>
-
-        <p>
-            Your private collection of movies
-            and web series — all in one place.
-        </p>
-
-    </div>
-
-</section>
-
-
-
 <main class="main">
+
+    <section class="hero">
+        <h1>Welcome to your library.</h1>
+        <p>
+            Your private collection of movies and web series — all in one place.
+        </p>
+    </section>
 
 
     <!-- MOVIES -->
 
-    <section
-        class="section"
-        id="moviesSection">
+    <section class="section" id="moviesSection">
 
-        <div class="section-title">
-
-            <h2>🎬 Movies</h2>
-
-            <span id="movieCount">
-                0 titles
-            </span>
-
+        <div class="section-header">
+            <div class="section-title">🎬 Movies</div>
+            <div class="count" id="movieCount">Loading...</div>
         </div>
 
-
-        <div
-            class="movie-grid"
-            id="moviesGrid">
+        <div class="grid" id="moviesGrid">
+            <div class="message">Loading movies...</div>
         </div>
 
     </section>
-
 
 
     <!-- WEB SERIES -->
 
-    <section
-        class="section"
-        id="seriesSection">
+    <section class="section" id="seriesSection">
 
-        <div class="section-title">
-
-            <h2>📺 Web Series</h2>
-
-            <span id="seriesCount">
-                0 titles
-            </span>
-
+        <div class="section-header">
+            <div class="section-title">📺 Web Series</div>
+            <div class="count" id="seriesCount">Loading...</div>
         </div>
 
-
-        <div
-            class="movie-grid"
-            id="seriesGrid">
+        <div class="grid" id="seriesGrid">
+            <div class="message">Loading web series...</div>
         </div>
 
     </section>
 
-
-    <div
-        class="no-results"
-        id="noResults">
-
-        Nothing found 😶
-
-    </div>
-
 </main>
-
-
-
-<footer class="footer">
-
-    My Private Library
-
-</footer>
-
 
 
 <script>
 
+/* ==================================================
+   GOOGLE DRIVE SETTINGS
+================================================== */
 
-/* =========================
-   MOVIES
-========================= */
+const GOOGLE_API_KEY = "AIzaSyDj5VSHNGM4z9sR8f_YyZfBZvIwSkOnlfk";
 
-const movies = [
 
-    {
-        title: "Sample Video",
-        year: "2026",
+const MOVIES_FOLDER =
+    "1yXj9Ih39Omyic_Bf_qf86rta5DYbza7S";
 
-        poster:
-        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=80",
 
-        video:
-        "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+const SERIES_FOLDER =
+    "1ltCVLmorFbWGEt8kx547kDjwSBxJxAGf";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const moviesGrid =
+    document.getElementById("moviesGrid");
+
+const seriesGrid =
+    document.getElementById("seriesGrid");
+
+const movieCount =
+    document.getElementById("movieCount");
+
+const seriesCount =
+    document.getElementById("seriesCount");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const moviesSection =
+    document.getElementById("moviesSection");
+
+const seriesSection =
+    document.getElementById("seriesSection");
+
+
+let movies = [];
+let series = [];
+
+
+/* ==================================================
+   GET FILES FROM GOOGLE DRIVE
+================================================== */
+
+async function getDriveFiles(folderId) {
+
+    const query =
+        `'${folderId}' in parents and trashed = false`;
+
+    const url =
+        "https://www.googleapis.com/drive/v3/files" +
+        "?q=" + encodeURIComponent(query) +
+        "&fields=files(id,name,mimeType,size,modifiedTime)" +
+        "&pageSize=1000" +
+        "&orderBy=name" +
+        "&key=" + encodeURIComponent(GOOGLE_API_KEY);
+
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Google Drive API error: " +
+            response.status
+        );
     }
 
-];
+    const data =
+        await response.json();
+
+    return data.files || [];
+}
 
 
-/* =========================
-   WEB SERIES
-========================= */
+/* ==================================================
+   CLEAN MOVIE NAME
+================================================== */
 
-const series = [];
+function cleanName(name) {
+
+    return name
+        .replace(/\.[^/.]+$/, "")
+        .replace(/\./g, " ")
+        .replace(/_/g, " ")
+        .trim();
+}
 
 
-/* =========================
+/* ==================================================
    CREATE CARD
-========================= */
+================================================== */
 
-function createCard(item) {
+function createCard(file, type) {
 
     const card =
         document.createElement("div");
 
-    card.className =
-        "movie-card";
+    card.className = "card";
 
-    card.dataset.title =
-        item.title.toLowerCase();
+    const poster =
+        document.createElement("div");
 
-
-    card.innerHTML = `
-
-        <img
-            class="poster"
-            src="${item.poster}"
-            alt="${item.title}"
-            loading="lazy"
-        >
-
-        <div class="play-overlay">
-            ▶
-        </div>
-
-        <div class="movie-info">
-
-            <div class="movie-title">
-                ${item.title}
-            </div>
-
-            <div class="movie-meta">
-                ${item.year || ""}
-            </div>
-
-        </div>
-
-    `;
+    poster.className = "poster";
+    poster.textContent =
+        type === "movie" ? "🎬" : "📺";
 
 
-    card.addEventListener(
-        "click",
-        function() {
+    const info =
+        document.createElement("div");
 
-            openPlayer(item);
+    info.className = "card-info";
 
-        }
-    );
+
+    const title =
+        document.createElement("div");
+
+    title.className = "card-title";
+
+    title.textContent =
+        cleanName(file.name);
+
+
+    const typeText =
+        document.createElement("div");
+
+    typeText.className = "card-type";
+
+    typeText.textContent =
+        type === "movie"
+        ? "Movie"
+        : "Web Series";
+
+
+    info.appendChild(title);
+    info.appendChild(typeText);
+
+    card.appendChild(poster);
+    card.appendChild(info);
+
+
+    card.onclick = function() {
+
+        const encodedVideo =
+            encodeURIComponent(
+                "https://www.googleapis.com/drive/v3/files/" +
+                file.id +
+                "?alt=media&key=" +
+                GOOGLE_API_KEY
+            );
+
+        const encodedTitle =
+            encodeURIComponent(
+                cleanName(file.name)
+            );
+
+
+        window.location.href =
+            "player.html?video=" +
+            encodedVideo +
+            "&title=" +
+            encodedTitle;
+    };
 
 
     return card;
 }
 
 
-/* =========================
-   OPEN PLAYER
-========================= */
+/* ==================================================
+   DISPLAY FILES
+================================================== */
 
-function openPlayer(item) {
-
-    const url =
-        "player.html?video=" +
-        encodeURIComponent(item.video) +
-        "&title=" +
-        encodeURIComponent(item.title);
-
-    window.location.href = url;
-}
-
-
-/* =========================
-   LOAD LIBRARY
-========================= */
-
-function loadLibrary() {
-
-    const moviesGrid =
-        document.getElementById(
-            "moviesGrid"
-        );
-
-    const seriesGrid =
-        document.getElementById(
-            "seriesGrid"
-        );
-
+function displayFiles() {
 
     moviesGrid.innerHTML = "";
-
     seriesGrid.innerHTML = "";
 
 
-    movies.forEach(function(movie) {
-
-        moviesGrid.appendChild(
-            createCard(movie)
-        );
-
-    });
+    movieCount.textContent =
+        movies.length +
+        (movies.length === 1 ? " title" : " titles");
 
 
-    series.forEach(function(show) {
-
-        seriesGrid.appendChild(
-            createCard(show)
-        );
-
-    });
+    seriesCount.textContent =
+        series.length +
+        (series.length === 1 ? " title" : " titles");
 
 
-    document.getElementById(
-        "movieCount"
-    ).textContent =
-        movies.length + " title";
+    if (movies.length === 0) {
+
+        moviesGrid.innerHTML =
+            '<div class="message">No movies yet.</div>';
+
+    } else {
+
+        movies.forEach(function(file) {
+
+            moviesGrid.appendChild(
+                createCard(file, "movie")
+            );
+
+        });
+
+    }
 
 
-    document.getElementById(
-        "seriesCount"
-    ).textContent =
-        series.length + " titles";
+    if (series.length === 0) {
+
+        seriesGrid.innerHTML =
+            '<div class="message">No web series yet.</div>';
+
+    } else {
+
+        series.forEach(function(file) {
+
+            seriesGrid.appendChild(
+                createCard(file, "series")
+            );
+
+        });
+
+    }
 }
 
 
-/* =========================
+/* ==================================================
+   LOAD LIBRARY
+================================================== */
+
+async function loadLibrary() {
+
+    try {
+
+        const results =
+            await Promise.all([
+
+                getDriveFiles(
+                    MOVIES_FOLDER
+                ),
+
+                getDriveFiles(
+                    SERIES_FOLDER
+                )
+
+            ]);
+
+
+        movies =
+            results[0].filter(
+                file =>
+                    file.mimeType !==
+                    "application/vnd.google-apps.folder"
+            );
+
+
+        series =
+            results[1].filter(
+                file =>
+                    file.mimeType !==
+                    "application/vnd.google-apps.folder"
+            );
+
+
+        displayFiles();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        moviesGrid.innerHTML =
+            '<div class="message error">' +
+            'Unable to load movies.' +
+            '</div>';
+
+        seriesGrid.innerHTML =
+            '<div class="message error">' +
+            'Unable to load web series.' +
+            '</div>';
+
+    }
+}
+
+
+/* ==================================================
    SEARCH
-========================= */
+================================================== */
+
+searchInput.addEventListener(
+    "input",
+    function() {
+
+        const search =
+            searchInput.value
+                .toLowerCase()
+                .trim();
+
+
+        const movieCards =
+            moviesGrid.querySelectorAll(".card");
+
+        const seriesCards =
+            seriesGrid.querySelectorAll(".card");
+
+
+        movieCards.forEach(
+            function(card, index) {
+
+                const name =
+                    cleanName(
+                        movies[index].name
+                    ).toLowerCase();
+
+                card.style.display =
+                    name.includes(search)
+                    ? ""
+                    : "none";
+            }
+        );
+
+
+        seriesCards.forEach(
+            function(card, index) {
+
+                const name =
+                    cleanName(
+                        series[index].name
+                    ).toLowerCase();
+
+                card.style.display =
+                    name.includes(search)
+                    ? ""
+                    : "none";
+            }
+        );
+
+    }
+);
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
 
 document
-    .getElementById("search")
-    .addEventListener(
-        "input",
-        function() {
+    .getElementById("homeBtn")
+    .onclick = function() {
 
-            const query =
-                this.value
-                    .toLowerCase()
-                    .trim();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-
-            const cards =
-                document.querySelectorAll(
-                    ".movie-card"
-                );
+    };
 
 
-            let visible = 0;
+document
+    .getElementById("moviesBtn")
+    .onclick = function() {
+
+        moviesSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    };
 
 
-            cards.forEach(function(card) {
+document
+    .getElementById("seriesBtn")
+    .onclick = function() {
 
-                if (
-                    card.dataset.title
-                        .includes(query)
-                ) {
+        seriesSection.scrollIntoView({
+            behavior: "smooth"
+        });
 
-                    card.style.display =
-                        "";
-
-                    visible++;
-
-                } else {
-
-                    card.style.display =
-                        "none";
-                }
-
-            });
+    };
 
 
-            document.getElementById(
-                "noResults"
-            ).style.display =
-                visible === 0
-                    ? "block"
-                    : "none";
-
-        }
-    );
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function showSection(section) {
-
-    const moviesSection =
-        document.getElementById(
-            "moviesSection"
-        );
-
-    const seriesSection =
-        document.getElementById(
-            "seriesSection"
-        );
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".nav button"
-        );
-
-
-    buttons.forEach(function(button) {
-
-        button.classList.remove(
-            "active"
-        );
-
-    });
-
-
-    if (section === "movies") {
-
-        moviesSection.style.display =
-            "block";
-
-        seriesSection.style.display =
-            "none";
-
-        buttons[1].classList.add(
-            "active"
-        );
-
-    }
-
-    else if (section === "series") {
-
-        moviesSection.style.display =
-            "none";
-
-        seriesSection.style.display =
-            "block";
-
-        buttons[2].classList.add(
-            "active"
-        );
-
-    }
-
-    else {
-
-        moviesSection.style.display =
-            "block";
-
-        seriesSection.style.display =
-            "block";
-
-        buttons[0].classList.add(
-            "active"
-        );
-
-    }
-}
-
-
-/* =========================
+/* ==================================================
    START
-========================= */
+================================================== */
 
 loadLibrary();
 
 </script>
 
-
 </body>
-
 </html>
