@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rahul's Library</title>
+<title>My Library</title>
 
 <style>
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     background: #000;
@@ -23,15 +24,21 @@ body {
     min-height: 100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .header {
     height: 72px;
     background: #050505;
     border-bottom: 1px solid #222;
+
     display: flex;
     align-items: center;
+
     padding: 0 40px;
     gap: 35px;
+
     position: sticky;
     top: 0;
     z-index: 20;
@@ -48,13 +55,14 @@ body {
 
 .nav {
     display: flex;
-    gap: 30px;
+    gap: 25px;
 }
 
 .nav button {
     background: none;
     border: none;
     color: #aaa;
+
     font-size: 15px;
     cursor: pointer;
 }
@@ -70,39 +78,50 @@ body {
 
 .search input {
     width: 260px;
+
     padding: 11px 15px;
+
     background: #151515;
     border: 1px solid #333;
     border-radius: 6px;
+
     color: white;
     outline: none;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
 .main {
-    padding: 55px 55px 80px;
+    padding: 50px 55px 80px;
 }
 
 .hero h1 {
-    font-size: 46px;
-    margin: 0 0 18px;
+    margin: 0 0 15px;
+
+    font-size: 45px;
 }
 
 .hero p {
-    color: #999;
-    font-size: 16px;
-    margin-bottom: 70px;
+    margin: 0 0 60px;
+
+    color: #888;
 }
 
-/* SECTIONS */
+/* =========================
+   SECTION
+========================= */
+
 .section {
     margin-bottom: 60px;
 }
 
 .section-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     margin-bottom: 25px;
 }
 
@@ -116,20 +135,37 @@ body {
     font-size: 13px;
 }
 
-/* GRID */
+/* =========================
+   GRID
+========================= */
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
     gap: 25px;
 }
 
+/* =========================
+   CARD
+========================= */
+
 .card {
     background: #101010;
+
     border-radius: 7px;
+
     overflow: hidden;
+
     cursor: pointer;
-    transition: transform .2s, background .2s;
+
     border: 1px solid #191919;
+
+    transition:
+        transform .2s,
+        background .2s;
 }
 
 .card:hover {
@@ -138,13 +174,21 @@ body {
 }
 
 .poster {
+    width: 100%;
     height: 270px;
-    background: linear-gradient(135deg, #181818, #050505);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d1d1d,
+            #050505
+        );
+
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: 42px;
+
+    font-size: 45px;
 }
 
 .card-info {
@@ -154,18 +198,30 @@ body {
 .card-title {
     font-size: 15px;
     font-weight: 600;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .card-type {
+    margin-top: 7px;
+
     color: #777;
     font-size: 12px;
-    margin-top: 7px;
 }
 
-/* EMPTY / LOADING */
+.card-episodes {
+    margin-top: 5px;
+
+    color: #aaa;
+    font-size: 11px;
+}
+
+/* =========================
+   LOADING
+========================= */
+
 .message {
     color: #777;
     padding: 30px 0;
@@ -175,7 +231,10 @@ body {
     color: #e50914;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 700px) {
 
     .header {
@@ -204,7 +263,9 @@ body {
     }
 
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
+
         gap: 15px;
     }
 
@@ -217,71 +278,146 @@ body {
 
 <body>
 
+
 <header class="header">
 
     <div class="logo">
         MY <span>LIBRARY</span>
     </div>
 
+
     <nav class="nav">
-        <button id="homeBtn" class="active">Home</button>
-        <button id="moviesBtn">Movies</button>
-        <button id="seriesBtn">Web Series</button>
+
+        <button
+            id="homeBtn"
+            class="active"
+        >
+            Home
+        </button>
+
+        <button id="moviesBtn">
+            Movies
+        </button>
+
+        <button id="seriesBtn">
+            Web Series
+        </button>
+
     </nav>
 
+
     <div class="search">
+
         <input
             type="text"
             id="searchInput"
             placeholder="Search..."
         >
+
     </div>
 
 </header>
 
 
+
 <main class="main">
 
+
     <section class="hero">
-        <h1>Welcome to your library.</h1>
+
+        <h1>
+            Welcome to your library.
+        </h1>
+
         <p>
             Your private collection of movies and web series — all in one place.
         </p>
+
     </section>
 
 
-    <!-- MOVIES -->
 
-    <section class="section" id="moviesSection">
+    <!-- =========================
+         MOVIES
+    ========================== -->
+
+    <section
+        class="section"
+        id="moviesSection"
+    >
 
         <div class="section-header">
-            <div class="section-title">🎬 Movies</div>
-            <div class="count" id="movieCount">Loading...</div>
+
+            <div class="section-title">
+                🎬 Movies
+            </div>
+
+            <div
+                class="count"
+                id="movieCount"
+            >
+                Loading...
+            </div>
+
         </div>
 
-        <div class="grid" id="moviesGrid">
-            <div class="message">Loading movies...</div>
+
+        <div
+            class="grid"
+            id="moviesGrid"
+        >
+
+            <div class="message">
+                Loading movies...
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- WEB SERIES -->
 
-    <section class="section" id="seriesSection">
+    <!-- =========================
+         WEB SERIES
+    ========================== -->
+
+    <section
+        class="section"
+        id="seriesSection"
+    >
 
         <div class="section-header">
-            <div class="section-title">📺 Web Series</div>
-            <div class="count" id="seriesCount">Loading...</div>
+
+            <div class="section-title">
+                📺 Web Series
+            </div>
+
+            <div
+                class="count"
+                id="seriesCount"
+            >
+                Loading...
+            </div>
+
         </div>
 
-        <div class="grid" id="seriesGrid">
-            <div class="message">Loading web series...</div>
+
+        <div
+            class="grid"
+            id="seriesGrid"
+        >
+
+            <div class="message">
+                Loading web series...
+            </div>
+
         </div>
 
     </section>
+
 
 </main>
+
 
 
 <script>
@@ -290,7 +426,8 @@ body {
    GOOGLE DRIVE SETTINGS
 ================================================== */
 
-const GOOGLE_API_KEY = "AIzaSyDj5VSHNGM4z9sR8f_YyZfBZvIwSkOnlfk";
+const GOOGLE_API_KEY =
+    "AIzaSyDj5VSHNGM4z9sR8f_YyZfBZvIwSkOnlfk";
 
 
 const MOVIES_FOLDER =
@@ -306,33 +443,54 @@ const SERIES_FOLDER =
 ================================================== */
 
 const moviesGrid =
-    document.getElementById("moviesGrid");
+    document.getElementById(
+        "moviesGrid"
+    );
+
 
 const seriesGrid =
-    document.getElementById("seriesGrid");
+    document.getElementById(
+        "seriesGrid"
+    );
+
 
 const movieCount =
-    document.getElementById("movieCount");
+    document.getElementById(
+        "movieCount"
+    );
+
 
 const seriesCount =
-    document.getElementById("seriesCount");
+    document.getElementById(
+        "seriesCount"
+    );
+
 
 const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+        "searchInput"
+    );
+
 
 const moviesSection =
-    document.getElementById("moviesSection");
+    document.getElementById(
+        "moviesSection"
+    );
+
 
 const seriesSection =
-    document.getElementById("seriesSection");
+    document.getElementById(
+        "seriesSection"
+    );
 
 
 let movies = [];
+
 let series = [];
 
 
 /* ==================================================
-   GET FILES FROM GOOGLE DRIVE
+   GET DRIVE FILES
 ================================================== */
 
 async function getDriveFiles(folderId) {
@@ -340,16 +498,23 @@ async function getDriveFiles(folderId) {
     const query =
         `'${folderId}' in parents and trashed = false`;
 
+
     const url =
         "https://www.googleapis.com/drive/v3/files" +
-        "?q=" + encodeURIComponent(query) +
+        "?q=" +
+        encodeURIComponent(query) +
         "&fields=files(id,name,mimeType,size,modifiedTime)" +
         "&pageSize=1000" +
         "&orderBy=name" +
-        "&key=" + encodeURIComponent(GOOGLE_API_KEY);
+        "&key=" +
+        encodeURIComponent(
+            GOOGLE_API_KEY
+        );
+
 
     const response =
         await fetch(url);
+
 
     if (!response.ok) {
 
@@ -357,103 +522,277 @@ async function getDriveFiles(folderId) {
             "Google Drive API error: " +
             response.status
         );
+
     }
+
 
     const data =
         await response.json();
+
 
     return data.files || [];
 }
 
 
 /* ==================================================
-   CLEAN MOVIE NAME
+   CLEAN NAME
 ================================================== */
 
 function cleanName(name) {
 
     return name
-        .replace(/\.[^/.]+$/, "")
-        .replace(/\./g, " ")
-        .replace(/_/g, " ")
+
+        .replace(
+            /\.[^/.]+$/,
+            ""
+        )
+
+        .replace(
+            /[_\.]+/g,
+            " "
+        )
+
         .trim();
+
 }
 
 
 /* ==================================================
-   CREATE CARD
+   CHECK VIDEO
 ================================================== */
 
-function createCard(file, type) {
+function isVideo(file) {
+
+    const name =
+        file.name.toLowerCase();
+
+
+    return (
+
+        name.endsWith(".mp4") ||
+
+        name.endsWith(".mkv") ||
+
+        name.endsWith(".webm") ||
+
+        name.endsWith(".mov") ||
+
+        name.endsWith(".m4v") ||
+
+        name.endsWith(".avi")
+
+    );
+
+}
+
+
+/* ==================================================
+   PARSE SEASON / EPISODE
+================================================== */
+
+function parseEpisode(file) {
+
+    const name =
+        file.name;
+
+
+    const match =
+        name.match(
+            /s(\d{1,2})e(\d{1,3})/i
+        );
+
+
+    if (!match) {
+
+        return null;
+
+    }
+
+
+    const season =
+        Number(
+            match[1]
+        );
+
+
+    const episode =
+        Number(
+            match[2]
+        );
+
+
+    let seriesName =
+        name.substring(
+            0,
+            match.index
+        );
+
+
+    seriesName =
+        seriesName
+            .replace(
+                /[\._\-]+$/,
+                ""
+            )
+            .replace(
+                /[\._]+/g,
+                " "
+            )
+            .trim();
+
+
+    return {
+
+        season: season,
+
+        episode: episode,
+
+        seriesName: seriesName,
+
+        file: file
+
+    };
+
+}
+
+
+/* ==================================================
+   DRIVE VIDEO URL
+================================================== */
+
+function getVideoURL(file) {
+
+    return (
+        "https://www.googleapis.com/drive/v3/files/" +
+        file.id +
+        "?alt=media&key=" +
+        encodeURIComponent(
+            GOOGLE_API_KEY
+        )
+    );
+
+}
+
+
+/* ==================================================
+   CREATE MOVIE CARD
+================================================== */
+
+function createMovieCard(file) {
 
     const card =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    card.className = "card";
+
+    card.className =
+        "card";
+
 
     const poster =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    poster.className = "poster";
+
+    poster.className =
+        "poster";
+
+
     poster.textContent =
-        type === "movie" ? "🎬" : "📺";
+        "🎬";
 
 
     const info =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    info.className = "card-info";
+
+    info.className =
+        "card-info";
 
 
     const title =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    title.className = "card-title";
+
+    title.className =
+        "card-title";
+
 
     title.textContent =
-        cleanName(file.name);
+        cleanName(
+            file.name
+        );
 
 
-    const typeText =
-        document.createElement("div");
-
-    typeText.className = "card-type";
-
-    typeText.textContent =
-        type === "movie"
-        ? "Movie"
-        : "Web Series";
+    const type =
+        document.createElement(
+            "div"
+        );
 
 
-    info.appendChild(title);
-    info.appendChild(typeText);
-
-    card.appendChild(poster);
-    card.appendChild(info);
+    type.className =
+        "card-type";
 
 
-    card.onclick = function() {
-
-        const encodedVideo =
-            encodeURIComponent(
-                "https://www.googleapis.com/drive/v3/files/" +
-                file.id +
-                "?alt=media&key=" +
-                GOOGLE_API_KEY
-            );
-
-        const encodedTitle =
-            encodeURIComponent(
-                cleanName(file.name)
-            );
+    type.textContent =
+        "Movie";
 
 
-        window.location.href =
-            "player.html?video=" +
-            encodedVideo +
-            "&title=" +
-            encodedTitle;
-    };
+    info.appendChild(
+        title
+    );
+
+
+    info.appendChild(
+        type
+    );
+
+
+    card.appendChild(
+        poster
+    );
+
+
+    card.appendChild(
+        info
+    );
+
+
+    card.onclick =
+        function() {
+
+            const video =
+                getVideoURL(
+                    file
+                );
+
+
+            const url =
+                "player.html" +
+
+                "?video=" +
+                encodeURIComponent(
+                    video
+                ) +
+
+                "&title=" +
+                encodeURIComponent(
+                    cleanName(
+                        file.name
+                    )
+                );
+
+
+            window.location.href =
+                url;
+
+        };
 
 
     return card;
@@ -461,59 +800,421 @@ function createCard(file, type) {
 
 
 /* ==================================================
-   DISPLAY FILES
+   CREATE WEB SERIES CARD
 ================================================== */
 
-function displayFiles() {
+function createSeriesCard(
+    seriesData
+) {
 
-    moviesGrid.innerHTML = "";
-    seriesGrid.innerHTML = "";
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "card";
+
+
+    const poster =
+        document.createElement(
+            "div"
+        );
+
+
+    poster.className =
+        "poster";
+
+
+    poster.textContent =
+        "📺";
+
+
+    const info =
+        document.createElement(
+            "div"
+        );
+
+
+    info.className =
+        "card-info";
+
+
+    const title =
+        document.createElement(
+            "div"
+        );
+
+
+    title.className =
+        "card-title";
+
+
+    title.textContent =
+        seriesData.name;
+
+
+    const type =
+        document.createElement(
+            "div"
+        );
+
+
+    type.className =
+        "card-type";
+
+
+    type.textContent =
+        "Web Series";
+
+
+    const episodeText =
+        document.createElement(
+            "div"
+        );
+
+
+    episodeText.className =
+        "card-episodes";
+
+
+    episodeText.textContent =
+        seriesData.episodes.length +
+        " episodes";
+
+
+    info.appendChild(
+        title
+    );
+
+
+    info.appendChild(
+        type
+    );
+
+
+    info.appendChild(
+        episodeText
+    );
+
+
+    card.appendChild(
+        poster
+    );
+
+
+    card.appendChild(
+        info
+    );
+
+
+    card.onclick =
+        function() {
+
+            openSeries(
+                seriesData
+            );
+
+        };
+
+
+    return card;
+}
+
+
+/* ==================================================
+   OPEN SERIES
+================================================== */
+
+function openSeries(
+    seriesData
+) {
+
+    const sortedEpisodes =
+        seriesData.episodes
+            .sort(
+                function(a, b) {
+
+                    if (
+                        a.season !==
+                        b.season
+                    ) {
+
+                        return (
+                            a.season -
+                            b.season
+                        );
+
+                    }
+
+
+                    return (
+                        a.episode -
+                        b.episode
+                    );
+
+                }
+            );
+
+
+    const firstEpisode =
+        sortedEpisodes[0];
+
+
+    const episodeData =
+        sortedEpisodes.map(
+            function(item) {
+
+                return {
+
+                    season:
+                        item.season,
+
+                    episode:
+                        item.episode,
+
+                    title:
+                        seriesData.name +
+                        " - S" +
+                        String(
+                            item.season
+                        ).padStart(
+                            2,
+                            "0"
+                        ) +
+                        "E" +
+                        String(
+                            item.episode
+                        ).padStart(
+                            2,
+                            "0"
+                        ),
+
+                    video:
+                        getVideoURL(
+                            item.file
+                        )
+
+                };
+
+            }
+        );
+
+
+    const firstVideo =
+        getVideoURL(
+            firstEpisode.file
+        );
+
+
+    const url =
+        "player.html" +
+
+        "?video=" +
+        encodeURIComponent(
+            firstVideo
+        ) +
+
+        "&title=" +
+        encodeURIComponent(
+            seriesData.name +
+            " - S" +
+            String(
+                firstEpisode.season
+            ).padStart(
+                2,
+                "0"
+            ) +
+            "E" +
+            String(
+                firstEpisode.episode
+            ).padStart(
+                2,
+                "0"
+            )
+        ) +
+
+        "&episodes=" +
+        encodeURIComponent(
+            JSON.stringify(
+                episodeData
+            )
+        );
+
+
+    window.location.href =
+        url;
+
+}
+
+
+/* ==================================================
+   BUILD SERIES
+================================================== */
+
+function buildSeries(
+    files
+) {
+
+    const seriesMap =
+        {};
+
+
+    files.forEach(
+        function(file) {
+
+            if (!isVideo(file)) {
+
+                return;
+
+            }
+
+
+            const parsed =
+                parseEpisode(
+                    file
+                );
+
+
+            if (!parsed) {
+
+                return;
+
+            }
+
+
+            const key =
+                parsed.seriesName
+                    .toLowerCase();
+
+
+            if (
+                !seriesMap[key]
+            ) {
+
+                seriesMap[key] = {
+
+                    name:
+                        parsed.seriesName,
+
+                    episodes: []
+
+                };
+
+            }
+
+
+            seriesMap[key]
+                .episodes
+                .push(
+                    parsed
+                );
+
+        }
+    );
+
+
+    return Object.values(
+        seriesMap
+    );
+
+}
+
+
+/* ==================================================
+   DISPLAY MOVIES
+================================================== */
+
+function displayMovies() {
+
+    moviesGrid.innerHTML =
+        "";
 
 
     movieCount.textContent =
         movies.length +
-        (movies.length === 1 ? " title" : " titles");
+        (
+            movies.length === 1
+            ? " title"
+            : " titles"
+        );
+
+
+    if (
+        movies.length === 0
+    ) {
+
+        moviesGrid.innerHTML =
+            '<div class="message">' +
+            'No movies yet.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    movies.forEach(
+        function(file) {
+
+            moviesGrid.appendChild(
+                createMovieCard(
+                    file
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   DISPLAY SERIES
+================================================== */
+
+function displaySeries() {
+
+    seriesGrid.innerHTML =
+        "";
 
 
     seriesCount.textContent =
         series.length +
-        (series.length === 1 ? " title" : " titles");
+        (
+            series.length === 1
+            ? " series"
+            : " series"
+        );
 
 
-    if (movies.length === 0) {
-
-        moviesGrid.innerHTML =
-            '<div class="message">No movies yet.</div>';
-
-    } else {
-
-        movies.forEach(function(file) {
-
-            moviesGrid.appendChild(
-                createCard(file, "movie")
-            );
-
-        });
-
-    }
-
-
-    if (series.length === 0) {
+    if (
+        series.length === 0
+    ) {
 
         seriesGrid.innerHTML =
-            '<div class="message">No web series yet.</div>';
+            '<div class="message">' +
+            'No web series yet.' +
+            '</div>';
 
-    } else {
-
-        series.forEach(function(file) {
-
-            seriesGrid.appendChild(
-                createCard(file, "series")
-            );
-
-        });
+        return;
 
     }
+
+
+    series.forEach(
+        function(item) {
+
+            seriesGrid.appendChild(
+                createSeriesCard(
+                    item
+                )
+            );
+
+        }
+    );
+
 }
 
 
@@ -541,31 +1242,40 @@ async function loadLibrary() {
 
         movies =
             results[0].filter(
-                file =>
-                    file.mimeType !==
-                    "application/vnd.google-apps.folder"
+                function(file) {
+
+                    return (
+                        file.mimeType !==
+                        "application/vnd.google-apps.folder"
+                    );
+
+                }
             );
 
 
         series =
-            results[1].filter(
-                file =>
-                    file.mimeType !==
-                    "application/vnd.google-apps.folder"
+            buildSeries(
+                results[1]
             );
 
 
-        displayFiles();
+        displayMovies();
+
+        displaySeries();
 
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         moviesGrid.innerHTML =
             '<div class="message error">' +
             'Unable to load movies.' +
             '</div>';
+
 
         seriesGrid.innerHTML =
             '<div class="message error">' +
@@ -573,6 +1283,7 @@ async function loadLibrary() {
             '</div>';
 
     }
+
 }
 
 
@@ -591,10 +1302,15 @@ searchInput.addEventListener(
 
 
         const movieCards =
-            moviesGrid.querySelectorAll(".card");
+            moviesGrid.querySelectorAll(
+                ".card"
+            );
+
 
         const seriesCards =
-            seriesGrid.querySelectorAll(".card");
+            seriesGrid.querySelectorAll(
+                ".card"
+            );
 
 
         movieCards.forEach(
@@ -603,12 +1319,17 @@ searchInput.addEventListener(
                 const name =
                     cleanName(
                         movies[index].name
-                    ).toLowerCase();
+                    )
+                    .toLowerCase();
+
 
                 card.style.display =
-                    name.includes(search)
+                    name.includes(
+                        search
+                    )
                     ? ""
                     : "none";
+
             }
         );
 
@@ -617,14 +1338,18 @@ searchInput.addEventListener(
             function(card, index) {
 
                 const name =
-                    cleanName(
-                        series[index].name
-                    ).toLowerCase();
+                    series[index]
+                        .name
+                        .toLowerCase();
+
 
                 card.style.display =
-                    name.includes(search)
+                    name.includes(
+                        search
+                    )
                     ? ""
                     : "none";
+
             }
         );
 
@@ -637,8 +1362,11 @@ searchInput.addEventListener(
 ================================================== */
 
 document
-    .getElementById("homeBtn")
-    .onclick = function() {
+    .getElementById(
+        "homeBtn"
+    )
+    .onclick =
+    function() {
 
         window.scrollTo({
             top: 0,
@@ -649,8 +1377,11 @@ document
 
 
 document
-    .getElementById("moviesBtn")
-    .onclick = function() {
+    .getElementById(
+        "moviesBtn"
+    )
+    .onclick =
+    function() {
 
         moviesSection.scrollIntoView({
             behavior: "smooth"
@@ -660,8 +1391,11 @@ document
 
 
 document
-    .getElementById("seriesBtn")
-    .onclick = function() {
+    .getElementById(
+        "seriesBtn"
+    )
+    .onclick =
+    function() {
 
         seriesSection.scrollIntoView({
             behavior: "smooth"
