@@ -22,166 +22,411 @@
 
 html,
 body {
-
     margin: 0;
     padding: 0;
-
     width: 100%;
     min-height: 100%;
-
     background: #000;
     color: #fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-body {
-
-    overflow-x: hidden;
-
-}
-
-
-/* =========================
-   HEADER
-========================= */
 
 .header {
-
     height: 72px;
-
     width: 100%;
 
     background: #050505;
-
     border-bottom: 1px solid #202020;
 
     display: flex;
-
     align-items: center;
 
     padding: 0 35px;
-
     gap: 25px;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-
 }
 
 
 .back-btn {
-
     background: #080808;
-
-    color: white;
+    color: #fff;
 
     border: 1px solid #333;
-
     border-radius: 6px;
 
     padding: 10px 18px;
 
     font-size: 15px;
-
     cursor: pointer;
-
 }
 
 
 .back-btn:hover {
-
     background: #181818;
-
 }
 
 
 .logo {
-
     font-size: 20px;
-
     font-weight: 800;
-
 }
 
 
 .logo span {
-
     color: #e50914;
-
 }
 
 
-/* =========================
-   PLAYER
-========================= */
-
-.player-area {
-
+.player-page {
     width: 100%;
-
-    height: calc(100vh - 72px);
-
-    min-height: 500px;
+    min-height: calc(100vh - 72px);
 
     background: #000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.video-section {
+    width: 100%;
+
+    height: calc(100vh - 145px);
+    min-height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     position: relative;
 
+    background: #000;
+
+    overflow: hidden;
 }
 
 
-.drive-player {
+.video-container {
+    position: relative;
 
     width: 100%;
-
     height: 100%;
 
-    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    display: block;
+    background: #000;
+}
+
+
+video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
 
     background: #000;
 
+    display: block;
 }
 
 
-/* =========================
-   SERIES CONTROLS
-========================= */
+.controls {
+    position: absolute;
 
-.series-controls {
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 0 20px 12px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.85)
+        );
+
+    z-index: 10;
+}
+
+
+.timeline-area {
+    width: 100%;
+
+    position: relative;
+
+    padding-top: 72px;
+}
+
+
+.preview-box {
+    position: absolute;
+
+    bottom: 18px;
+    left: 0;
+
+    width: 180px;
+    height: 102px;
+
+    background: #111;
+
+    border: 2px solid #333;
+    border-radius: 4px;
+
+    overflow: hidden;
 
     display: none;
 
-    background: #080808;
+    pointer-events: none;
 
-    border-top: 1px solid #222;
+    z-index: 50;
 
-    border-bottom: 1px solid #222;
-
-    padding: 18px 35px;
-
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.8);
 }
 
 
-.series-controls.show {
+.preview-box canvas {
+    width: 100%;
+    height: 100%;
 
     display: block;
-
 }
 
 
-.selector-row {
+.preview-time {
+    position: absolute;
 
+    bottom: 3px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    text-shadow:
+        0 1px 3px #000;
+}
+
+
+.timeline {
+    position: relative;
+
+    width: 100%;
+    height: 5px;
+
+    background: #666;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+.timeline-buffer {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 0;
+
+    background: #999;
+
+    border-radius: 10px;
+
+    pointer-events: none;
+}
+
+
+.timeline-progress {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 0;
+
+    background: #e50914;
+
+    border-radius: 10px;
+
+    pointer-events: none;
+}
+
+
+.timeline-thumb {
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #e50914;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    left: 0;
+
+    pointer-events: none;
+}
+
+
+.control-row {
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.control-btn {
+    background: none;
+
+    border: none;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    width: 30px;
+    height: 35px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+}
+
+
+.control-btn:hover {
+    color: #e50914;
+}
+
+
+.time {
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    color: #ddd;
+}
+
+
+.volume-container {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.volume-slider {
+    width: 80px;
+}
+
+
+.control-spacer {
+    flex: 1;
+}
+
+
+.speed-wrapper,
+.quality-wrapper {
+    position: relative;
+}
+
+
+.menu {
+    position: absolute;
+
+    bottom: 45px;
+    right: 0;
+
+    background: #181818;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    min-width: 130px;
+
+    padding: 6px 0;
+
+    display: none;
+
+    z-index: 100;
+}
+
+
+.menu button {
+    display: block;
+
+    width: 100%;
+
+    background: none;
+
+    border: none;
+
+    color: #fff;
+
+    text-align: left;
+
+    padding: 9px 14px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.menu button:hover {
+    background: #333;
+}
+
+
+.movie-title {
+    padding: 18px 35px 12px;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+    background: #000;
+}
+
+
+.series-panel {
+    display: none;
+
+    padding: 10px 35px 30px;
+
+    background: #000;
+}
+
+
+.series-panel.visible {
+    display: block;
+}
+
+
+.season-row {
     display: flex;
 
     align-items: center;
@@ -190,239 +435,129 @@ body {
 
     flex-wrap: wrap;
 
+    margin-bottom: 14px;
 }
 
 
-.selector {
+.season-label {
+    font-size: 14px;
 
+    color: #aaa;
+}
+
+
+.season-btn,
+.episode-btn {
     background: #151515;
 
-    color: white;
+    color: #fff;
 
     border: 1px solid #333;
 
     border-radius: 6px;
 
-    padding: 11px 16px;
-
-    font-size: 14px;
+    padding: 9px 14px;
 
     cursor: pointer;
-
 }
 
 
-.selector:hover {
-
-    background: #202020;
-
-}
-
-
-.selector.active {
+.season-btn.active,
+.episode-btn.active {
+    background: #e50914;
 
     border-color: #e50914;
-
 }
 
 
-/* =========================
-   EPISODE LIST
-========================= */
-
-.episode-list {
-
-    max-height: 0;
-
-    overflow: hidden;
-
-    opacity: 0;
-
-    transition:
-        max-height .35s ease,
-        opacity .25s ease;
-
-}
-
-
-.episode-list.open {
-
-    max-height: 500px;
-
-    opacity: 1;
-
-    margin-top: 15px;
-
-    overflow-y: auto;
-
-}
-
-
-.episode-item {
-
+.episode-row {
     display: flex;
 
-    align-items: center;
+    gap: 10px;
 
-    gap: 15px;
-
-    width: 100%;
-
-    background: #111;
-
-    border: 1px solid #222;
-
-    color: white;
-
-    padding: 13px 15px;
-
-    margin-bottom: 7px;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    text-align: left;
-
+    flex-wrap: wrap;
 }
 
 
-.episode-item:hover {
-
-    background: #1c1c1c;
-
+.episode-btn {
+    min-width: 70px;
 }
 
 
-.episode-item.active {
+.error-message {
+    display: none;
 
-    background: #1b1b1b;
+    position: absolute;
 
-    border-color: #e50914;
+    left: 50%;
+    top: 50%;
 
+    transform:
+        translate(-50%, -50%);
+
+    color: #aaa;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    z-index: 5;
 }
 
-
-.episode-number {
-
-    color: #999;
-
-    min-width: 65px;
-
-    font-size: 13px;
-
-}
-
-
-.episode-name {
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-}
-
-
-/* =========================
-   TITLE
-========================= */
-
-.movie-title {
-
-    min-height: 58px;
-
-    padding: 17px 35px;
-
-    background: #000;
-
-    font-size: 20px;
-
-    font-weight: 700;
-
-    border-top: 1px solid #111;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-.message {
-
-    padding: 25px 35px;
-
-    color: #777;
-
-    background: #000;
-
-}
-
-
-.error {
-
-    color: #e50914;
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 700px) {
 
     .header {
-
         height: 60px;
 
         padding: 0 15px;
-
     }
 
 
     .logo {
-
         font-size: 17px;
-
     }
 
 
-    .back-btn {
+    .video-section {
+        height: calc(100vh - 115px);
 
-        padding: 8px 12px;
-
+        min-height: 300px;
     }
 
 
-    .player-area {
-
-        height: 55vh;
-
-        min-height: 250px;
-
+    .controls {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
 
-    .series-controls {
+    .volume-slider {
+        display: none;
+    }
 
-        padding: 15px;
 
+    .quality-btn {
+        display: none;
     }
 
 
     .movie-title {
+        padding: 12px 15px;
 
-        padding: 13px 15px;
+        font-size: 20px;
+    }
 
-        font-size: 17px;
 
+    .series-panel {
+        padding: 8px 15px 20px;
+    }
+
+
+    .preview-box {
+        width: 140px;
+
+        height: 79px;
     }
 
 }
@@ -435,119 +570,326 @@ body {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="header">
-
-    <button
-        class="back-btn"
-        onclick="goBack()"
-    >
-        ← Back
-    </button>
+<div class="player-page">
 
 
-    <div class="logo">
-
-        MY <span>LIBRARY</span>
-
-    </div>
-
-</header>
-
-
-
-<!-- =========================
-     PLAYER
-========================= -->
-
-<div class="player-area">
-
-    <iframe
-        id="drivePlayer"
-        class="drive-player"
-        allow="autoplay; fullscreen"
-        allowfullscreen
-        frameborder="0"
-    ></iframe>
-
-</div>
-
-
-
-<!-- =========================
-     SERIES CONTROLS
-========================= -->
-
-<div
-    class="series-controls"
-    id="seriesControls"
->
-
-    <div class="selector-row">
-
-        <!-- SEASON BUTTON -->
+    <div class="header">
 
         <button
-            class="selector"
-            id="seasonButton"
+            class="back-btn"
+            onclick="goBack()"
         >
-            Season 1
+            ← Back
         </button>
 
 
-        <!-- EPISODE BUTTON -->
+        <div class="logo">
 
-        <button
-            class="selector"
-            id="episodeButton"
-        >
-            Episodes ▾
-        </button>
+            MY <span>LIBRARY</span>
+
+        </div>
 
     </div>
 
 
-    <!-- EPISODE LIST -->
+
+    <div class="video-section">
+
+
+        <div
+            class="video-container"
+            id="videoContainer"
+        >
+
+
+            <video
+                id="video"
+                preload="metadata"
+                playsinline
+            ></video>
+
+
+
+            <div class="controls">
+
+
+                <div class="timeline-area">
+
+
+                    <div
+                        class="preview-box"
+                        id="previewBox"
+                    >
+
+                        <canvas
+                            id="previewCanvas"
+                            width="180"
+                            height="102"
+                        ></canvas>
+
+
+                        <div
+                            class="preview-time"
+                            id="previewTime"
+                        >
+                            00:00
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        class="timeline"
+                        id="timeline"
+                    >
+
+                        <div
+                            class="timeline-buffer"
+                            id="buffer"
+                        ></div>
+
+
+                        <div
+                            class="timeline-progress"
+                            id="progress"
+                        ></div>
+
+
+                        <div
+                            class="timeline-thumb"
+                            id="thumb"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="control-row">
+
+
+                    <button
+                        class="control-btn"
+                        id="rewindBtn"
+                        title="Rewind 10 seconds"
+                    >
+                        ↶
+                    </button>
+
+
+                    <button
+                        class="control-btn"
+                        id="playBtn"
+                        title="Play / Pause"
+                    >
+                        ▶
+                    </button>
+
+
+                    <button
+                        class="control-btn"
+                        id="forwardBtn"
+                        title="Forward 10 seconds"
+                    >
+                        ↷
+                    </button>
+
+
+
+                    <div class="volume-container">
+
+
+                        <button
+                            class="control-btn"
+                            id="muteBtn"
+                            title="Mute"
+                        >
+                            🔊
+                        </button>
+
+
+                        <input
+                            class="volume-slider"
+                            id="volumeSlider"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                        >
+
+                    </div>
+
+
+
+                    <div class="time">
+
+                        <span id="currentTime">
+                            00:00
+                        </span>
+
+                        /
+
+                        <span id="duration">
+                            00:00
+                        </span>
+
+                    </div>
+
+
+                    <div class="control-spacer"></div>
+
+
+
+                    <div class="speed-wrapper">
+
+
+                        <button
+                            class="control-btn"
+                            id="speedBtn"
+                            title="Playback speed"
+                        >
+                            ⚡
+                        </button>
+
+
+                        <div
+                            class="menu"
+                            id="speedMenu"
+                        >
+
+                            <button data-speed="0.5">
+                                0.5×
+                            </button>
+
+                            <button data-speed="0.75">
+                                0.75×
+                            </button>
+
+                            <button data-speed="1">
+                                Normal
+                            </button>
+
+                            <button data-speed="1.25">
+                                1.25×
+                            </button>
+
+                            <button data-speed="1.5">
+                                1.5×
+                            </button>
+
+                            <button data-speed="2">
+                                2×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="quality-wrapper">
+
+
+                        <button
+                            class="control-btn quality-btn"
+                            id="qualityBtn"
+                            title="Quality"
+                        >
+                            ⚙
+                        </button>
+
+
+                        <div
+                            class="menu"
+                            id="qualityMenu"
+                        >
+
+                            <button data-quality="auto">
+                                Auto
+                            </button>
+
+                            <button data-quality="1080">
+                                1080p
+                            </button>
+
+                            <button data-quality="720">
+                                720p
+                            </button>
+
+                            <button data-quality="480">
+                                480p
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button
+                        class="control-btn"
+                        id="fullscreenBtn"
+                        title="Fullscreen"
+                    >
+                        ⛶
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
 
     <div
-        class="episode-list"
-        id="episodeList"
-    ></div>
+        class="movie-title"
+        id="movieTitle"
+    >
+        Now Playing
+    </div>
 
-</div>
+
+
+    <div
+        class="series-panel"
+        id="seriesPanel"
+    >
+
+        <div
+            class="season-row"
+            id="seasonRow"
+        ></div>
+
+
+        <div
+            class="episode-row"
+            id="episodeRow"
+        ></div>
+
+    </div>
 
 
 
-<!-- =========================
-     TITLE
-========================= -->
+    <div
+        class="error-message"
+        id="errorMessage"
+    >
+        No video was supplied.
+        <br>
+        Please open a movie from your library.
+    </div>
 
-<div
-    class="movie-title"
-    id="movieTitle"
->
-    Now Playing
 </div>
 
 
 
 <script>
-
-
-/* ==================================================
-   GOOGLE DRIVE SETTINGS
-================================================== */
-
-const GOOGLE_API_KEY =
-    "AIzaSyCX2HgwFLIgtOYw66bJh010TPIn3ibJ80w";
-
-
-const SERIES_FOLDER =
-    "1ltCVLmorFbWGEt8kx547kDjwSBxJxAGf";
-
 
 
 /* ==================================================
@@ -561,20 +903,64 @@ const params =
 
 
 const type =
-    params.get("type") || "movie";
-
-
-const seriesName =
-    params.get("series") || "";
+    params.get("type") ||
+    "movie";
 
 
 const videoURL =
-    params.get("video") || "";
+    params.get("video") ||
+    "";
 
 
-const originalTitle =
+const title =
     params.get("title") ||
     "Now Playing";
+
+
+const seriesTitle =
+    params.get("series") ||
+    title;
+
+
+
+/* ==================================================
+   GOOGLE DRIVE SETTINGS
+
+   MOVIES ARE NOT TOUCHED.
+
+   This is only used to rebuild
+   the SERIES episode list.
+================================================== */
+
+const GOOGLE_API_KEY =
+    "PASTE_YOUR_API_KEY_HERE";
+
+
+const SERIES_FOLDER =
+    "1ltCVLmorFbWGEt8kx547kDjwSBxJxAGf";
+
+
+
+/* ==================================================
+   EPISODES
+================================================== */
+
+let episodes = [];
+
+
+try {
+
+    episodes =
+        JSON.parse(
+            params.get("episodes") ||
+            "[]"
+        );
+
+} catch (e) {
+
+    episodes = [];
+
+}
 
 
 
@@ -582,9 +968,87 @@ const originalTitle =
    ELEMENTS
 ================================================== */
 
-const drivePlayer =
+const video =
     document.getElementById(
-        "drivePlayer"
+        "video"
+    );
+
+
+const videoContainer =
+    document.getElementById(
+        "videoContainer"
+    );
+
+
+const playBtn =
+    document.getElementById(
+        "playBtn"
+    );
+
+
+const rewindBtn =
+    document.getElementById(
+        "rewindBtn"
+    );
+
+
+const forwardBtn =
+    document.getElementById(
+        "forwardBtn"
+    );
+
+
+const muteBtn =
+    document.getElementById(
+        "muteBtn"
+    );
+
+
+const volumeSlider =
+    document.getElementById(
+        "volumeSlider"
+    );
+
+
+const fullscreenBtn =
+    document.getElementById(
+        "fullscreenBtn"
+    );
+
+
+const timeline =
+    document.getElementById(
+        "timeline"
+    );
+
+
+const progress =
+    document.getElementById(
+        "progress"
+    );
+
+
+const buffer =
+    document.getElementById(
+        "buffer"
+    );
+
+
+const thumb =
+    document.getElementById(
+        "thumb"
+    );
+
+
+const currentTime =
+    document.getElementById(
+        "currentTime"
+    );
+
+
+const duration =
+    document.getElementById(
+        "duration"
     );
 
 
@@ -594,48 +1058,146 @@ const movieTitle =
     );
 
 
-const seriesControls =
+const speedBtn =
     document.getElementById(
-        "seriesControls"
+        "speedBtn"
     );
 
 
-const episodeButton =
+const speedMenu =
     document.getElementById(
-        "episodeButton"
+        "speedMenu"
     );
 
 
-const episodeList =
+const qualityBtn =
     document.getElementById(
-        "episodeList"
+        "qualityBtn"
     );
 
 
-const seasonButton =
+const qualityMenu =
     document.getElementById(
-        "seasonButton"
+        "qualityMenu"
+    );
+
+
+const seriesPanel =
+    document.getElementById(
+        "seriesPanel"
+    );
+
+
+const seasonRow =
+    document.getElementById(
+        "seasonRow"
+    );
+
+
+const episodeRow =
+    document.getElementById(
+        "episodeRow"
+    );
+
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+
+const previewBox =
+    document.getElementById(
+        "previewBox"
+    );
+
+
+const previewCanvas =
+    document.getElementById(
+        "previewCanvas"
+    );
+
+
+const previewTime =
+    document.getElementById(
+        "previewTime"
     );
 
 
 
 /* ==================================================
-   DATA
+   TIME FORMAT
 ================================================== */
 
-let seriesEpisodes = [];
+function formatTime(
+    seconds
+) {
 
-let currentEpisode = null;
+    if (!isFinite(seconds)) {
+
+        return "00:00";
+
+    }
+
+
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        Math.floor(
+            seconds % 60
+        );
+
+
+    if (hours > 0) {
+
+        return (
+            String(hours).padStart(2, "0")
+            +
+            ":"
+            +
+            String(minutes).padStart(2, "0")
+            +
+            ":"
+            +
+            String(secs).padStart(2, "0")
+        );
+
+    }
+
+
+    return (
+        String(minutes).padStart(2, "0")
+        +
+        ":"
+        +
+        String(secs).padStart(2, "0")
+    );
+
+}
 
 
 
 /* ==================================================
-   CLEAN NAME
+   CLEAN FILE NAME
 ================================================== */
 
-function cleanName(name) {
+function cleanFileName(
+    name
+) {
 
-    return name
+    return String(
+        name || ""
+    )
 
         .replace(
             /\.[^/.]+$/,
@@ -643,12 +1205,12 @@ function cleanName(name) {
         )
 
         .replace(
-            /\./g,
+            /[._]+/g,
             " "
         )
 
         .replace(
-            /_/g,
+            /\s+/g,
             " "
         )
 
@@ -659,14 +1221,302 @@ function cleanName(name) {
 
 
 /* ==================================================
-   GET DRIVE FILES
+   NORMALIZE
 ================================================== */
 
-async function getDriveFiles() {
+function normalizeName(
+    name
+) {
+
+    return cleanFileName(
+        name
+    )
+
+        .toLowerCase()
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
+
+}
+
+
+
+/* ==================================================
+   PARSE SERIES FILE NAME
+================================================== */
+
+/*
+   Supports:
+
+   Bhay S01EP01
+   Bhay S02EP02
+   Bhay S01E01
+   Bhay Season 1 Episode 1
+   Bhay Season2 Episode2
+   Bhay - S02 - Episode 2
+*/
+
+function parseEpisodeName(
+    fileName,
+    index
+) {
+
+    const clean =
+        cleanFileName(
+            fileName
+        );
+
+
+    let match =
+        clean.match(
+            /^(.*?)\s*S(\d{1,2})\s*(?:E|EP)\s*(\d{1,3})(?:\s+(.*))?$/i
+        );
+
+
+    if (!match) {
+
+        match =
+            clean.match(
+                /^(.*?)\s*Season\s*(\d{1,2})\s*(?:Episode|Ep)\s*(\d{1,3})(?:\s+(.*))?$/i
+            );
+
+    }
+
+
+    if (!match) {
+
+        match =
+            clean.match(
+                /^(.*?)\s*Season\s*(\d{1,2})(?:\s+Episode\s*(\d{1,3}))?(?:\s+(.*))?$/i
+            );
+
+    }
+
+
+    if (match) {
+
+        const show =
+            (match[1] || "").trim();
+
+
+        const season =
+            Number(match[2]) || 1;
+
+
+        const episode =
+            Number(match[3]) ||
+            (index + 1);
+
+
+        const extra =
+            (match[4] || "").trim();
+
+
+        return {
+
+            show:
+                show || seriesTitle,
+
+            season:
+                season,
+
+            episode:
+                episode,
+
+            episodeName:
+                extra ||
+                "Episode " +
+                episode
+
+        };
+
+    }
+
+
+
+    /*
+
+       Also accept:
+
+       Bhay - S02 - Episode 2
+
+    */
+
+    const seasonOnly =
+        clean.match(
+            /^(.*?)\s*S(?:eason)?\s*(\d{1,2})(?:\s*[- ]\s*(?:E|EP|Episode)?\s*(\d{1,3}))?(?:\s+(.*))?$/i
+        );
+
+
+    if (seasonOnly) {
+
+        const show =
+            (seasonOnly[1] || "").trim();
+
+
+        const season =
+            Number(
+                seasonOnly[2]
+            ) || 1;
+
+
+        const episode =
+            Number(
+                seasonOnly[3]
+            ) ||
+            (index + 1);
+
+
+        const extra =
+            (seasonOnly[4] || "").trim();
+
+
+        return {
+
+            show:
+                show || seriesTitle,
+
+            season:
+                season,
+
+            episode:
+                episode,
+
+            episodeName:
+                extra ||
+                "Episode " +
+                episode
+
+        };
+
+    }
+
+
+
+    return {
+
+        show:
+            seriesTitle,
+
+        season:
+            1,
+
+        episode:
+            index + 1,
+
+        episodeName:
+            clean ||
+            "Episode " +
+            (index + 1)
+
+    };
+
+}
+
+
+
+/* ==================================================
+   CREATE DRIVE VIDEO URL
+================================================== */
+
+function createDriveVideoURL(
+    fileId
+) {
+
+    return (
+        "https://www.googleapis.com/drive/v3/files/"
+        +
+        encodeURIComponent(
+            fileId
+        )
+        +
+        "?alt=media&key="
+        +
+        encodeURIComponent(
+            GOOGLE_API_KEY
+        )
+    );
+
+}
+
+
+
+/* ==================================================
+   MAKE EPISODE
+================================================== */
+
+function makeEpisodeFromDriveFile(
+    file,
+    index
+) {
+
+    const parsed =
+        parseEpisodeName(
+            file.name,
+            index
+        );
+
+
+    return {
+
+        id:
+            file.id,
+
+        name:
+            cleanFileName(
+                file.name
+            ),
+
+        video:
+            createDriveVideoURL(
+                file.id
+            ),
+
+        season:
+            parsed.season,
+
+        episode:
+            parsed.episode,
+
+        episodeName:
+            parsed.episodeName,
+
+        show:
+            parsed.show
+
+    };
+
+}
+
+
+
+/* ==================================================
+   LOAD SERIES DIRECTLY FROM DRIVE
+================================================== */
+
+async function getSeriesFilesFromDrive() {
+
+    if (
+        !GOOGLE_API_KEY ||
+        GOOGLE_API_KEY ===
+            "AIzaSyCX2HgwFLIgtOYw66bJh010TPIn3ibJ80w"
+    ) {
+
+        return [];
+
+    }
 
 
     const query =
-        `'${SERIES_FOLDER}' in parents and trashed = false`;
+        "'"
+        +
+        SERIES_FOLDER
+        +
+        "' in parents and trashed = false";
 
 
     const url =
@@ -674,12 +1524,14 @@ async function getDriveFiles() {
         +
         "?q="
         +
-        encodeURIComponent(query)
+        encodeURIComponent(
+            query
+        )
         +
         "&fields="
         +
         encodeURIComponent(
-            "files(id,name,mimeType,size)"
+            "files(id,name,mimeType)"
         )
         +
         "&pageSize=1000"
@@ -694,13 +1546,16 @@ async function getDriveFiles() {
 
 
     const response =
-        await fetch(url);
+        await fetch(
+            url
+        );
 
 
     if (!response.ok) {
 
         throw new Error(
-            "Google Drive API error: " +
+            "Google Drive API error: "
+            +
             response.status
         );
 
@@ -711,166 +1566,35 @@ async function getDriveFiles() {
         await response.json();
 
 
-    return data.files || [];
+    return (
+        data.files || []
+    ).filter(
+        function(file) {
 
-}
-
-
-
-/* ==================================================
-   EXTRACT SEASON
-================================================== */
-
-function getSeason(fileName) {
-
-    const match =
-        fileName.match(
-            /S(\d+)/i
-        );
-
-
-    if (match) {
-
-        return parseInt(
-            match[1],
-            10
-        );
-
-    }
-
-
-    return 1;
-
-}
-
-
-
-/* ==================================================
-   EXTRACT EPISODE NUMBER
-================================================== */
-
-function getEpisodeNumber(fileName) {
-
-    const match =
-        fileName.match(
-            /EP(\d+)/i
-        );
-
-
-    if (match) {
-
-        return parseInt(
-            match[1],
-            10
-        );
-
-    }
-
-
-    return 0;
-
-}
-
-
-
-/* ==================================================
-   EXTRACT EPISODE NAME
-================================================== */
-
-function getEpisodeName(fileName) {
-
-
-    let name =
-        cleanName(
-            fileName
-        );
-
-
-    /*
-       Remove the series name
-    */
-
-    if (seriesName) {
-
-        const escapedSeries =
-            seriesName.replace(
-                /[.*+?^${}()|[\]\\]/g,
-                "\\$&"
+            return (
+                file.mimeType !==
+                "application/vnd.google-apps.folder"
             );
 
-
-        name =
-            name.replace(
-                new RegExp(
-                    "^" +
-                    escapedSeries +
-                    "\\s*",
-                    "i"
-                ),
-                ""
-            );
-
-    }
-
-
-    /*
-       Remove S01EP01
-    */
-
-    name =
-        name.replace(
-            /\bS\d+EP\d+\b/i,
-            ""
-        );
-
-
-    name =
-        name
-            .replace(
-                /\s+/g,
-                " "
-            )
-            .trim();
-
-
-    /*
-       If there is no custom episode name,
-       use Episode X.
-    */
-
-    if (!name) {
-
-        const ep =
-            getEpisodeNumber(
-                fileName
-            );
-
-
-        return "Episode " + ep;
-
-    }
-
-
-    return name;
+        }
+    );
 
 }
 
 
 
 /* ==================================================
-   GET DRIVE PLAYER URL
+   SAME SHOW
 ================================================== */
 
-function getDrivePlayerURL(
-    file
+function sameShow(
+    a,
+    b
 ) {
 
     return (
-        "https://drive.google.com/file/d/"
-        +
-        file.id
-        +
-        "/preview"
+        normalizeName(a) ===
+        normalizeName(b)
     );
 
 }
@@ -878,101 +1602,87 @@ function getDrivePlayerURL(
 
 
 /* ==================================================
-   LOAD EPISODE
+   UNIQUE EPISODES
 ================================================== */
 
-function loadEpisode(
-    episode
+function uniqueEpisodes(
+    list
 ) {
 
-
-    currentEpisode =
-        episode;
-
-
-    drivePlayer.src =
-        getDrivePlayerURL(
-            episode
-        );
+    const map =
+        new Map();
 
 
-    const season =
-        getSeason(
-            episode.name
-        );
+    list.forEach(
+        function(ep) {
+
+            if (
+                !ep ||
+                !ep.id
+            ) {
+
+                return;
+
+            }
 
 
-    const episodeNumber =
-        getEpisodeNumber(
-            episode.name
-        );
+            map.set(
+                ep.id,
+                ep
+            );
+
+        }
+    );
 
 
-    const episodeName =
-        getEpisodeName(
-            episode.name
-        );
-
-
-    movieTitle.textContent =
-        episodeName
-        +
-        " - Season "
-        +
-        season
-        +
-        " - Episode "
-        +
-        episodeNumber;
-
-
-    document.title =
-        episodeName
-        +
-        " - My Library";
-
-
-    updateActiveEpisode();
+    return Array.from(
+        map.values()
+    );
 
 }
 
 
 
 /* ==================================================
-   UPDATE ACTIVE EPISODE
+   SORT EPISODES
 ================================================== */
 
-function updateActiveEpisode() {
+function sortEpisodes(
+    list
+) {
 
+    return list.sort(
+        function(a, b) {
 
-    const buttons =
-        episodeList.querySelectorAll(
-            ".episode-item"
-        );
-
-
-    buttons.forEach(
-        function(button) {
+            const seasonDifference =
+                Number(
+                    a.season || 1
+                )
+                -
+                Number(
+                    b.season || 1
+                );
 
 
             if (
-                currentEpisode &&
-                button.dataset.id ===
-                currentEpisode.id
+                seasonDifference !== 0
             ) {
 
-                button.classList.add(
-                    "active"
-                );
-
-            } else {
-
-                button.classList.remove(
-                    "active"
-                );
+                return seasonDifference;
 
             }
 
+
+            return (
+                Number(
+                    a.episode || 1
+                )
+                -
+                Number(
+                    b.episode || 1
+                )
+            );
+
         }
     );
 
@@ -981,301 +1691,736 @@ function updateActiveEpisode() {
 
 
 /* ==================================================
-   DISPLAY EPISODES
+   EPISODE DISPLAY NAME
 ================================================== */
 
-function displayEpisodes(
-    episodes
+function getEpisodeDisplayName(
+    ep
 ) {
 
-
-    episodeList.innerHTML =
-        "";
-
-
-    episodes.forEach(
-        function(
-            episode
-        ) {
-
-
-            const season =
-                getSeason(
-                    episode.name
-                );
-
-
-            const number =
-                getEpisodeNumber(
-                    episode.name
-                );
-
-
-            const name =
-                getEpisodeName(
-                    episode.name
-                );
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "episode-item";
-
-
-            button.dataset.id =
-                episode.id;
-
-
-            const numberDiv =
-                document.createElement(
-                    "div"
-                );
-
-
-            numberDiv.className =
-                "episode-number";
-
-
-            numberDiv.textContent =
-                "Episode " +
-                number;
-
-
-            const nameDiv =
-                document.createElement(
-                    "div"
-                );
-
-
-            nameDiv.className =
-                "episode-name";
-
-
-            nameDiv.textContent =
-                name;
-
-
-            button.appendChild(
-                numberDiv
-            );
-
-
-            button.appendChild(
-                nameDiv
-            );
-
-
-            button.onclick =
-                function() {
-
-                    loadEpisode(
-                        episode
-                    );
-
-                    episodeList.classList.remove(
-                        "open"
-                    );
-
-                    episodeButton.textContent =
-                        "Episodes ▾";
-
-                };
-
-
-            episodeList.appendChild(
-                button
-            );
-
-        }
+    return (
+        ep.episodeName
+        ||
+        (
+            "Episode "
+            +
+            (
+                Number(
+                    ep.episode
+                )
+                ||
+                1
+            )
+        )
     );
-
-
-    updateActiveEpisode();
 
 }
 
 
 
 /* ==================================================
-   LOAD SERIES
+   FULL SERIES TITLE
 ================================================== */
 
-async function loadSeries() {
+function getFullSeriesTitle(
+    ep
+) {
+
+    return (
+        seriesTitle
+        +
+        " - Season "
+        +
+        (
+            Number(
+                ep.season
+            )
+            ||
+            1
+        )
+        +
+        " - "
+        +
+        getEpisodeDisplayName(
+            ep
+        )
+    );
+
+}
 
 
-    seriesControls.classList.add(
-        "show"
+
+/* ==================================================
+   LOAD VIDEO
+================================================== */
+
+function loadVideo(
+    url,
+    ep
+) {
+
+    if (!url) {
+
+        errorMessage.textContent =
+            "Unable to load video.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    errorMessage.style.display =
+        "none";
+
+
+    video.pause();
+
+
+    video.src =
+        url;
+
+
+    video.load();
+
+
+
+    if (
+        type === "series" &&
+        ep
+    ) {
+
+        const displayTitle =
+            getFullSeriesTitle(
+                ep
+            );
+
+
+        movieTitle.textContent =
+            displayTitle;
+
+
+        document.title =
+            displayTitle +
+            " - My Library";
+
+    } else {
+
+        movieTitle.textContent =
+            title;
+
+
+        document.title =
+            title +
+            " - My Library";
+
+    }
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+/* ==================================================
+   SERIES PLAYER
+================================================== */
+
+function showSeriesPlayer(
+    list
+) {
+
+    episodes =
+        sortEpisodes(
+            uniqueEpisodes(
+                list
+            )
+        );
+
+
+    if (
+        !episodes.length
+    ) {
+
+        seriesPanel.classList.remove(
+            "visible"
+        );
+
+
+        loadVideo(
+            videoURL,
+            null
+        );
+
+
+        return;
+
+    }
+
+
+    seriesPanel.classList.add(
+        "visible"
     );
 
 
-    movieTitle.textContent =
-        "Loading " +
-        seriesName +
-        "...";
+
+    const seasons =
+        [
+            ...new Set(
+                episodes.map(
+                    function(ep) {
+
+                        return (
+                            Number(
+                                ep.season
+                            )
+                            ||
+                            1
+                        );
+
+                    }
+                )
+            )
+        ].sort(
+            function(a, b) {
+
+                return a - b;
+
+            }
+        );
 
 
-    try {
+
+    let activeSeason =
+        Number(
+            params.get(
+                "season"
+            )
+            ||
+            seasons[0]
+        );
 
 
-        const files =
-            await getDriveFiles();
+    if (
+        !seasons.includes(
+            activeSeason
+        )
+    ) {
+
+        activeSeason =
+            seasons[0];
+
+    }
 
 
-        /*
-           Only video files
-        */
 
-        seriesEpisodes =
-            files.filter(
-                function(file) {
+    let activeEpisodeId =
+        params.get(
+            "fileId"
+        )
+        ||
+        null;
+
+
+
+    function renderSeasons() {
+
+        seasonRow.innerHTML =
+            "";
+
+
+        const label =
+            document.createElement(
+                "span"
+            );
+
+
+        label.className =
+            "season-label";
+
+
+        label.textContent =
+            "Season:";
+
+
+        seasonRow.appendChild(
+            label
+        );
+
+
+
+        seasons.forEach(
+            function(season) {
+
+                const btn =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                btn.className =
+                    "season-btn"
+                    +
+                    (
+                        season ===
+                        activeSeason
+                        ? " active"
+                        : ""
+                    );
+
+
+                btn.textContent =
+                    "Season " +
+                    season;
+
+
+
+                btn.onclick =
+                    function() {
+
+                        activeSeason =
+                            season;
+
+
+                        activeEpisodeId =
+                            null;
+
+
+                        renderSeasons();
+
+
+                        renderEpisodes();
+
+                    };
+
+
+
+                seasonRow.appendChild(
+                    btn
+                );
+
+            }
+        );
+
+    }
+
+
+
+    function renderEpisodes() {
+
+        episodeRow.innerHTML =
+            "";
+
+
+        const current =
+            episodes.filter(
+                function(ep) {
 
                     return (
-                        file.mimeType &&
-                        file.mimeType.startsWith(
-                            "video/"
-                        ) &&
-                        cleanName(
-                            file.name
+                        (
+                            Number(
+                                ep.season
+                            )
+                            ||
+                            1
                         )
-                        .toLowerCase()
-                        .startsWith(
-                            seriesName.toLowerCase()
-                        )
+                        ===
+                        activeSeason
                     );
 
                 }
             );
 
 
-        /*
-           Sort by season and episode
-        */
 
-        seriesEpisodes.sort(
-            function(a, b) {
+        current.forEach(
+            function(ep) {
 
-
-                const seasonA =
-                    getSeason(
-                        a.name
+                const btn =
+                    document.createElement(
+                        "button"
                     );
 
 
-                const seasonB =
-                    getSeason(
-                        b.name
+                btn.className =
+                    "episode-btn";
+
+
+                btn.textContent =
+                    "Episode " +
+                    (
+                        Number(
+                            ep.episode
+                        )
+                        ||
+                        1
                     );
+
 
 
                 if (
-                    seasonA !==
-                    seasonB
+                    activeEpisodeId &&
+                    ep.id ===
+                    activeEpisodeId
                 ) {
 
-                    return (
-                        seasonA -
-                        seasonB
+                    btn.classList.add(
+                        "active"
                     );
 
                 }
 
 
-                return (
-                    getEpisodeNumber(
-                        a.name
-                    )
-                    -
-                    getEpisodeNumber(
-                        b.name
-                    )
+
+                btn.onclick =
+                    function() {
+
+                        document
+                            .querySelectorAll(
+                                ".episode-btn"
+                            )
+                            .forEach(
+                                function(x) {
+
+                                    x.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                        btn.classList.add(
+                            "active"
+                        );
+
+
+                        activeEpisodeId =
+                            ep.id;
+
+
+                        loadVideo(
+                            ep.video,
+                            ep
+                        );
+
+                    };
+
+
+
+                episodeRow.appendChild(
+                    btn
                 );
 
             }
         );
 
 
-        if (
-            seriesEpisodes.length === 0
-        ) {
 
-            movieTitle.textContent =
-                "No episodes found for " +
-                seriesName;
+        if (
+            !current.length
+        ) {
 
             return;
 
         }
 
 
-        /*
-           Show Season 1 initially
-        */
 
-        const firstEpisode =
-            seriesEpisodes[0];
-
-
-        const firstSeason =
-            getSeason(
-                firstEpisode.name
-            );
-
-
-        seasonButton.textContent =
-            "Season " +
-            firstSeason;
-
-
-        /*
-           Currently we display all episodes
-           from the selected season.
-        */
-
-        const seasonEpisodes =
-            seriesEpisodes.filter(
-                function(episode) {
+        let selected =
+            current.find(
+                function(ep) {
 
                     return (
-                        getSeason(
-                            episode.name
-                        ) ===
-                        firstSeason
+                        ep.id ===
+                        activeEpisodeId
                     );
 
                 }
             );
 
 
-        displayEpisodes(
-            seasonEpisodes
+        if (!selected) {
+
+            selected =
+                current[0];
+
+        }
+
+
+        activeEpisodeId =
+            selected.id;
+
+
+
+        const buttons =
+            [
+                ...episodeRow.querySelectorAll(
+                    ".episode-btn"
+                )
+            ];
+
+
+        const selectedIndex =
+            current.indexOf(
+                selected
+            );
+
+
+        if (
+            buttons[selectedIndex]
+        ) {
+
+            buttons[selectedIndex]
+                .classList.add(
+                    "active"
+                );
+
+        }
+
+
+
+        loadVideo(
+            selected.video,
+            selected
+        );
+
+    }
+
+
+
+    renderSeasons();
+
+    renderEpisodes();
+
+}
+
+
+
+/* ==================================================
+   START PLAYER
+================================================== */
+
+async function startPlayer() {
+
+    /*
+       MOVIES:
+
+       Keep the existing movie
+       playback path unchanged.
+    */
+
+    if (
+        type !== "series"
+    ) {
+
+        seriesPanel.classList.remove(
+            "visible"
         );
 
 
-        /*
-           Automatically play first episode
-        */
-
-        loadEpisode(
-            firstEpisode
+        loadVideo(
+            videoURL,
+            null
         );
 
+
+        return;
+
+    }
+
+
+
+    /*
+       First use the episodes
+       supplied by index.html.
+
+       Then refresh from Drive.
+    */
+
+    let suppliedEpisodes =
+        episodes.map(
+            function(ep, index) {
+
+                return {
+
+                    ...ep,
+
+                    season:
+                        Number(
+                            ep.season
+                        )
+                        ||
+                        1,
+
+                    episode:
+                        Number(
+                            ep.episode
+                        )
+                        ||
+                        index + 1,
+
+                    episodeName:
+                        ep.episodeName
+                        ||
+                        null
+
+                };
+
+            }
+        );
+
+
+
+    try {
+
+        const driveFiles =
+            await getSeriesFilesFromDrive();
+
+
+        if (
+            driveFiles.length
+        ) {
+
+            const driveEpisodes =
+                driveFiles.map(
+                    makeEpisodeFromDriveFile
+                );
+
+
+            const matching =
+                driveEpisodes.filter(
+                    function(ep) {
+
+                        return sameShow(
+                            ep.show,
+                            seriesTitle
+                        );
+
+                    }
+                );
+
+
+            if (
+                matching.length
+            ) {
+
+                suppliedEpisodes =
+                    matching;
+
+            }
+
+        }
 
     } catch (error) {
 
-
-        console.error(
+        console.warn(
+            "Series refresh failed; using supplied episodes.",
             error
         );
 
+    }
 
-        movieTitle.textContent =
-            "Unable to load series";
 
+
+    /*
+       If Drive refresh could not
+       be used, process supplied episodes.
+    */
+
+    suppliedEpisodes =
+        suppliedEpisodes.map(
+            function(ep, index) {
+
+                const parsed =
+                    parseEpisodeName(
+                        ep.name || "",
+                        index
+                    );
+
+
+                return {
+
+                    ...ep,
+
+                    season:
+                        Number(
+                            ep.season
+                        )
+                        ||
+                        parsed.season
+                        ||
+                        1,
+
+                    episode:
+                        Number(
+                            ep.episode
+                        )
+                        ||
+                        parsed.episode
+                        ||
+                        index + 1,
+
+                    episodeName:
+                        ep.episodeName
+                        ||
+                        parsed.episodeName
+                        ||
+                        (
+                            "Episode "
+                            +
+                            (
+                                Number(
+                                    ep.episode
+                                )
+                                ||
+                                index + 1
+                            )
+                        )
+
+                };
+
+            }
+        );
+
+
+
+    showSeriesPlayer(
+        suppliedEpisodes
+    );
+
+}
+
+
+
+/* ==================================================
+   NORMAL VIDEO CONTROLS
+================================================== */
+
+function togglePlay() {
+
+    if (
+        video.paused
+    ) {
+
+        video
+            .play()
+            .catch(
+                function() {}
+            );
+
+    } else {
+
+        video.pause();
 
     }
 
@@ -1283,53 +2428,620 @@ async function loadSeries() {
 
 
 
-/* ==================================================
-   EPISODE BUTTON
-================================================== */
+playBtn.addEventListener(
+    "click",
+    togglePlay
+);
 
-episodeButton.onclick =
+
+video.addEventListener(
+    "play",
     function() {
 
+        playBtn.textContent =
+            "❚❚";
 
-        const isOpen =
-            episodeList.classList.contains(
-                "open"
+    }
+);
+
+
+video.addEventListener(
+    "pause",
+    function() {
+
+        playBtn.textContent =
+            "▶";
+
+    }
+);
+
+
+
+rewindBtn.addEventListener(
+    "click",
+    function() {
+
+        video.currentTime =
+            Math.max(
+                0,
+                video.currentTime - 10
             );
 
+    }
+);
 
-        if (isOpen) {
 
-            episodeList.classList.remove(
-                "open"
+
+forwardBtn.addEventListener(
+    "click",
+    function() {
+
+        video.currentTime =
+            Math.min(
+                video.duration || 0,
+                video.currentTime + 10
             );
 
-
-            episodeButton.textContent =
-                "Episodes ▾";
-
-
-        } else {
-
-            episodeList.classList.add(
-                "open"
-            );
+    }
+);
 
 
-            episodeButton.textContent =
-                "Episodes ▴";
+
+video.addEventListener(
+    "timeupdate",
+    function() {
+
+        if (
+            !video.duration
+        ) {
+
+            return;
 
         }
 
-    };
+
+        const p =
+            (
+                video.currentTime /
+                video.duration
+            )
+            *
+            100;
+
+
+        progress.style.width =
+            p + "%";
+
+
+        thumb.style.left =
+            p + "%";
+
+
+        currentTime.textContent =
+            formatTime(
+                video.currentTime
+            );
+
+    }
+);
+
+
+
+video.addEventListener(
+    "loadedmetadata",
+    function() {
+
+        duration.textContent =
+            formatTime(
+                video.duration
+            );
+
+    }
+);
+
+
+
+timeline.addEventListener(
+    "click",
+    function(e) {
+
+        if (
+            !video.duration
+        ) {
+
+            return;
+
+        }
+
+
+        const rect =
+            timeline.getBoundingClientRect();
+
+
+        const p =
+            Math.max(
+                0,
+                Math.min(
+                    1,
+                    (
+                        e.clientX -
+                        rect.left
+                    )
+                    /
+                    rect.width
+                )
+            );
+
+
+        video.currentTime =
+            p *
+            video.duration;
+
+    }
+);
+
+
+
+video.addEventListener(
+    "progress",
+    function() {
+
+        if (
+            !video.duration ||
+            !video.buffered.length
+        ) {
+
+            return;
+
+        }
+
+
+        const end =
+            video.buffered.end(
+                video.buffered.length - 1
+            );
+
+
+        buffer.style.width =
+            Math.min(
+                100,
+                (
+                    end /
+                    video.duration
+                )
+                *
+                100
+            )
+            +
+            "%";
+
+    }
+);
+
+
+
+volumeSlider.addEventListener(
+    "input",
+    function() {
+
+        video.volume =
+            Number(
+                volumeSlider.value
+            );
+
+
+        muteBtn.textContent =
+            video.volume === 0
+            ? "🔇"
+            : "🔊";
+
+    }
+);
+
+
+
+muteBtn.addEventListener(
+    "click",
+    function() {
+
+        video.muted =
+            !video.muted;
+
+
+        muteBtn.textContent =
+            video.muted
+            ? "🔇"
+            : "🔊";
+
+    }
+);
+
+
+
+fullscreenBtn.addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            if (
+                !document.fullscreenElement
+            ) {
+
+                await videoContainer.requestFullscreen();
+
+            } else {
+
+                await document.exitFullscreen();
+
+            }
+
+        } catch (e) {}
+
+    }
+);
 
 
 
 /* ==================================================
-   BACK
+   SPEED MENU
+================================================== */
+
+speedBtn.addEventListener(
+    "click",
+    function(e) {
+
+        e.stopPropagation();
+
+
+        speedMenu.style.display =
+            speedMenu.style.display ===
+            "block"
+            ? "none"
+            : "block";
+
+
+        qualityMenu.style.display =
+            "none";
+
+    }
+);
+
+
+
+document
+    .querySelectorAll(
+        "#speedMenu button"
+    )
+    .forEach(
+        function(btn) {
+
+            btn.onclick =
+                function() {
+
+                    video.playbackRate =
+                        Number(
+                            btn.dataset.speed
+                        );
+
+
+                    speedMenu.style.display =
+                        "none";
+
+                };
+
+        }
+    );
+
+
+
+/* ==================================================
+   QUALITY MENU
+================================================== */
+
+qualityBtn.addEventListener(
+    "click",
+    function(e) {
+
+        e.stopPropagation();
+
+
+        qualityMenu.style.display =
+            qualityMenu.style.display ===
+            "block"
+            ? "none"
+            : "block";
+
+
+        speedMenu.style.display =
+            "none";
+
+    }
+);
+
+
+
+document
+    .querySelectorAll(
+        "#qualityMenu button"
+    )
+    .forEach(
+        function(btn) {
+
+            btn.onclick =
+                function() {
+
+                    qualityMenu.style.display =
+                        "none";
+
+
+                    if (
+                        btn.dataset.quality !==
+                        "auto"
+                    ) {
+
+                        alert(
+                            "Quality switching needs separate video files for each quality."
+                        );
+
+                    }
+
+                };
+
+        }
+    );
+
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        speedMenu.style.display =
+            "none";
+
+
+        qualityMenu.style.display =
+            "none";
+
+    }
+);
+
+
+
+/* ==================================================
+   TIMELINE PREVIEW
+================================================== */
+
+let previewVideo = null;
+
+
+function createPreview() {
+
+    previewVideo =
+        document.createElement(
+            "video"
+        );
+
+
+    previewVideo.src =
+        video.src;
+
+
+    previewVideo.preload =
+        "metadata";
+
+
+    previewVideo.muted =
+        true;
+
+
+    previewVideo.playsInline =
+        true;
+
+
+    previewVideo.style.display =
+        "none";
+
+
+    document.body.appendChild(
+        previewVideo
+    );
+
+}
+
+
+
+video.addEventListener(
+    "loadedmetadata",
+    function() {
+
+        if (
+            previewVideo
+        ) {
+
+            previewVideo.src =
+                video.currentSrc ||
+                video.src;
+
+
+            previewVideo.load();
+
+        }
+
+    }
+);
+
+
+
+timeline.addEventListener(
+    "mousemove",
+    function(e) {
+
+        if (
+            !video.duration
+        ) {
+
+            return;
+
+        }
+
+
+        const rect =
+            timeline.getBoundingClientRect();
+
+
+        const p =
+            Math.max(
+                0,
+                Math.min(
+                    1,
+                    (
+                        e.clientX -
+                        rect.left
+                    )
+                    /
+                    rect.width
+                )
+            );
+
+
+        const seconds =
+            p *
+            video.duration;
+
+
+        const w =
+            previewBox.offsetWidth;
+
+
+        let left =
+            e.clientX -
+            rect.left -
+            w / 2;
+
+
+        left =
+            Math.max(
+                0,
+                Math.min(
+                    rect.width - w,
+                    left
+                )
+            );
+
+
+        previewBox.style.left =
+            left + "px";
+
+
+        previewBox.style.display =
+            "block";
+
+
+        previewTime.textContent =
+            formatTime(
+                seconds
+            );
+
+    }
+);
+
+
+
+timeline.addEventListener(
+    "mouseleave",
+    function() {
+
+        previewBox.style.display =
+            "none";
+
+    }
+);
+
+
+
+createPreview();
+
+
+
+/* ==================================================
+   KEYBOARD CONTROLS
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            e.target.tagName ===
+            "INPUT"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            e.code ===
+            "Space"
+        ) {
+
+            e.preventDefault();
+
+            togglePlay();
+
+        }
+
+
+        if (
+            e.key ===
+            "ArrowLeft"
+        ) {
+
+            video.currentTime =
+                Math.max(
+                    0,
+                    video.currentTime - 5
+                );
+
+        }
+
+
+        if (
+            e.key ===
+            "ArrowRight"
+        ) {
+
+            video.currentTime =
+                Math.min(
+                    video.duration || 0,
+                    video.currentTime + 5
+                );
+
+        }
+
+
+        if (
+            e.key.toLowerCase() ===
+            "f"
+        ) {
+
+            fullscreenBtn.click();
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   BACK BUTTON
 ================================================== */
 
 function goBack() {
-
 
     if (
         document.referrer &&
@@ -1354,63 +3066,7 @@ function goBack() {
    START
 ================================================== */
 
-if (
-    type === "series" &&
-    seriesName
-) {
-
-    loadSeries();
-
-} else if (videoURL) {
-
-
-    /*
-       Movie player
-    */
-
-    let movieFileId = "";
-
-
-    const match =
-        videoURL.match(
-            /drive\/v3\/files\/([^/?]+)/
-        );
-
-
-    if (match) {
-
-        movieFileId =
-            match[1];
-
-    }
-
-
-    if (movieFileId) {
-
-        drivePlayer.src =
-            "https://drive.google.com/file/d/"
-            +
-            movieFileId
-            +
-            "/preview";
-
-    } else {
-
-        drivePlayer.src =
-            videoURL;
-
-    }
-
-
-    movieTitle.textContent =
-        originalTitle;
-
-
-    document.title =
-        originalTitle +
-        " - My Library";
-
-}
+startPlayer();
 
 </script>
 
